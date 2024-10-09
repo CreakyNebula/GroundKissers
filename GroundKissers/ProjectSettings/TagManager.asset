@@ -7,6 +7,7 @@ TagManager:
   - FallingPlatform
   - Danger
   - Floor
+  - Wall
   layers:
   - Default
   - TransparentFX
