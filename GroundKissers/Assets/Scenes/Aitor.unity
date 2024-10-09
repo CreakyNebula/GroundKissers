@@ -310,7 +310,7 @@ GameObject:
   - component: {fileID: 508231382}
   m_Layer: 0
   m_Name: colliderDetector
-  m_TagString: Untagged
+  m_TagString: Danger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -362,7 +362,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0038574934, y: -0.15815365}
+  m_Offset: {x: 0.0038574934, y: -0.1571399}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -373,7 +373,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.1774409, y: 0.12051082}
+  m_Size: {x: 1.1774409, y: 0.118483305}
   m_EdgeRadius: 0
 --- !u!1 &519420028
 GameObject:
@@ -940,11 +940,11 @@ GameObject:
   - component: {fileID: 1564565065}
   - component: {fileID: 1564565064}
   - component: {fileID: 1564565067}
-  - component: {fileID: 1564565066}
   - component: {fileID: 1564565068}
+  - component: {fileID: 1564565066}
   m_Layer: 0
   m_Name: FallingPlatfrom
-  m_TagString: Untagged
+  m_TagString: FallingPlatform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1140,6 +1140,7 @@ GameObject:
   - component: {fileID: 2029799953}
   - component: {fileID: 2029799952}
   - component: {fileID: 2029799951}
+  - component: {fileID: 2029799955}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1276,6 +1277,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2029799955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2029799950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d3d633008883ee479acee6e04e06ec3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2141465005
 GameObject:
   m_ObjectHideFlags: 0
