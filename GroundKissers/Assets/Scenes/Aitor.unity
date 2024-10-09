@@ -7572,11 +7572,23 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 183963867576998302, guid: 502ff3a4c83d3f0439530414735f332e, type: 3}
       propertyPath: forceX
-      value: 25
+      value: -25.5
       objectReference: {fileID: 0}
     - target: {fileID: 183963867576998302, guid: 502ff3a4c83d3f0439530414735f332e, type: 3}
       propertyPath: forceY
-      value: 25
+      value: -5.76
+      objectReference: {fileID: 0}
+    - target: {fileID: 183963867576998302, guid: 502ff3a4c83d3f0439530414735f332e, type: 3}
+      propertyPath: launchDirection.x
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 183963867576998302, guid: 502ff3a4c83d3f0439530414735f332e, type: 3}
+      propertyPath: launchDirection.y
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1915540491094426150, guid: 502ff3a4c83d3f0439530414735f332e, type: 3}
+      propertyPath: m_Constraints
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4024042684513077821, guid: 502ff3a4c83d3f0439530414735f332e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -10163,6 +10175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d3d633008883ee479acee6e04e06ec3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerDeads: 0
 --- !u!114 &2029799956
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13739,6 +13752,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 183963867576998302, guid: 502ff3a4c83d3f0439530414735f332e, type: 3}
+      propertyPath: launchPower
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 183963867576998302, guid: 502ff3a4c83d3f0439530414735f332e, type: 3}
+      propertyPath: launchDirection.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1915540491094426150, guid: 502ff3a4c83d3f0439530414735f332e, type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 4024042684513077821, guid: 502ff3a4c83d3f0439530414735f332e, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6.47
