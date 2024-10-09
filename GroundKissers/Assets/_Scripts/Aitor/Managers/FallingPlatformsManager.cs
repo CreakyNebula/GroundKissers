@@ -2,13 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(FloatingAnim))]
 public class FallingPlatformsManager : MonoBehaviour
 {
-    [SerializeField] private bool isPlayerOnTop = false;
+    [Header("Explicacion")]
+    [TextArea(3,10)]
+    public string comment;
+
+    [Header("Cuenta atrás")]
     [SerializeField] private float countdownTime = 3f; // Tiempo de cuenta atrás en segundos
 
     private FloatingAnim fa;
     private Rigidbody2D rb;
+
+    private bool isPlayerOnTop = false;
     private float currentCountdown;
 
     private void Start()
