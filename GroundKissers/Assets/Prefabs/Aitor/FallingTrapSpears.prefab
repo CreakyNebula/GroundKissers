@@ -138,7 +138,7 @@ MonoBehaviour:
   delayBetweenAnimations: 3
   swingAngle: 30
   swingDuration: 1
-  fallDuration: 0.8
+  fallDuration: 0.6
   destroyDelay: 1
 --- !u!1 &7896640427885262820
 GameObject:

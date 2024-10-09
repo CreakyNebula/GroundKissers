@@ -42,6 +42,11 @@ public class BouncingSawManager : MonoBehaviour
                 Vector3 direction = Vector3.Reflect(lastVelocity.normalized, collision.contacts[0].normal);
                 rb.velocity = direction * Mathf.Max(speed, 0f);
             }
+
+            if (collision.gameObject.CompareTag("Player"))
+            {
+                Invoke("DestroyOnCollisionWithStatic", 0.1f);
+            }
         }
         else
         {
