@@ -6,8 +6,8 @@ public class FallingPlatformsManager : MonoBehaviour
 {
     [SerializeField] private bool isPlayerOnTop = false;
     [SerializeField] private float countdownTime = 3f; // Tiempo de cuenta atrás en segundos
-    [SerializeField] private FloatingAnim fa;
 
+    private FloatingAnim fa;
     private Rigidbody2D rb;
     private float currentCountdown;
 
@@ -39,6 +39,11 @@ public class FallingPlatformsManager : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             isPlayerOnTop = true;
+        }
+
+        if (collision.gameObject.CompareTag("Floor"))
+        {
+            Destroy(gameObject);
         }
     }
 
