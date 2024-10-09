@@ -7,8 +7,8 @@ public class FallingTrapManager : MonoBehaviour
     [SerializeField] private float tensionDropDistance = 0.2f;
     [SerializeField] private float tensionDuration = 0.3f;
     [SerializeField] private float reboundDuration = 0.2f;
-    [SerializeField] private float finalDropDistance = 0.1f; // Nueva variable para la posición final después del rebote
-    [SerializeField] private float delayBetweenAnimations = 1f; // Nuevo delay entre animaciones
+    [SerializeField] private float finalDropDistance = 0.1f; 
+    [SerializeField] private float delayBetweenAnimations = 1f; 
     [SerializeField] private float swingAngle = 15f;
     [SerializeField] private float swingDuration = 0.5f;
     [SerializeField] private float fallDuration = 1f;
@@ -25,7 +25,6 @@ public class FallingTrapManager : MonoBehaviour
         Vector3 initialPosition = transform.position;
         Vector3 finalPosition = initialPosition - new Vector3(0, finalDropDistance, 0);
 
-        // Espera inicial
         yield return new WaitForSeconds(initialDelay);
 
         // Animación de tensión (caída ligera con rebote)
@@ -40,7 +39,6 @@ public class FallingTrapManager : MonoBehaviour
         // Espera a que termine la animación de tensión
         yield return new WaitForSeconds(tensionDuration + reboundDuration);
 
-        // Nuevo delay entre animaciones
         yield return new WaitForSeconds(delayBetweenAnimations);
 
         // Animación de balanceo antes de caer
@@ -55,7 +53,6 @@ public class FallingTrapManager : MonoBehaviour
         // Espera a que termine la animación antes de destruir el objeto
         yield return new WaitForSeconds(swingDuration + fallDuration + destroyDelay);
 
-        // Destruye el objeto después de la animación
         Destroy(gameObject);
     }
 }
