@@ -3,11 +3,16 @@ using System.Collections;
 
 public class FallingTrapManager : MonoBehaviour
 {
-    [SerializeField] private float fallDelay = 0.5f;
-    [SerializeField] private float fallDuration = 1f;
-    [SerializeField] private float destroyDelay = 1f;
+    [SerializeField] private float initialDelay = 0.5f;
+    [SerializeField] private float tensionDropDistance = 0.2f;
+    [SerializeField] private float tensionDuration = 0.3f;
+    [SerializeField] private float reboundDuration = 0.2f;
+    [SerializeField] private float finalDropDistance = 0.1f; // Nueva variable para la posición final después del rebote
+    [SerializeField] private float delayBetweenAnimations = 1f; // Nuevo delay entre animaciones
     [SerializeField] private float swingAngle = 15f;
     [SerializeField] private float swingDuration = 0.5f;
+    [SerializeField] private float fallDuration = 1f;
+    [SerializeField] private float destroyDelay = 1f;
 
     private void Start()
     {
@@ -17,8 +22,26 @@ public class FallingTrapManager : MonoBehaviour
 
     private IEnumerator FallSequence()
     {
-        // Espera un momento antes de iniciar la animación
-        yield return new WaitForSeconds(fallDelay);
+        Vector3 initialPosition = transform.position;
+        Vector3 finalPosition = initialPosition - new Vector3(0, finalDropDistance, 0);
+
+        // Espera inicial
+        yield return new WaitForSeconds(initialDelay);
+
+        // Animación de tensión (caída ligera con rebote)
+        LeanTween.moveY(gameObject, initialPosition.y - tensionDropDistance, tensionDuration)
+            .setEaseInQuad()
+            .setOnComplete(() => {
+                // Rebote a la posición final
+                LeanTween.moveY(gameObject, finalPosition.y, reboundDuration)
+                    .setEaseOutQuad();
+            });
+
+        // Espera a que termine la animación de tensión
+        yield return new WaitForSeconds(tensionDuration + reboundDuration);
+
+        // Nuevo delay entre animaciones
+        yield return new WaitForSeconds(delayBetweenAnimations);
 
         // Animación de balanceo antes de caer
         LeanTween.rotateZ(gameObject, swingAngle, swingDuration)
