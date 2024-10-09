@@ -12,14 +12,17 @@ public class Player_Script : MonoBehaviour
     // Variables de movimiento
     public float moveSpeed = 5f;
     public float jumpForce = 7f;
+    public float fallForce = 7f;
     private Vector2 moveInput;
     private Rigidbody2D rb;
+
 
     // GroundCheck
     public Transform groundCheck;  // Punto desde donde se dispara el Raycast
     public float groundCheckDistance = 0.2f;  // Distancia del Raycast para verificar el suelo
     public LayerMask groundLayer;  // Capa que representa el suelo
     private bool isGrounded;
+    private bool isJumping;
 
     private void Start()
     {
@@ -29,10 +32,10 @@ public class Player_Script : MonoBehaviour
 
     private void Update()
     {
-        moveInput = playerInput.actions["Move"].ReadValue<Vector2>();
+      
         CheckGround();
-        // Movimiento horizontal
-        rb.velocity = new Vector2(moveInput.x * moveSpeed, rb.velocity.y);
+        UpdateMovement();
+        GravityScale();
     }
 
    
@@ -50,16 +53,43 @@ public class Player_Script : MonoBehaviour
         {
             // Salta solo si está en el suelo
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-            Debug.Log("Jump");
+            isJumping = true;
+        }
+        if (callbackContext.canceled )
+        {
+            isJumping = false;
         }
     }
 
    void CheckGround()
     {
         // Verifica si está en el suelo usando un Raycast
-        isGrounded = Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckDistance, groundLayer);
+        isGrounded = Physics2D.BoxCast(groundCheck.position, new Vector2(0.5f, 0.1f), 0f, Vector2.down, groundCheckDistance, groundLayer);
 
-        // Dibuja el Raycast en la escena para depuración
+        // Dibuja el BoxCast en la escena para depuración
+       
+    }
+
+    void GravityScale()
+    {
+        if(!isJumping && !isGrounded || !isGrounded && rb.velocity.y<11.5f )
+        {
+            rb.AddForce(Vector2.down * fallForce, ForceMode2D.Impulse);
+        }
+
+       
+    }
+    void UpdateMovement()
+    {
+        moveInput = playerInput.actions["Move"].ReadValue<Vector2>();
+        // Movimiento horizontal
+        rb.velocity = new Vector2(moveInput.x * moveSpeed, rb.velocity.y);
+    }
+
+    private void OnDrawGizmos()
+    {
         Debug.DrawRay(groundCheck.position, Vector2.down * groundCheckDistance, Color.red);
     }
+
+
 }
