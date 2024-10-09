@@ -130,7 +130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f2f74b12eedbe74ba28b3c69071fea7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialDelay: 0.5
+  initialDelay: 1
   tensionDropDistance: 2.5
   tensionDuration: 0.3
   reboundDuration: 0.2
