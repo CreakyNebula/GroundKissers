@@ -155,10 +155,10 @@ TextureImporter:
       name: Suriken_2
       rect:
         serializedVersion: 2
-        x: 65
-        y: 1
-        width: 30
-        height: 30
+        x: 64
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -176,10 +176,10 @@ TextureImporter:
       name: Suriken_3
       rect:
         serializedVersion: 2
-        x: 97
-        y: 1
-        width: 30
-        height: 30
+        x: 96
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -241,7 +241,7 @@ TextureImporter:
         serializedVersion: 2
         x: 192
         y: 0
-        width: 64
+        width: 32
         height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -252,6 +252,27 @@ TextureImporter:
       bones: []
       spriteID: 9bd614a931c189146b8a46d2b83d9ff1
       internalID: 907782563
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Suriken_7
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a67318ce4a89ed84181b2d9998d466a2
+      internalID: 1160080714
       vertices: []
       indices: 
       edges: []
@@ -274,6 +295,7 @@ TextureImporter:
       Suriken_4: 1414731086
       Suriken_5: -1728536399
       Suriken_6: 907782563
+      Suriken_7: 1160080714
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
