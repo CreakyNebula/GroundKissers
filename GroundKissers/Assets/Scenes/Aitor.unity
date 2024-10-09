@@ -2093,6 +2093,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 401524656}
+  - component: {fileID: 401524657}
   m_Layer: 0
   m_Name: SpawnPointFT (1)
   m_TagString: Untagged
@@ -2115,6 +2116,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 554296701}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &401524657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 401524655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 103edbb7329b6ce48a4900e3f7b47a05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabsToSpawn:
+  - {fileID: 5826755071825602996, guid: 4e22e9cfabf701c4b8d56be84308b06d, type: 3}
+  - {fileID: 4003903268622216349, guid: f0972f0d84fec484a84d063b923c811d, type: 3}
+  cooldownTime: 5
+  isOnCooldown: 0
 --- !u!1 &403486506
 GameObject:
   m_ObjectHideFlags: 0
@@ -2291,6 +2309,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 454330177}
+  - component: {fileID: 454330178}
   m_Layer: 0
   m_Name: SpawnPointFT (2)
   m_TagString: Untagged
@@ -2313,6 +2332,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 554296701}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &454330178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 454330176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 103edbb7329b6ce48a4900e3f7b47a05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabsToSpawn:
+  - {fileID: 5826755071825602996, guid: 4e22e9cfabf701c4b8d56be84308b06d, type: 3}
+  - {fileID: 4003903268622216349, guid: f0972f0d84fec484a84d063b923c811d, type: 3}
+  cooldownTime: 5
+  isOnCooldown: 0
 --- !u!1 &455716177
 GameObject:
   m_ObjectHideFlags: 0
@@ -2967,6 +3003,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 554296701}
+  - component: {fileID: 554296702}
   m_Layer: 0
   m_Name: SpawnPoints
   m_TagString: Untagged
@@ -2983,7 +3020,7 @@ Transform:
   m_GameObject: {fileID: 554296700}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.77, y: 6, z: 0.027281694}
+  m_LocalPosition: {x: 6.77, y: 7.31, z: 0.027281694}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2995,6 +3032,29 @@ Transform:
   - {fileID: 1465607593}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &554296702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 554296700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d71d6d86cae8bb44b12b7e7b8dcbd0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnPoints:
+  - {fileID: 2130520019}
+  - {fileID: 401524657}
+  - {fileID: 454330178}
+  - {fileID: 1977134724}
+  - {fileID: 997867549}
+  - {fileID: 1465607594}
+  timeBetweenSpawnRounds: 10
+  minTimeBetweenSpawns: 2
+  maxTimeBetweenSpawns: 5
+  maxSpawnsPerRound: 3
 --- !u!1 &556392285
 GameObject:
   m_ObjectHideFlags: 0
@@ -5449,6 +5509,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 997867548}
+  - component: {fileID: 997867549}
   m_Layer: 0
   m_Name: SpawnPointFT (4)
   m_TagString: Untagged
@@ -5471,6 +5532,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 554296701}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &997867549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 997867547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 103edbb7329b6ce48a4900e3f7b47a05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabsToSpawn:
+  - {fileID: 5826755071825602996, guid: 4e22e9cfabf701c4b8d56be84308b06d, type: 3}
+  - {fileID: 4003903268622216349, guid: f0972f0d84fec484a84d063b923c811d, type: 3}
+  cooldownTime: 5
+  isOnCooldown: 0
 --- !u!1 &1001096157
 GameObject:
   m_ObjectHideFlags: 0
@@ -8155,6 +8233,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1465607593}
+  - component: {fileID: 1465607594}
   m_Layer: 0
   m_Name: SpawnPointFT (5)
   m_TagString: Untagged
@@ -8177,6 +8256,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 554296701}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1465607594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1465607592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 103edbb7329b6ce48a4900e3f7b47a05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabsToSpawn:
+  - {fileID: 5826755071825602996, guid: 4e22e9cfabf701c4b8d56be84308b06d, type: 3}
+  - {fileID: 4003903268622216349, guid: f0972f0d84fec484a84d063b923c811d, type: 3}
+  cooldownTime: 5
+  isOnCooldown: 0
 --- !u!1001 &1476467324
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9911,6 +10007,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1977134723}
+  - component: {fileID: 1977134724}
   m_Layer: 0
   m_Name: SpawnPointFT (3)
   m_TagString: Untagged
@@ -9933,6 +10030,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 554296701}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1977134724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1977134722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 103edbb7329b6ce48a4900e3f7b47a05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabsToSpawn:
+  - {fileID: 5826755071825602996, guid: 4e22e9cfabf701c4b8d56be84308b06d, type: 3}
+  - {fileID: 4003903268622216349, guid: f0972f0d84fec484a84d063b923c811d, type: 3}
+  cooldownTime: 5
+  isOnCooldown: 0
 --- !u!1 &1998369956
 GameObject:
   m_ObjectHideFlags: 0
@@ -10962,6 +11076,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2130520018}
+  - component: {fileID: 2130520019}
   m_Layer: 0
   m_Name: SpawnPointFT
   m_TagString: Untagged
@@ -10984,6 +11099,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 554296701}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2130520019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2130520017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 103edbb7329b6ce48a4900e3f7b47a05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabsToSpawn:
+  - {fileID: 5826755071825602996, guid: 4e22e9cfabf701c4b8d56be84308b06d, type: 3}
+  - {fileID: 4003903268622216349, guid: f0972f0d84fec484a84d063b923c811d, type: 3}
+  cooldownTime: 5
+  isOnCooldown: 0
 --- !u!1 &2141327178
 GameObject:
   m_ObjectHideFlags: 0
@@ -12979,7 +13111,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7833060787302364859, guid: 4e22e9cfabf701c4b8d56be84308b06d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.52
+      value: 19.05
       objectReference: {fileID: 0}
     - target: {fileID: 7833060787302364859, guid: 4e22e9cfabf701c4b8d56be84308b06d, type: 3}
       propertyPath: m_LocalPosition.y
@@ -14566,7 +14698,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5206887187858875292, guid: f0972f0d84fec484a84d063b923c811d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.03
+      value: 22.56
       objectReference: {fileID: 0}
     - target: {fileID: 5206887187858875292, guid: f0972f0d84fec484a84d063b923c811d, type: 3}
       propertyPath: m_LocalPosition.y
