@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3402862252326275880}
   - component: {fileID: 6861491827039128050}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: colliderDetector
   m_TagString: Danger
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 5019042001439967170}
   - component: {fileID: 8170121469213305640}
   - component: {fileID: 1467014436207661765}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FallingPlatfrom
   m_TagString: FallingPlatform
   m_Icon: {fileID: 0}
@@ -292,3 +292,4 @@ MonoBehaviour:
     la cuenta atr\xE1s llega a su fin, la plataforma cae y el player deja de ser
     hijo suyo."
   countdownTime: 3
+  currentCountdown: 0
