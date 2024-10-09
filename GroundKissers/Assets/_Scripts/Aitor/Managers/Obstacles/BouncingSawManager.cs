@@ -4,27 +4,25 @@ using UnityEngine;
 
 public class BouncingSawManager : MonoBehaviour
 {
-    [Header("Velocidades")]
-    [SerializeField] private float forceX;
-    [SerializeField] private float forceY;
+    [Header("Configuración de lanzamiento")]
+    [SerializeField] private float launchPower = 10f; // Potencia de lanzamiento
+    [SerializeField] private Vector2 launchDirection = Vector2.one; // Dirección de lanzamiento
+    [SerializeField] private int maxCollisions = 3;
 
     [Header("Gizmo")]
-    [SerializeField] private float gizmoLength = 2f; // Longitud del gizmo
+    [SerializeField] private float gizmoLength = 2f;
 
     private int collisionsCount;
-
     private Rigidbody2D rb;
     private Vector2 initialForce;
     private Vector3 lastVelocity;
 
-    private float gravity = 9.8f;
-
-
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        initialForce = new Vector2(gravity * forceX, gravity * forceY);
-        rb.AddForce(initialForce);
+        // Normaliza la dirección y multiplica por la potencia
+        initialForce = launchDirection.normalized * launchPower;
+        rb.AddForce(initialForce, ForceMode2D.Impulse);
     }
 
     private void Update()
@@ -34,7 +32,7 @@ public class BouncingSawManager : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collisionsCount < 3)
+        if (collisionsCount < maxCollisions)
         {
             if (collision.gameObject.CompareTag("Floor") || collision.gameObject.CompareTag("Wall"))
             {
@@ -47,7 +45,8 @@ public class BouncingSawManager : MonoBehaviour
         }
         else
         {
-            DestroyOnCollisionWithStatic();
+            Invoke("DestroyOnCollisionWithStatic", 0.1f);
+            //DestroyOnCollisionWithStatic();
         }
     }
 
@@ -57,11 +56,11 @@ public class BouncingSawManager : MonoBehaviour
         Destroy(gameObject);
     }
 
-    // Dibuja un gizmo que muestra la dirección inicial de la fuerza
+    // Dibuja un gizmo que muestra la dirección de lanzamiento
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Vector3 direction = new Vector3(forceX, forceY, 0).normalized;
-        Gizmos.DrawLine(transform.position, transform.position + direction * gizmoLength);
+        Vector3 direction = launchDirection.normalized;
+        Gizmos.DrawLine(transform.position, transform.position + (Vector3)direction * gizmoLength);
     }
 }
