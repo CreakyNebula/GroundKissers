@@ -8,6 +8,7 @@ TagManager:
   - Danger
   - Floor
   - Wall
+  - Zancadilla
   layers:
   - Default
   - TransparentFX
