@@ -27,11 +27,15 @@ public class Player_Script : MonoBehaviour
     private bool isGrounded;
     private bool isJumping;
 
+    //animator
+    private Animator animator;
+
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         playerInput = GetComponent<PlayerInput>();
+        animator = GetComponent<Animator>();
     }
 
     private void Update()
@@ -40,6 +44,7 @@ public class Player_Script : MonoBehaviour
         CheckGround();
         UpdateMovement();
         GravityScale();
+        AnimationManager();
     }
 
    
@@ -92,6 +97,15 @@ public class Player_Script : MonoBehaviour
         moveInput = playerInput.actions["Move"].ReadValue<Vector2>();
         // Movimiento horizontal
         rb.velocity = new Vector2(moveInput.x * moveSpeed, rb.velocity.y);
+        if(moveInput.x>0)
+        {
+           
+            transform.eulerAngles = new Vector3(0, 0, 0);
+        }
+        else if (moveInput.x < 0)
+        {    
+            transform.eulerAngles = new Vector3(0, 180, 0);
+        }
     }
 
     private void OnDrawGizmos()
@@ -99,5 +113,32 @@ public class Player_Script : MonoBehaviour
         Debug.DrawRay(groundCheck.position, Vector2.down * groundCheckDistance, Color.red);
     }
 
+    public void AnimationManager()
+    {
+        if (isGrounded)
+        {
+            if(moveInput.x != 0)
+            {
+                animator.Play("walk");    
+            }
+            else
+            {
+                animator.Play("idle");
+            }
+        }
+        else
+        {
+            if(!isJumping || rb.velocity.y < 0)
+            {
+                animator.Play("fall");
+            }
+            else
+            {
+                animator.Play("jump");
+            }
+
+        }
+        
+    }
 
 }
