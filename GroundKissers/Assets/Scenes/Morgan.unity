@@ -1599,7 +1599,7 @@ MonoBehaviour:
   min: 0
   seg: 5
   timer: {fileID: 1312317680}
-  endGame: {fileID: 0}
+  endGame: {fileID: 1363907851}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
