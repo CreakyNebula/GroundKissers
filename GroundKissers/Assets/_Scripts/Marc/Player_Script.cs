@@ -61,7 +61,7 @@ public class Player_Script : MonoBehaviour
     
     public void Jump(InputAction.CallbackContext callbackContext)
     {
-        if (callbackContext.performed && isGrounded)
+        if (callbackContext.performed && isGrounded )
         {
             // Salta solo si está en el suelo
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
@@ -84,7 +84,7 @@ public class Player_Script : MonoBehaviour
 
     void GravityScale()
     {
-        if(!isJumping && !isGrounded || !isGrounded && rb.velocity.y<0 )
+        if(!isJumping && !isGrounded || !isGrounded && rb.velocity.y<0 || felt)
         {
             rb.gravityScale = fallGravityScale;
         }
