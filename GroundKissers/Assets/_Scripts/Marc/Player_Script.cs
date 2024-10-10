@@ -12,8 +12,11 @@ public class Player_Script : MonoBehaviour
     // Variables de movimiento
     public float moveSpeed = 5f;
     public float jumpForce = 7f;
-    public float fallForce = 7f;
     private Vector2 moveInput;
+
+    public float gravityScale;
+    public float fallGravityScale;
+
     private Rigidbody2D rb;
 
 
@@ -23,6 +26,7 @@ public class Player_Script : MonoBehaviour
     public LayerMask groundLayer;  // Capa que representa el suelo
     private bool isGrounded;
     private bool isJumping;
+
 
     private void Start()
     {
@@ -52,7 +56,7 @@ public class Player_Script : MonoBehaviour
         if (callbackContext.performed && isGrounded)
         {
             // Salta solo si está en el suelo
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             isJumping = true;
         }
         if (callbackContext.canceled )
@@ -72,9 +76,13 @@ public class Player_Script : MonoBehaviour
 
     void GravityScale()
     {
-        if(!isJumping && !isGrounded || !isGrounded && rb.velocity.y<11.5f )
+        if(!isJumping && !isGrounded || !isGrounded && rb.velocity.y<0 )
         {
-            rb.AddForce(Vector2.down * fallForce, ForceMode2D.Impulse);
+            rb.gravityScale = fallGravityScale;
+        }
+        else
+        {
+            rb.gravityScale = gravityScale;
         }
 
        
