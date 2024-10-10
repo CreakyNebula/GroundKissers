@@ -30,6 +30,9 @@ public class Player_Script : MonoBehaviour
     //animator
     private Animator animator;
 
+    //tropiezo
+    private bool felt;
+
 
     private void Start()
     {
@@ -94,18 +97,22 @@ public class Player_Script : MonoBehaviour
     }
     void UpdateMovement()
     {
-        moveInput = playerInput.actions["Move"].ReadValue<Vector2>();
-        // Movimiento horizontal
-        rb.velocity = new Vector2(moveInput.x * moveSpeed, rb.velocity.y);
-        if(moveInput.x>0)
+        if(!felt)
         {
-           
-            transform.eulerAngles = new Vector3(0, 0, 0);
-        }
-        else if (moveInput.x < 0)
-        {    
-            transform.eulerAngles = new Vector3(0, 180, 0);
-        }
+            moveInput = playerInput.actions["Move"].ReadValue<Vector2>();
+            // Movimiento horizontal
+            rb.velocity = new Vector2(moveInput.x * moveSpeed, rb.velocity.y);
+            if (moveInput.x > 0)
+            {
+
+                transform.eulerAngles = new Vector3(0, 0, 0);
+            }
+            else if (moveInput.x < 0)
+            {
+                transform.eulerAngles = new Vector3(0, 180, 0);
+            }
+         }
+        
     }
 
     private void OnDrawGizmos()
@@ -115,30 +122,54 @@ public class Player_Script : MonoBehaviour
 
     public void AnimationManager()
     {
-        if (isGrounded)
+        if(!felt)
         {
-            if(moveInput.x != 0)
+            if (isGrounded)
             {
-                animator.Play("walk");    
+                if (moveInput.x != 0)
+                {
+                    animator.Play("walk");
+                }
+                else
+                {
+                    animator.Play("idle");
+                }
             }
             else
             {
-                animator.Play("idle");
+                if (!isJumping || rb.velocity.y < 0)
+                {
+                    animator.Play("fall");
+                }
+                else
+                {
+                    animator.Play("jump");
+                }
+
             }
         }
         else
         {
-            if(!isJumping || rb.velocity.y < 0)
-            {
-                animator.Play("fall");
-            }
-            else
-            {
-                animator.Play("jump");
-            }
+            animator.Play("trip over");
 
         }
-        
+
+
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "Zancadilla")
+        {
+            felt = true;
+            StartCoroutine("StandUp");
+        }
+    }
+
+    IEnumerator StandUp()
+    {
+        yield return new WaitForSeconds(2);
+        felt = false;
     }
 
 }
