@@ -406,8 +406,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 10
-  jumpForce: 20
-  gravityScale: 5
+  jumpForce: 25
+  gravityScale: 3.5
   fallGravityScale: 15
   groundCheck: {fileID: 1799095779}
   groundCheckDistance: 0.2
