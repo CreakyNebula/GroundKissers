@@ -8,6 +8,7 @@ public class Timer : MonoBehaviour
 {
     [SerializeField] int min, seg;     //variable de min y segs
     [SerializeField] TMP_Text timer;   //componente de texto se encarga de mostrarlo por pantalla
+    [SerializeField] EndGame endGame;
 
     private float remaining;    //almacena el tiempo total que queda
     private bool onGoing;       
@@ -27,7 +28,10 @@ public class Timer : MonoBehaviour
 
             if(remaining < 1)     //si el tiempo es menor a 1 detenemos el contador
             {
-                onGoing= false;    
+                onGoing= true;
+                endGame.MostrarEndGame(); 
+                
+                
                 //Acabar Partida
             }
             int tempMin = Mathf.FloorToInt(remaining / 60);     //calcula cuantos minutos quedan dvidiendo entre 60
