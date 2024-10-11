@@ -22,6 +22,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "Tackle",
+                    "type": "Button",
+                    "id": "93ac0bea-d8a1-45bb-aa0b-8bc4fa196a2e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -29,6 +38,17 @@
                     "name": "",
                     "id": "a3e528fb-a323-4080-a819-107d8e456bb8",
                     "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "474b200d-8ecb-4733-bba1-f223cb17d7fe",
+                    "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -145,6 +165,17 @@
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "a516903a-073a-47cc-877e-1494d134f7b1",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Tackle",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }
