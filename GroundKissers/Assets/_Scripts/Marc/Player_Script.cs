@@ -27,11 +27,18 @@ public class Player_Script : MonoBehaviour
     private bool isGrounded;
     private bool isJumping;
 
+    //animator
+    private Animator animator;
+
+    //tropiezo
+    private bool felt;
+
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         playerInput = GetComponent<PlayerInput>();
+        animator = GetComponent<Animator>();
     }
 
     private void Update()
@@ -40,6 +47,7 @@ public class Player_Script : MonoBehaviour
         CheckGround();
         UpdateMovement();
         GravityScale();
+        AnimationManager();
     }
 
    
@@ -53,7 +61,7 @@ public class Player_Script : MonoBehaviour
     
     public void Jump(InputAction.CallbackContext callbackContext)
     {
-        if (callbackContext.performed && isGrounded)
+        if (callbackContext.performed && isGrounded )
         {
             // Salta solo si está en el suelo
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
@@ -76,7 +84,7 @@ public class Player_Script : MonoBehaviour
 
     void GravityScale()
     {
-        if(!isJumping && !isGrounded || !isGrounded && rb.velocity.y<0 )
+        if(!isJumping && !isGrounded || !isGrounded && rb.velocity.y<0 || felt)
         {
             rb.gravityScale = fallGravityScale;
         }
@@ -89,9 +97,22 @@ public class Player_Script : MonoBehaviour
     }
     void UpdateMovement()
     {
-        moveInput = playerInput.actions["Move"].ReadValue<Vector2>();
-        // Movimiento horizontal
-        rb.velocity = new Vector2(moveInput.x * moveSpeed, rb.velocity.y);
+        if(!felt)
+        {
+            moveInput = playerInput.actions["Move"].ReadValue<Vector2>();
+            // Movimiento horizontal
+            rb.velocity = new Vector2(moveInput.x * moveSpeed, rb.velocity.y);
+            if (moveInput.x > 0)
+            {
+
+                transform.eulerAngles = new Vector3(0, 0, 0);
+            }
+            else if (moveInput.x < 0)
+            {
+                transform.eulerAngles = new Vector3(0, 180, 0);
+            }
+         }
+        
     }
 
     private void OnDrawGizmos()
@@ -99,5 +120,56 @@ public class Player_Script : MonoBehaviour
         Debug.DrawRay(groundCheck.position, Vector2.down * groundCheckDistance, Color.red);
     }
 
+    public void AnimationManager()
+    {
+        if(!felt)
+        {
+            if (isGrounded)
+            {
+                if (moveInput.x != 0)
+                {
+                    animator.Play("walk");
+                }
+                else
+                {
+                    animator.Play("idle");
+                }
+            }
+            else
+            {
+                if (!isJumping || rb.velocity.y < 0)
+                {
+                    animator.Play("fall");
+                }
+                else
+                {
+                    animator.Play("jump");
+                }
+
+            }
+        }
+        else
+        {
+            animator.Play("trip over");
+
+        }
+
+
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "Zancadilla")
+        {
+            felt = true;
+            StartCoroutine("StandUp");
+        }
+    }
+
+    IEnumerator StandUp()
+    {
+        yield return new WaitForSeconds(2);
+        felt = false;
+    }
 
 }
