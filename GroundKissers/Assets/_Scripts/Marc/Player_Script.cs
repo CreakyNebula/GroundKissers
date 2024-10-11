@@ -33,6 +33,10 @@ public class Player_Script : MonoBehaviour
     //tropiezo
     private bool felt;
 
+    //dash
+    public float tackleForce;
+    public bool isDashing;
+
 
     private void Start()
     {
@@ -61,7 +65,7 @@ public class Player_Script : MonoBehaviour
     
     public void Jump(InputAction.CallbackContext callbackContext)
     {
-        if (callbackContext.performed && isGrounded )
+        if (callbackContext.performed && isGrounded && !isDashing)
         {
             // Salta solo si está en el suelo
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
@@ -70,6 +74,14 @@ public class Player_Script : MonoBehaviour
         if (callbackContext.canceled )
         {
             isJumping = false;
+        }
+    }
+
+    public void Tackle(InputAction.CallbackContext callbackContext)
+    {
+        if(groundCheck&&!felt&& callbackContext.performed &&!isDashing)
+        {
+            StartCoroutine("TackleCorroutine");
         }
     }
 
@@ -97,7 +109,7 @@ public class Player_Script : MonoBehaviour
     }
     void UpdateMovement()
     {
-        if(!felt)
+        if(!felt && !isDashing)
         {
             moveInput = playerInput.actions["Move"].ReadValue<Vector2>();
             // Movimiento horizontal
@@ -105,11 +117,11 @@ public class Player_Script : MonoBehaviour
             if (moveInput.x > 0)
             {
 
-                transform.eulerAngles = new Vector3(0, 0, 0);
+                transform.localScale = new Vector3(1, 1, 1);
             }
             else if (moveInput.x < 0)
             {
-                transform.eulerAngles = new Vector3(0, 180, 0);
+                transform.localScale = new Vector3(-1, 1, 1);
             }
          }
         
@@ -170,6 +182,16 @@ public class Player_Script : MonoBehaviour
     {
         yield return new WaitForSeconds(2);
         felt = false;
+    }
+
+    IEnumerator TackleCorroutine()
+    {
+        isDashing = true;
+        Vector2 distanciaTackle = new Vector2(transform.localScale.x * tackleForce, 0f);  // Puedes ajustar el valor 20f según la fuerza deseada
+        rb.AddForce(distanciaTackle, ForceMode2D.Impulse);
+        Debug.Log("Tackling with force: " + tackleForce);
+        yield return new WaitForSeconds(0.8f);
+        isDashing=false;
     }
 
 }

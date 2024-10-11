@@ -169,8 +169,8 @@
                 {
                     "name": "",
                     "id": "a516903a-073a-47cc-877e-1494d134f7b1",
-                    "path": "",
-                    "interactions": "",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "Press",
                     "processors": "",
                     "groups": "",
                     "action": "Tackle",
