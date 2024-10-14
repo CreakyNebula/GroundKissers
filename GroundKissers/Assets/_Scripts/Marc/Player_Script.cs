@@ -36,6 +36,7 @@ public class Player_Script : MonoBehaviour
     //dash
     public float tackleForce;
     public bool isDashing;
+    public float dashTime;
 
 
     private void Start()
@@ -52,6 +53,9 @@ public class Player_Script : MonoBehaviour
         UpdateMovement();
         GravityScale();
         AnimationManager();
+
+        
+       
     }
 
    
@@ -65,7 +69,7 @@ public class Player_Script : MonoBehaviour
     
     public void Jump(InputAction.CallbackContext callbackContext)
     {
-        if (callbackContext.performed && isGrounded && !isDashing)
+        if (callbackContext.performed && isGrounded && !isDashing && !felt)
         {
             // Salta solo si está en el suelo
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
@@ -79,8 +83,10 @@ public class Player_Script : MonoBehaviour
 
     public void Tackle(InputAction.CallbackContext callbackContext)
     {
-        if(groundCheck&&!felt&& callbackContext.performed &&!isDashing)
+        if(isGrounded && !felt && callbackContext.performed &&!isDashing)
         {
+            Debug.Log("true");
+
             StartCoroutine("TackleCorroutine");
         }
     }
@@ -136,7 +142,11 @@ public class Player_Script : MonoBehaviour
     {
         if(!felt)
         {
-            if (isGrounded)
+            if(isDashing)
+            {
+                animator.Play("tackle");
+            }
+            else if (isGrounded)
             {
                 if (moveInput.x != 0)
                 {
@@ -171,10 +181,12 @@ public class Player_Script : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Zancadilla")
+        if(collision.gameObject.tag == "Zancadilla" && isDashing)
         {
             felt = true;
+            StopCoroutine("TackleCorroutine");
             StartCoroutine("StandUp");
+            isDashing = false;
         }
     }
 
@@ -187,11 +199,28 @@ public class Player_Script : MonoBehaviour
     IEnumerator TackleCorroutine()
     {
         isDashing = true;
-        Vector2 distanciaTackle = new Vector2(transform.localScale.x * tackleForce, 0f);  // Puedes ajustar el valor 20f según la fuerza deseada
-        rb.AddForce(distanciaTackle, ForceMode2D.Impulse);
-        Debug.Log("Tackling with force: " + tackleForce);
-        yield return new WaitForSeconds(0.8f);
-        isDashing=false;
+
+        float dashDuration = dashTime; // Duración total del dash
+        float elapsedTime = 0f; // Tiempo transcurrido
+        float startSpeed = 2f; // Velocidad inicial del dash
+        float maxSpeed = tackleForce; // Velocidad máxima que quieres alcanzar
+
+        Vector2 dashDirection = new Vector2(transform.localScale.x, 0f);  // Dirección del dash (derecha o izquierda)
+
+        while (elapsedTime < dashDuration)
+        {
+            // Calcula la velocidad del dash usando una interpolación suave
+            float speed = Mathf.Lerp(startSpeed, maxSpeed, elapsedTime / dashDuration);
+
+            // Aplica la velocidad gradualmente al jugador
+            rb.velocity = new Vector2(speed * dashDirection.x, rb.velocity.y);
+
+            elapsedTime += Time.deltaTime;  // Incrementa el tiempo transcurrido
+            yield return null;  // Espera al siguiente frame
+        }
+
+        isDashing = false;
     }
+
 
 }

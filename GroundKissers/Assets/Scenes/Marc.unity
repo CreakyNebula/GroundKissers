@@ -492,8 +492,9 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 128
-  tackleForce: 12
+  tackleForce: 28
   isDashing: 0
+  dashTime: 0.3
 --- !u!114 &2064479398
 MonoBehaviour:
   m_ObjectHideFlags: 0
