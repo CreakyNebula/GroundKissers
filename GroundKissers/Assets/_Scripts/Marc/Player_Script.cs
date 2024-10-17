@@ -42,6 +42,8 @@ public class Player_Script : MonoBehaviour
     public float jumpBufferTime = 0.2f;   // Tiempo permitido para Jump Buffering
     private float jumpBufferCounter;  // Contador de Jump Buffer
 
+    //Died
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();

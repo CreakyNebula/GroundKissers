@@ -34,7 +34,7 @@ public class BouncingSawManager : MonoBehaviour
     {
         if (collisionsCount < maxCollisions)
         {
-            if (collision.gameObject.CompareTag("Floor") || collision.gameObject.CompareTag("Wall"))
+            if (collision.gameObject.CompareTag("Floor") || collision.gameObject.CompareTag("Wall") ||collision.gameObject.CompareTag("FallingPlatform") )
             {
                 collisionsCount++;
 

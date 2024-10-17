@@ -6,6 +6,8 @@ public class PlayerCollisionsManager : MonoBehaviour
 {
     //Este script comprueba las collisiones del player y modifica su estado en consecuencia
     [SerializeField] private int playerDeads = 0;
+    [SerializeField] private Transform respawn;
+
 
     public int PlayerDeads { get => playerDeads; set => playerDeads = value; }
 
@@ -18,6 +20,7 @@ public class PlayerCollisionsManager : MonoBehaviour
             Debug.Log("DAMAGE");
             //Añadir logica de manejo de nivel, reseteo, conteo de muertes, etc.
                     //Aitor: Yo activaria una booleana que active el codigo en otro script en un empty, para mantener un orden.
+             transform.position = respawn.transform.position;
         }
     }
     #endregion 
