@@ -3,24 +3,36 @@
   "WorkspaceRootPath": "D:\\_GroundKissers\\GroundKissers\\GroundKissers\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|d:\\_groundkissers\\groundkissers\\groundkissers\\assets\\_scripts\\aitor\\managers\\lateralspearsactivationmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:assets\\_scripts\\aitor\\managers\\lateralspearsactivationmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{12F9A74A-B960-3AB7-D01F-C98573345F32}|Assembly-CSharp.csproj|d:\\_groundkissers\\groundkissers\\groundkissers\\assets\\_scripts\\aitor\\managers\\sawspawnermanager\\sawsspawnermanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{12F9A74A-B960-3AB7-D01F-C98573345F32}|Assembly-CSharp.csproj|solutionrelative:assets\\_scripts\\aitor\\managers\\sawspawnermanager\\sawsspawnermanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{12F9A74A-B960-3AB7-D01F-C98573345F32}|Assembly-CSharp.csproj|d:\\_groundkissers\\groundkissers\\groundkissers\\assets\\_scripts\\aitor\\managers\\sawspawnermanager\\sawsspawnpoint.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{12F9A74A-B960-3AB7-D01F-C98573345F32}|Assembly-CSharp.csproj|solutionrelative:assets\\_scripts\\aitor\\managers\\sawspawnermanager\\sawsspawnpoint.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{12F9A74A-B960-3AB7-D01F-C98573345F32}|Assembly-CSharp.csproj|D:\\_GroundKissers\\GroundKissers\\GroundKissers\\assets\\_scripts\\aitor\\spawnpoint.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{12F9A74A-B960-3AB7-D01F-C98573345F32}|Assembly-CSharp.csproj|solutionrelative:assets\\_scripts\\aitor\\spawnpoint.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{12F9A74A-B960-3AB7-D01F-C98573345F32}|Assembly-CSharp.csproj|D:\\_GroundKissers\\GroundKissers\\GroundKissers\\assets\\_scripts\\aitor\\managers\\fallingtrapsspawner\\spawnpointsmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{12F9A74A-B960-3AB7-D01F-C98573345F32}|Assembly-CSharp.csproj|solutionrelative:assets\\_scripts\\aitor\\managers\\fallingtrapsspawner\\spawnpointsmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{12F9A74A-B960-3AB7-D01F-C98573345F32}|Assembly-CSharp.csproj|D:\\_GroundKissers\\GroundKissers\\GroundKissers\\assets\\_scripts\\aitor\\managers\\obstacles\\fallingplatformsmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{12F9A74A-B960-3AB7-D01F-C98573345F32}|Assembly-CSharp.csproj|solutionrelative:assets\\_scripts\\aitor\\managers\\obstacles\\fallingplatformsmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{12F9A74A-B960-3AB7-D01F-C98573345F32}|Assembly-CSharp.csproj|D:\\_GroundKissers\\GroundKissers\\GroundKissers\\assets\\_scripts\\aitor\\managers\\obstacles\\bouncingsawmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{12F9A74A-B960-3AB7-D01F-C98573345F32}|Assembly-CSharp.csproj|solutionrelative:assets\\_scripts\\aitor\\managers\\obstacles\\bouncingsawmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{12F9A74A-B960-3AB7-D01F-C98573345F32}|Assembly-CSharp.csproj|D:\\_GroundKissers\\GroundKissers\\GroundKissers\\assets\\_scripts\\aitor\\managers\\obstacles\\lateralspearsmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{12F9A74A-B960-3AB7-D01F-C98573345F32}|Assembly-CSharp.csproj|solutionrelative:assets\\_scripts\\aitor\\managers\\obstacles\\lateralspearsmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\_GroundKissers\\GroundKissers\\GroundKissers\\Assets\\_Scripts\\Aitor\\Managers\\SpawnPointsManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\_Scripts\\Aitor\\Managers\\SpawnPointsManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{12F9A74A-B960-3AB7-D01F-C98573345F32}|Assembly-CSharp.csproj|D:\\_GroundKissers\\GroundKissers\\GroundKissers\\assets\\_scripts\\aitor\\managers\\player\\playercollisionsmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{12F9A74A-B960-3AB7-D01F-C98573345F32}|Assembly-CSharp.csproj|solutionrelative:assets\\_scripts\\aitor\\managers\\player\\playercollisionsmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{12F9A74A-B960-3AB7-D01F-C98573345F32}|Assembly-CSharp.csproj|D:\\_GroundKissers\\GroundKissers\\GroundKissers\\assets\\_scripts\\aitor\\managers\\obstacles\\fallingplatformsmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{12F9A74A-B960-3AB7-D01F-C98573345F32}|Assembly-CSharp.csproj|solutionrelative:assets\\_scripts\\aitor\\managers\\obstacles\\fallingplatformsmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,24 +42,74 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "LateralSpearsActivationManager.cs",
-              "DocumentMoniker": "D:\\_GroundKissers\\GroundKissers\\GroundKissers\\Assets\\_Scripts\\Aitor\\Managers\\LateralSpearsActivationManager.cs",
-              "RelativeDocumentMoniker": "Assets\\_Scripts\\Aitor\\Managers\\LateralSpearsActivationManager.cs",
-              "ToolTip": "D:\\_GroundKissers\\GroundKissers\\GroundKissers\\Assets\\_Scripts\\Aitor\\Managers\\LateralSpearsActivationManager.cs",
-              "RelativeToolTip": "Assets\\_Scripts\\Aitor\\Managers\\LateralSpearsActivationManager.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAARAAAA",
+              "DocumentIndex": 1,
+              "Title": "SawsSpawnPoint.cs",
+              "DocumentMoniker": "D:\\_GroundKissers\\GroundKissers\\GroundKissers\\Assets\\_Scripts\\Aitor\\Managers\\SawSpawnerManager\\SawsSpawnPoint.cs",
+              "RelativeDocumentMoniker": "Assets\\_Scripts\\Aitor\\Managers\\SawSpawnerManager\\SawsSpawnPoint.cs",
+              "ToolTip": "D:\\_GroundKissers\\GroundKissers\\GroundKissers\\Assets\\_Scripts\\Aitor\\Managers\\SawSpawnerManager\\SawsSpawnPoint.cs",
+              "RelativeToolTip": "Assets\\_Scripts\\Aitor\\Managers\\SawSpawnerManager\\SawsSpawnPoint.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-29T16:19:01.397Z",
+              "WhenOpened": "2024-10-29T16:42:51.483Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
+              "Title": "SawsSpawnerManager.cs",
+              "DocumentMoniker": "D:\\_GroundKissers\\GroundKissers\\GroundKissers\\Assets\\_Scripts\\Aitor\\Managers\\SawSpawnerManager\\SawsSpawnerManager.cs",
+              "RelativeDocumentMoniker": "Assets\\_Scripts\\Aitor\\Managers\\SawSpawnerManager\\SawsSpawnerManager.cs",
+              "ToolTip": "D:\\_GroundKissers\\GroundKissers\\GroundKissers\\Assets\\_Scripts\\Aitor\\Managers\\SawSpawnerManager\\SawsSpawnerManager.cs",
+              "RelativeToolTip": "Assets\\_Scripts\\Aitor\\Managers\\SawSpawnerManager\\SawsSpawnerManager.cs",
+              "ViewState": "AQIAABsAAAAAAAAAAAAowCcAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-29T16:39:58.715Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "SpawnPoint.cs",
+              "DocumentMoniker": "D:\\_GroundKissers\\GroundKissers\\GroundKissers\\Assets\\_Scripts\\Aitor\\SpawnPoint.cs",
+              "RelativeDocumentMoniker": "Assets\\_Scripts\\Aitor\\SpawnPoint.cs",
+              "ToolTip": "D:\\_GroundKissers\\GroundKissers\\GroundKissers\\Assets\\_Scripts\\Aitor\\SpawnPoint.cs",
+              "RelativeToolTip": "Assets\\_Scripts\\Aitor\\SpawnPoint.cs",
+              "ViewState": "AQIAABoAAAAAAAAAAAAwwD0AAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-29T16:38:16.193Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "SpawnPointsManager.cs",
+              "DocumentMoniker": "D:\\_GroundKissers\\GroundKissers\\GroundKissers\\Assets\\_Scripts\\Aitor\\Managers\\FallingTrapsSpawner\\SpawnPointsManager.cs",
+              "RelativeDocumentMoniker": "Assets\\_Scripts\\Aitor\\Managers\\FallingTrapsSpawner\\SpawnPointsManager.cs",
+              "ToolTip": "D:\\_GroundKissers\\GroundKissers\\GroundKissers\\Assets\\_Scripts\\Aitor\\Managers\\FallingTrapsSpawner\\SpawnPointsManager.cs",
+              "RelativeToolTip": "Assets\\_Scripts\\Aitor\\Managers\\FallingTrapsSpawner\\SpawnPointsManager.cs",
+              "ViewState": "AQIAABEAAAAAAAAAAAAYwB8AAAARAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-29T16:37:09.202Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "BouncingSawManager.cs",
+              "DocumentMoniker": "D:\\_GroundKissers\\GroundKissers\\GroundKissers\\Assets\\_Scripts\\Aitor\\Managers\\Obstacles\\BouncingSawManager.cs",
+              "RelativeDocumentMoniker": "Assets\\_Scripts\\Aitor\\Managers\\Obstacles\\BouncingSawManager.cs",
+              "ToolTip": "D:\\_GroundKissers\\GroundKissers\\GroundKissers\\Assets\\_Scripts\\Aitor\\Managers\\Obstacles\\BouncingSawManager.cs",
+              "RelativeToolTip": "Assets\\_Scripts\\Aitor\\Managers\\Obstacles\\BouncingSawManager.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABgAAAA6AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-29T16:28:29.478Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "LateralSpearsManager.cs",
               "DocumentMoniker": "D:\\_GroundKissers\\GroundKissers\\GroundKissers\\Assets\\_Scripts\\Aitor\\Managers\\Obstacles\\LateralSpearsManager.cs",
               "RelativeDocumentMoniker": "Assets\\_Scripts\\Aitor\\Managers\\Obstacles\\LateralSpearsManager.cs",
@@ -59,18 +121,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "SpawnPointsManager.cs",
-              "DocumentMoniker": "D:\\_GroundKissers\\GroundKissers\\GroundKissers\\Assets\\_Scripts\\Aitor\\Managers\\SpawnPointsManager.cs",
-              "RelativeDocumentMoniker": "Assets\\_Scripts\\Aitor\\Managers\\SpawnPointsManager.cs",
-              "ToolTip": "D:\\_GroundKissers\\GroundKissers\\GroundKissers\\Assets\\_Scripts\\Aitor\\Managers\\SpawnPointsManager.cs",
-              "RelativeToolTip": "Assets\\_Scripts\\Aitor\\Managers\\SpawnPointsManager.cs",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-29T16:10:48.512Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 7,
               "Title": "PlayerCollisionsManager.cs",
               "DocumentMoniker": "D:\\_GroundKissers\\GroundKissers\\GroundKissers\\Assets\\_Scripts\\Aitor\\Managers\\Player\\PlayerCollisionsManager.cs",
               "RelativeDocumentMoniker": "Assets\\_Scripts\\Aitor\\Managers\\Player\\PlayerCollisionsManager.cs",

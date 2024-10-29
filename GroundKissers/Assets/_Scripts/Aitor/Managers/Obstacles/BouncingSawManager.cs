@@ -12,14 +12,18 @@ public class BouncingSawManager : MonoBehaviour
     [Header("Gizmo")]
     [SerializeField] private float gizmoLength = 2f;
 
-    private int collisionsCount;
     private Rigidbody2D rb;
+    private CircleCollider2D circleCollider;
+
+    private int collisionsCount;
     private Vector2 initialForce;
     private Vector3 lastVelocity;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        circleCollider = GetComponent<CircleCollider2D>();
+
         // Normaliza la dirección y multiplica por la potencia
         initialForce = launchDirection.normalized * launchPower;
         rb.AddForce(initialForce, ForceMode2D.Impulse);
@@ -61,11 +65,24 @@ public class BouncingSawManager : MonoBehaviour
         Destroy(gameObject);
     }
 
-    // Dibuja un gizmo que muestra la dirección de lanzamiento
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
         Vector3 direction = launchDirection.normalized;
         Gizmos.DrawLine(transform.position, transform.position + (Vector3)direction * gizmoLength);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Wall"))
+        {
+            StartCoroutine(ActivateSawCollider());
+        }
+    }
+
+    IEnumerator ActivateSawCollider()
+    {
+        yield return new WaitForSeconds(.3f);
+        circleCollider.isTrigger = false;
     }
 }

@@ -204,9 +204,9 @@ MonoBehaviour:
   - {fileID: 6857559418381490572}
   - {fileID: 8757384562997353345}
   - {fileID: 6011465515484480789}
-  timeBetweenSpawnRounds: 5
-  minTimeBetweenSpawns: 2
-  maxTimeBetweenSpawns: 5
+  timeBetweenSpawnRounds: 15
+  minTimeBetweenSpawns: 5
+  maxTimeBetweenSpawns: 7
   maxSpawnsPerRound: 3
 --- !u!1 &4587160988588368190
 GameObject:
