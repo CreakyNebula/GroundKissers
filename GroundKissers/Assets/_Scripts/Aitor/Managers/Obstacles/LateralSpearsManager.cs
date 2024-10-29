@@ -4,11 +4,14 @@ using UnityEngine;
 public class LateralSpearsManager : MonoBehaviour
 {
     private Animator anim;
+    private bool isPlaying;
     
     [SerializeField] private float minTimeBetweenActivations = 3f;
     [SerializeField] private float maxTimeBetweenActivations = 7f;
     [SerializeField] private float actionDuration = 0.1f;
     [SerializeField] private float cooldownTime = 3f;
+
+    public bool IsPlaying { get => isPlaying; set => isPlaying = value; }
 
     // Start is called before the first frame update
     void Start()
@@ -28,10 +31,12 @@ public class LateralSpearsManager : MonoBehaviour
             yield return new WaitForSeconds(randomTimeBetweenActivations);
 
             anim.SetBool("Action", true);
+            IsPlaying = true;
 
             yield return new WaitForSeconds(actionDuration);
 
             anim.SetBool("Action", false);
+            IsPlaying = false;
 
             yield return new WaitForSeconds(cooldownTime);
         }
