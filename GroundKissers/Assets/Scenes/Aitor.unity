@@ -2087,7 +2087,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7795742777344534192, guid: d138dbe2fc520bd419c975eeb9f4ba95, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -11572,6 +11572,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerDeads: 0
+  respawn: {fileID: 0}
 --- !u!114 &2029799956
 MonoBehaviour:
   m_ObjectHideFlags: 0
