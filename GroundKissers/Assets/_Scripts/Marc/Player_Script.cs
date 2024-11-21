@@ -63,10 +63,11 @@ public class Player_Script : MonoBehaviour
     private void Update()
     {
         CheckGround();
-         /*UpdateMovement();
-         GravityScale();
-         AnimationManager();
-         ManageCoyoteTime();*/
+        GravityScale();
+        /*UpdateMovement();
+
+        AnimationManager();
+        ManageCoyoteTime();*/
         moveInput = playerInput.actions["Move"].ReadValue<Vector2>();
 
         switch (mystate)
@@ -176,7 +177,7 @@ public class Player_Script : MonoBehaviour
     }
     void GravityScale()
     {
-        if (!jumpPressed && !isGrounded || !isGrounded && rb.velocity.y < 0 || felt)
+        if (!jumpPressed && !isGrounded )
         {
             rb.gravityScale = fallGravityScale;
         }
