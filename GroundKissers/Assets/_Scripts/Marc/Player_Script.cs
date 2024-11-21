@@ -22,7 +22,6 @@ public class Player_Script : MonoBehaviour
     public float groundCheckDistance = 0.2f;  // Distancia del Raycast para verificar el suelo
     public LayerMask groundLayer;  // Capa que representa el suelo
     private bool isGrounded;
-    private bool isJumping;
 
     // Animator
     private Animator animator;
@@ -44,93 +43,117 @@ public class Player_Script : MonoBehaviour
 
     //Died
 
+    //States
+
+    public enum States { dashing,idleing,walking,falling, jumping, triping}
+    public States mystate;
+
+    //Inputs
+    private bool jumpPressed;
+    private bool tacklePressed;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         playerInput = GetComponent<PlayerInput>();
         animator = GetComponent<Animator>();
+        SetState(States.idleing);
     }
 
     private void Update()
     {
         CheckGround();
+         /*UpdateMovement();
+         GravityScale();
+         AnimationManager();
+         ManageCoyoteTime();*/
+        moveInput = playerInput.actions["Move"].ReadValue<Vector2>();
+
+        switch (mystate)
+        {
+            case States.dashing:
+                Dash();
+                break;
+            case States.idleing:
+                Idle();
+                break;
+            case States.walking:
+                Walk();
+                break;
+            case States.falling:
+                Fall();
+                break;
+            case States.jumping:
+                Jump();
+                break;
+            case States.triping:
+                Trip();
+                break;
+        }
+        Debug.Log(jumpPressed);
+    }
+    public void SetState(States s)
+    {
+
+
+        mystate = s;
+    }
+    public void Idle()
+    {
+        animator.Play("idle");
+        if (moveInput.x != 0)
+        { SetState(States.walking); }
+        if (jumpPressed)
+        { 
+          SetState(States.jumping);
+          rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+
+        }
+        if (tacklePressed) SetState(States.dashing);
+    }
+    public void Walk()
+    {
+        animator.Play("walk");
         UpdateMovement();
-        GravityScale();
-        AnimationManager();
-        ManageCoyoteTime();
-    }
 
-    // Método para gestionar Coyote Time y Jump Buffering
-  
-
-    // Método para registrar el movimiento
-    public void Move(InputAction.CallbackContext callbackContext)
-    {
-        moveInput = callbackContext.ReadValue<Vector2>();
-    }
-
-    // Método para registrar el salto
-    public void Jump(InputAction.CallbackContext callbackContext)
-    {
-        if (callbackContext.performed)
+        if (moveInput.x == 0) SetState(States.idleing);
+        if (jumpPressed)
         {
-            // Al presionar el botón de salto, activa el jump buffer
-            jumpBufferCounter = jumpBufferTime;
-        }
-        if (callbackContext.canceled)
-        {
-            isJumping = false;
-        }
-    }
+            SetState(States.jumping);
+            rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
 
-    // Método para realizar el salto real (basado en Coyote Time y Buffer)
+        }
+        if (tacklePressed) SetState(States.dashing);
+    }
+    public void Dash()
+    {
+        if (!isDashing) { StartCoroutine("TackleCorroutine"); }
+        animator.Play("tackle");
+
+    }
     public void Jump()
     {
-        if (isGrounded || coyoteTimeCounter > 0)  // Permite el salto si está en el suelo o dentro de Coyote Time
-        {
-            // Reinicia la velocidad vertical antes de saltar
-            rb.velocity = new Vector2(rb.velocity.x, 0f);
 
-            // Aplica la fuerza de salto
-            rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-            isJumping = true;
-            coyoteTimeCounter = 0;  // Resetea el contador de Coyote Time después del salto
-        }
+        animator.Play("jump");
+        SetState(States.falling);
+
     }
-
-
-    public void Tackle(InputAction.CallbackContext callbackContext)
+    public void Fall()
     {
-        if (isGrounded && !felt && callbackContext.performed && !isDashing)
-        {
-            Debug.Log("true");
-            StartCoroutine("TackleCorroutine");
-        }
+        UpdateMovement();
+        animator.Play("fall");
+        if (isGrounded) SetState(States.idleing);
+    }
+    
+    public void Trip()
+    {
+        animator.Play("trip over");
     }
 
-    void CheckGround()
-    {
-        // Verifica si está en el suelo usando un BoxCast
-        isGrounded = Physics2D.BoxCast(groundCheck.position, new Vector2(0.5f, 0.1f), 0f, Vector2.down, groundCheckDistance, groundLayer);
-    }
-
-    void GravityScale()
-    {
-        if (!isJumping && !isGrounded || !isGrounded && rb.velocity.y < 0 || felt)
-        {
-            rb.gravityScale = fallGravityScale;
-        }
-        else
-        {
-            rb.gravityScale = gravityScale;
-        }
-    }
+    //Metodos fuera de estados
 
     void UpdateMovement()
     {
-        if (!felt && !isDashing)
-        {
-            moveInput = playerInput.actions["Move"].ReadValue<Vector2>();
             // Movimiento horizontal
             rb.velocity = new Vector2(moveInput.x * moveSpeed, rb.velocity.y);
             if (moveInput.x > 0)
@@ -141,68 +164,28 @@ public class Player_Script : MonoBehaviour
             {
                 transform.localScale = new Vector3(-1, 1, 1);
             }
-        }
     }
-
+    void CheckGround()
+    {
+        // Verifica si está en el suelo usando un BoxCast
+        isGrounded = Physics2D.BoxCast(groundCheck.position, new Vector2(0.5f, 0.1f), 0f, Vector2.down, groundCheckDistance, groundLayer);
+    }
     private void OnDrawGizmos()
     {
         Debug.DrawRay(groundCheck.position, Vector2.down * groundCheckDistance, Color.red);
     }
-
-    public void AnimationManager()
+    void GravityScale()
     {
-        if (!felt)
+        if (!jumpPressed && !isGrounded || !isGrounded && rb.velocity.y < 0 || felt)
         {
-            if (isDashing)
-            {
-                animator.Play("tackle");
-            }
-            else if (isGrounded)
-            {
-                if (moveInput.x != 0)
-                {
-                    animator.Play("walk");
-                }
-                else
-                {
-                    animator.Play("idle");
-                }
-            }
-            else
-            {
-                if (!isJumping || rb.velocity.y < 0)
-                {
-                    animator.Play("fall");
-                }
-                else
-                {
-                    animator.Play("jump");
-                }
-            }
+            rb.gravityScale = fallGravityScale;
         }
         else
         {
-            animator.Play("trip over");
+            rb.gravityScale = gravityScale;
         }
     }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Zancadilla" && isDashing)
-        {
-            felt = true;
-            StopCoroutine("TackleCorroutine");
-            StartCoroutine("StandUp");
-            isDashing = false;
-        }
-    }
-
-    IEnumerator StandUp()
-    {
-        yield return new WaitForSeconds(2);
-        felt = false;
-    }
-
+    //Corroutines
     IEnumerator TackleCorroutine()
     {
         isDashing = true;
@@ -228,33 +211,92 @@ public class Player_Script : MonoBehaviour
         }
 
         isDashing = false;
+        UpdateMovement();
+        SetState(States.idleing);
     }
 
-    void ManageCoyoteTime()
+    IEnumerator StandUp()
     {
-        // Gestiona el Coyote Time
-        if (isGrounded && !isDashing)
-        {
-            coyoteTimeCounter = coyoteTime;  // Si está en el suelo, resetea el contador
-        }
-        else
-        {
-            coyoteTimeCounter -= Time.deltaTime;  // Decrementa el tiempo cuando no está en el suelo
-        }
-
-        // Gestiona el Jump Buffer
-        if (jumpBufferCounter > 0)
-        {
-            jumpBufferCounter -= Time.deltaTime;  // Decrementa el tiempo del buffer
-        }
-
-        // Si el contador de buffer y el de coyote son válidos, realiza el salto
-        if (jumpBufferCounter > 0 && coyoteTimeCounter > 0 && !isDashing && !felt)
-        {
-            Jump();
-            jumpBufferCounter = 0;  // Resetea el buffer después del salto
-        }
-
-        
+        yield return new WaitForSeconds(2);
+        SetState(States.idleing);
+        rb.drag = 0;
     }
+
+    //Collisions
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Zancadilla" && isDashing)
+        {
+            felt = true;
+            SetState(States.triping);
+            StopCoroutine("TackleCorroutine");
+            StartCoroutine("StandUp");
+            isDashing = false;
+            rb.drag = 5;
+        }
+    }
+    //Inputs
+
+    public void Jump(InputAction.CallbackContext callbackContext)
+    {
+        if (callbackContext.performed)
+        {
+            jumpPressed = true;
+            Debug.Log("hola");
+        }
+        if (callbackContext.canceled)
+        {
+            jumpPressed = false;
+            Debug.Log("adios");
+
+        }
+    }
+    public void Tackle(InputAction.CallbackContext callbackContext)
+    {
+        if (callbackContext.performed)
+        {
+            tacklePressed = true;
+        }
+        if (callbackContext.canceled)
+        {
+            tacklePressed = false;
+        }
+    }
+
+    // Método para gestionar Coyote Time y Jump Buffering
+    /*
+
+
+      
+
+    
+      
+
+      void ManageCoyoteTime()
+      {
+          // Gestiona el Coyote Time
+          if (isGrounded && !isDashing)
+          {
+              coyoteTimeCounter = coyoteTime;  // Si está en el suelo, resetea el contador
+          }
+          else
+          {
+              coyoteTimeCounter -= Time.deltaTime;  // Decrementa el tiempo cuando no está en el suelo
+          }
+
+          // Gestiona el Jump Buffer
+          if (jumpBufferCounter > 0)
+          {
+              jumpBufferCounter -= Time.deltaTime;  // Decrementa el tiempo del buffer
+          }
+
+          // Si el contador de buffer y el de coyote son válidos, realiza el salto
+          if (jumpBufferCounter > 0 && coyoteTimeCounter > 0 && !isDashing && !felt)
+          {
+              Jump();
+              jumpBufferCounter = 0;  // Resetea el buffer después del salto
+          }
+
+
+      }*/
 }
