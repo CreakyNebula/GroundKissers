@@ -70,7 +70,8 @@ public class Player_Script : MonoBehaviour
         /*UpdateMovement();
 
         AnimationManager();
-        ManageCoyoteTime();*/
+        ;*/
+        ManageCoyoteTime();
         moveInput = playerInput.actions["Move"].ReadValue<Vector2>();
 
         switch (mystate)
@@ -95,9 +96,10 @@ public class Player_Script : MonoBehaviour
                 break;
         }
     }
+
+     #region Estados
     public void SetState(States s)
     {
-
 
         mystate = s;
     }
@@ -114,7 +116,6 @@ public class Player_Script : MonoBehaviour
         UpdateMovement();
 
         if (moveInput.x == 0) SetState(States.idleing);
-        
         if (tacklePressed) SetState(States.dashing);
     }
     public void Dash()
@@ -125,10 +126,8 @@ public class Player_Script : MonoBehaviour
     }
     public void Jump()
     {
-
         animator.Play("jump");
         SetState(States.falling);
-
     }
     public void Fall()
     {
@@ -141,9 +140,8 @@ public class Player_Script : MonoBehaviour
     {
         animator.Play("trip over");
     }
-
+    #endregion 
     //Metodos fuera de estados
-
     void UpdateMovement()
     {
             // Movimiento horizontal
@@ -168,7 +166,7 @@ public class Player_Script : MonoBehaviour
     }
     void GravityScale()
     {
-        if (!jumpPressed && !isGrounded || !isGrounded && rb.velocity.y<0)
+        if (!jumpPressed && !isGrounded || (!isGrounded && rb.velocity.y<0 &&coyoteTimeCounter!>0 && coyoteTimeCounter!=coyoteTime) || jumpPressed&& !isGrounded && rb.velocity.y < 0)
         {
             rb.gravityScale = fallGravityScale;
         }
@@ -177,11 +175,37 @@ public class Player_Script : MonoBehaviour
             rb.gravityScale = gravityScale;
         }
     }
+    private void ManageCoyoteTime()
+    {
+        // Reinicia el contador si está en el suelo
+        if (isGrounded)
+        {
+            coyoteTimeCounter = coyoteTime;
+        }
+        else
+        {
+            // Disminuye el contador si no está en el suelo
+            coyoteTimeCounter -= Time.deltaTime;
+        }
+    }
+
+    private void ManageJumpBuffering()
+    {
+        // Disminuye el contador si se presionó el botón de salto
+        if (jumpPressed)
+        {
+            jumpBufferCounter = jumpBufferTime;
+        }
+        else
+        {
+            // Reduce el tiempo de buffer si no está presionado
+            jumpBufferCounter -= Time.deltaTime;
+        }
+    }
     //Corroutines
     IEnumerator TackleCorroutine()
     {
         isDashing = true;
-
 
         float dashDuration = dashTime;  // Duración total del dash
         float elapsedTime = 0f;  // Tiempo transcurrido
@@ -239,10 +263,8 @@ public class Player_Script : MonoBehaviour
         if (callbackContext.canceled)
         {
             jumpPressed = false;
-          
-
         }
-        if (callbackContext.started && mystate==States.idleing || callbackContext.started && mystate == States.walking)
+        if ((callbackContext.started && mystate==States.idleing || callbackContext.started && mystate == States.walking) && coyoteTimeCounter>0)
         {
             SetState(States.jumping);
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
