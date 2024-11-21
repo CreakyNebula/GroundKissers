@@ -614,9 +614,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 10
-  jumpForce: 10
-  gravityScale: 4
-  fallGravityScale: 15
+  jumpForce: 17
+  gravityScale: 3
+  fallGravityScale: 12
   groundCheck: {fileID: 1799095779}
   groundCheckDistance: 0.2
   groundLayer:
@@ -790,7 +790,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: d26527c41896bba4a8a2088b055ad334, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0

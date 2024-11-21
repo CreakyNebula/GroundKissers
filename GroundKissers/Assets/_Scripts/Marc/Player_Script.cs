@@ -34,6 +34,9 @@ public class Player_Script : MonoBehaviour
     public bool isDashing;
     public float dashTime;
 
+    //Jump
+
+
     // Coyote Time y Jump Buffering
     public float coyoteTime = 0.2f;   // Tiempo permitido para Coyote Time
     private float coyoteTimeCounter;  // Contador de Coyote Time
@@ -91,7 +94,6 @@ public class Player_Script : MonoBehaviour
                 Trip();
                 break;
         }
-        Debug.Log(jumpPressed);
     }
     public void SetState(States s)
     {
@@ -104,12 +106,6 @@ public class Player_Script : MonoBehaviour
         animator.Play("idle");
         if (moveInput.x != 0)
         { SetState(States.walking); }
-        if (jumpPressed)
-        { 
-          SetState(States.jumping);
-          rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-
-        }
         if (tacklePressed) SetState(States.dashing);
     }
     public void Walk()
@@ -118,12 +114,7 @@ public class Player_Script : MonoBehaviour
         UpdateMovement();
 
         if (moveInput.x == 0) SetState(States.idleing);
-        if (jumpPressed)
-        {
-            SetState(States.jumping);
-            rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-
-        }
+        
         if (tacklePressed) SetState(States.dashing);
     }
     public void Dash()
@@ -177,7 +168,7 @@ public class Player_Script : MonoBehaviour
     }
     void GravityScale()
     {
-        if (!jumpPressed && !isGrounded )
+        if (!jumpPressed && !isGrounded || !isGrounded && rb.velocity.y<0)
         {
             rb.gravityScale = fallGravityScale;
         }
@@ -243,14 +234,20 @@ public class Player_Script : MonoBehaviour
         if (callbackContext.performed)
         {
             jumpPressed = true;
-            Debug.Log("hola");
+           
         }
         if (callbackContext.canceled)
         {
             jumpPressed = false;
-            Debug.Log("adios");
+          
 
         }
+        if (callbackContext.started && mystate==States.idleing || callbackContext.started && mystate == States.walking)
+        {
+            SetState(States.jumping);
+            rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+        }
+
     }
     public void Tackle(InputAction.CallbackContext callbackContext)
     {
