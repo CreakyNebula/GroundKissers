@@ -23,6 +23,7 @@ public class PlayerCollisionsManager : MonoBehaviour
                     //Aitor: Yo activaria una booleana que active el codigo en otro script en un empty, para mantener un orden.
              transform.position = respawn.transform.position;
             TimerScript.Muertes++;
+           // Destroy(this.gameObject);
         }
     }
     #endregion 
