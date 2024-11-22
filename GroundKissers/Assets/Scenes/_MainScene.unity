@@ -132,7 +132,7 @@ GameObject:
   m_Component:
   - component: {fileID: 16457649}
   - component: {fileID: 16457650}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Brick1_0 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -384,7 +384,7 @@ GameObject:
   m_Component:
   - component: {fileID: 19933252}
   - component: {fileID: 19933253}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Brick1_0 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -468,7 +468,7 @@ GameObject:
   m_Component:
   - component: {fileID: 34238280}
   - component: {fileID: 34238281}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Platform5P (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -665,7 +665,7 @@ GameObject:
   m_Component:
   - component: {fileID: 73380693}
   - component: {fileID: 73380694}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Brick1_0 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -833,7 +833,7 @@ GameObject:
   m_Component:
   - component: {fileID: 106145502}
   - component: {fileID: 106145503}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Brick1_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -966,7 +966,7 @@ GameObject:
   m_Component:
   - component: {fileID: 137690169}
   - component: {fileID: 137690170}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Platform5P (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1048,7 +1048,7 @@ GameObject:
   m_Component:
   - component: {fileID: 138126892}
   - component: {fileID: 138126893}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Brick1_0 (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1266,7 +1266,7 @@ GameObject:
   m_Component:
   - component: {fileID: 154447539}
   - component: {fileID: 154447540}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Brick1_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1565,7 +1565,7 @@ GameObject:
   m_Component:
   - component: {fileID: 166901619}
   - component: {fileID: 166901620}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Brick1_0 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1764,7 +1764,7 @@ GameObject:
   m_Component:
   - component: {fileID: 210327850}
   - component: {fileID: 210327851}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Brick1_0 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1930,7 +1930,7 @@ GameObject:
   m_Component:
   - component: {fileID: 229765133}
   - component: {fileID: 229765134}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Platform5P (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2012,7 +2012,7 @@ GameObject:
   m_Component:
   - component: {fileID: 230368966}
   - component: {fileID: 230368967}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Brick1_0 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2096,7 +2096,7 @@ GameObject:
   m_Component:
   - component: {fileID: 238745971}
   - component: {fileID: 238745972}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Brick1_0 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2211,7 +2211,7 @@ GameObject:
   m_Component:
   - component: {fileID: 252382401}
   - component: {fileID: 252382402}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Brick1_0 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2295,7 +2295,7 @@ GameObject:
   m_Component:
   - component: {fileID: 302334032}
   - component: {fileID: 302334033}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Brick1_0 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2379,7 +2379,7 @@ GameObject:
   m_Component:
   - component: {fileID: 307546532}
   - component: {fileID: 307546533}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Brick1_0 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2463,7 +2463,7 @@ GameObject:
   m_Component:
   - component: {fileID: 310566417}
   - component: {fileID: 310566416}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: WallL
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -2546,7 +2546,7 @@ GameObject:
   m_Component:
   - component: {fileID: 324952319}
   - component: {fileID: 324952320}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Brick1_0 (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2630,7 +2630,7 @@ GameObject:
   m_Component:
   - component: {fileID: 343529688}
   - component: {fileID: 343529689}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Brick1_0 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2798,7 +2798,7 @@ GameObject:
   m_Component:
   - component: {fileID: 382016738}
   - component: {fileID: 382016739}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Brick1_0 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3016,7 +3016,7 @@ GameObject:
   m_Component:
   - component: {fileID: 404739599}
   - component: {fileID: 404739600}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Platform5P (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3182,7 +3182,7 @@ GameObject:
   m_Component:
   - component: {fileID: 424713420}
   - component: {fileID: 424713421}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Brick1_0 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3518,7 +3518,7 @@ GameObject:
   m_Component:
   - component: {fileID: 459372530}
   - component: {fileID: 459372531}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Platform5P (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3600,7 +3600,7 @@ GameObject:
   m_Component:
   - component: {fileID: 470005730}
   - component: {fileID: 470005731}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Brick1_0 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3684,7 +3684,7 @@ GameObject:
   m_Component:
   - component: {fileID: 480783017}
   - component: {fileID: 480783018}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Brick1_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3768,7 +3768,7 @@ GameObject:
   m_Component:
   - component: {fileID: 482920338}
   - component: {fileID: 482920339}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Platform5P (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4016,7 +4016,7 @@ GameObject:
   m_Component:
   - component: {fileID: 529884193}
   - component: {fileID: 529884194}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Brick1_0 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4100,7 +4100,7 @@ GameObject:
   m_Component:
   - component: {fileID: 537961602}
   - component: {fileID: 537961603}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Brick1_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4184,7 +4184,7 @@ GameObject:
   m_Component:
   - component: {fileID: 538967931}
   - component: {fileID: 538967932}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Brick1_0 (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4383,7 +4383,7 @@ GameObject:
   m_Component:
   - component: {fileID: 566273154}
   - component: {fileID: 566273155}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Brick1_0 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4551,7 +4551,7 @@ GameObject:
   m_Component:
   - component: {fileID: 582061049}
   - component: {fileID: 582061050}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Brick1_0 (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4803,7 +4803,7 @@ GameObject:
   m_Component:
   - component: {fileID: 604830780}
   - component: {fileID: 604830781}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Brick1_0 (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4887,7 +4887,7 @@ GameObject:
   m_Component:
   - component: {fileID: 608697979}
   - component: {fileID: 608697980}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Brick1_0 (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5139,7 +5139,7 @@ GameObject:
   m_Component:
   - component: {fileID: 663018272}
   - component: {fileID: 663018273}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Brick1_0 (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5223,7 +5223,7 @@ GameObject:
   m_Component:
   - component: {fileID: 664837010}
   - component: {fileID: 664837011}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Brick1_0 (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5307,7 +5307,7 @@ GameObject:
   m_Component:
   - component: {fileID: 668126489}
   - component: {fileID: 668126490}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Platform5P (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5389,7 +5389,7 @@ GameObject:
   m_Component:
   - component: {fileID: 671394027}
   - component: {fileID: 671394028}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Brick1_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5473,7 +5473,7 @@ GameObject:
   m_Component:
   - component: {fileID: 671477892}
   - component: {fileID: 671477893}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Brick1_0 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5691,7 +5691,7 @@ GameObject:
   m_Component:
   - component: {fileID: 682810452}
   - component: {fileID: 682810453}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Brick1_0 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5806,7 +5806,7 @@ GameObject:
   m_Component:
   - component: {fileID: 728563190}
   - component: {fileID: 728563191}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Brick1_0 (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5974,7 +5974,7 @@ GameObject:
   m_Component:
   - component: {fileID: 760446341}
   - component: {fileID: 760446342}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Brick1_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6156,8 +6156,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8eccf391b3d72c54689728588d8a2783, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deadTime: 0
-  deadTimeCounter: 0
+  playerPrefab: {fileID: 1236880734466753409, guid: 6a99f6e394d692645ac16e9a4469a51c, type: 3}
+  deadTime: 3
 --- !u!1 &781029482
 GameObject:
   m_ObjectHideFlags: 0
@@ -6168,7 +6168,7 @@ GameObject:
   m_Component:
   - component: {fileID: 781029483}
   - component: {fileID: 781029484}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Brick1_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6252,7 +6252,7 @@ GameObject:
   m_Component:
   - component: {fileID: 787841603}
   - component: {fileID: 787841604}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Brick1_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6420,7 +6420,7 @@ GameObject:
   m_Component:
   - component: {fileID: 815463875}
   - component: {fileID: 815463876}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Brick1_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6504,7 +6504,7 @@ GameObject:
   m_Component:
   - component: {fileID: 829688752}
   - component: {fileID: 829688753}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Brick1_0 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6619,7 +6619,7 @@ GameObject:
   m_Component:
   - component: {fileID: 879719094}
   - component: {fileID: 879719095}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Brick1_0 (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6703,7 +6703,7 @@ GameObject:
   m_Component:
   - component: {fileID: 889379239}
   - component: {fileID: 889379240}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Brick1_0 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6787,7 +6787,7 @@ GameObject:
   m_Component:
   - component: {fileID: 900805717}
   - component: {fileID: 900805718}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Brick1_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6871,7 +6871,7 @@ GameObject:
   m_Component:
   - component: {fileID: 905246184}
   - component: {fileID: 905246185}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Brick1_0 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6955,7 +6955,7 @@ GameObject:
   m_Component:
   - component: {fileID: 916952587}
   - component: {fileID: 916952588}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Platform5P (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7407,7 +7407,7 @@ GameObject:
   m_Component:
   - component: {fileID: 921915254}
   - component: {fileID: 921915255}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Brick1_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7491,7 +7491,7 @@ GameObject:
   m_Component:
   - component: {fileID: 932497955}
   - component: {fileID: 932497956}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Brick1_0 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7575,7 +7575,7 @@ GameObject:
   m_Component:
   - component: {fileID: 984962919}
   - component: {fileID: 984962920}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Brick1_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7659,7 +7659,7 @@ GameObject:
   m_Component:
   - component: {fileID: 998288130}
   - component: {fileID: 998288131}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Platform5P (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7741,7 +7741,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1007971931}
   - component: {fileID: 1007971932}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Brick1_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7825,7 +7825,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1011352644}
   - component: {fileID: 1011352643}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Celling
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -8327,7 +8327,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1058275667}
   - component: {fileID: 1058275668}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Brick1_0 (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8411,7 +8411,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1067118085}
   - component: {fileID: 1067118086}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Platform5P (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8577,7 +8577,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1091609262}
   - component: {fileID: 1091609263}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Brick1_0 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8737,7 +8737,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1101210532}
   - component: {fileID: 1101210533}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Brick1_0 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8821,7 +8821,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1107693968}
   - component: {fileID: 1107693969}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Brick1_0 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8989,7 +8989,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1114826241}
   - component: {fileID: 1114826242}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Brick1_0 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9104,7 +9104,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1161711736}
   - component: {fileID: 1161711737}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Brick1_0 (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9400,7 +9400,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1236683669}
   - component: {fileID: 1236683670}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Brick1_0 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9484,7 +9484,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1251764527}
   - component: {fileID: 1251764528}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Brick1_0 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9568,7 +9568,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1263744883}
   - component: {fileID: 1263744884}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Brick1_0 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9736,7 +9736,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1289689458}
   - component: {fileID: 1289689459}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Brick1_0 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10035,7 +10035,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1312051395}
   - component: {fileID: 1312051396}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Brick1_0 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10305,7 +10305,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1336377768}
   - component: {fileID: 1336377769}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Brick1_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10389,7 +10389,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1340456175}
   - component: {fileID: 1340456176}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Brick1_0 (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10641,7 +10641,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1371044782}
   - component: {fileID: 1371044783}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Platform5P (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10889,7 +10889,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1380639782}
   - component: {fileID: 1380639783}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Platform5P (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10971,7 +10971,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1388853442}
   - component: {fileID: 1388853443}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Brick1_0 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11055,7 +11055,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1393905061}
   - component: {fileID: 1393905062}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Brick1_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11139,7 +11139,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1394409637}
   - component: {fileID: 1394409638}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Brick1_0 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11223,7 +11223,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1408761094}
   - component: {fileID: 1408761095}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Brick1_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11307,7 +11307,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1410567126}
   - component: {fileID: 1410567127}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Brick1_0 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11729,7 +11729,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1477315146}
   - component: {fileID: 1477315147}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Brick1_0 (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11813,7 +11813,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1478327600}
   - component: {fileID: 1478327601}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Brick1_0 (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12295,7 +12295,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1551261386}
   - component: {fileID: 1551261387}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Brick1_0 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12379,7 +12379,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1555458465}
   - component: {fileID: 1555458466}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Platform5P (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12812,7 +12812,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1652431247}
   - component: {fileID: 1652431248}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Brick1_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12980,7 +12980,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1659063626}
   - component: {fileID: 1659063627}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Brick1_0 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13064,7 +13064,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1670320259}
   - component: {fileID: 1670320260}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Brick1_0 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13234,7 +13234,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1673855113}
   - component: {fileID: 1673855114}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Brick1_0 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13402,7 +13402,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1707410864}
   - component: {fileID: 1707410865}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Brick1_0 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13486,7 +13486,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1714020294}
   - component: {fileID: 1714020293}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: WallR
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -13569,7 +13569,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1722947080}
   - component: {fileID: 1722947081}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Brick1_0 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13787,7 +13787,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1772715369}
   - component: {fileID: 1772715370}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Brick1_0 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14142,7 +14142,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1793537772}
   - component: {fileID: 1793537773}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Brick1_0 (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14394,7 +14394,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1833432839}
   - component: {fileID: 1833432840}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Platform5P (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14560,7 +14560,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1858189282}
   - component: {fileID: 1858189283}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Brick1_0 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14728,7 +14728,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1860851317}
   - component: {fileID: 1860851318}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Brick1_0 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14812,7 +14812,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1867933070}
   - component: {fileID: 1867933071}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Brick1_0 (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14927,7 +14927,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1876482457}
   - component: {fileID: 1876482458}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Brick1_0 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15011,7 +15011,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1881709699}
   - component: {fileID: 1881709700}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Brick1_0 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15347,7 +15347,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1905496227}
   - component: {fileID: 1905496228}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Brick1_0 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15431,7 +15431,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1915072236}
   - component: {fileID: 1915072237}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Platform5P (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15597,7 +15597,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1927881985}
   - component: {fileID: 1927881986}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Brick1_0 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16028,7 +16028,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1981476625}
   - component: {fileID: 1981476626}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Brick1_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16112,7 +16112,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2000649561}
   - component: {fileID: 2000649562}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Brick1_0 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16196,7 +16196,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2035391729}
   - component: {fileID: 2035391730}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Brick1_0 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16280,7 +16280,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2042094712}
   - component: {fileID: 2042094713}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Platform5P (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16362,7 +16362,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2046428487}
   - component: {fileID: 2046428488}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Brick1_0 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16530,7 +16530,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2060902964}
   - component: {fileID: 2060902965}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Brick1_0 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16614,7 +16614,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2063069835}
   - component: {fileID: 2063069836}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Platform5P (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16866,7 +16866,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2077684675}
   - component: {fileID: 2077684676}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Brick1_0 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16950,7 +16950,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2078421883}
   - component: {fileID: 2078421884}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Platform5P (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17032,7 +17032,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2083970184}
   - component: {fileID: 2083970185}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Brick1_0 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17250,7 +17250,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2104591552}
   - component: {fileID: 2104591553}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Brick1_0 (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17334,7 +17334,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2113412545}
   - component: {fileID: 2113412546}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Brick1_0 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18428,11 +18428,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 626895148479740433, guid: 6a99f6e394d692645ac16e9a4469a51c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.32
+      value: -5.044
       objectReference: {fileID: 0}
     - target: {fileID: 626895148479740433, guid: 6a99f6e394d692645ac16e9a4469a51c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.71
+      value: -3.987
       objectReference: {fileID: 0}
     - target: {fileID: 626895148479740433, guid: 6a99f6e394d692645ac16e9a4469a51c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -18473,6 +18473,22 @@ PrefabInstance:
     - target: {fileID: 1236880734466753409, guid: 6a99f6e394d692645ac16e9a4469a51c, type: 3}
       propertyPath: m_Name
       value: Player (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1236880734466753409, guid: 6a99f6e394d692645ac16e9a4469a51c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9175228666851906543, guid: 6a99f6e394d692645ac16e9a4469a51c, type: 3}
+      propertyPath: jumpForce
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 9175228666851906543, guid: 6a99f6e394d692645ac16e9a4469a51c, type: 3}
+      propertyPath: gravityScale
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 9175228666851906543, guid: 6a99f6e394d692645ac16e9a4469a51c, type: 3}
+      propertyPath: fallGravityScale
+      value: 25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -20883,7 +20899,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7838984088871739164
 Transform:
   m_ObjectHideFlags: 0
@@ -20987,7 +21003,7 @@ GameObject:
   - component: {fileID: 7071649759967593394}
   - component: {fileID: 1915540490532217003}
   - component: {fileID: 183963867098675987}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: BoundingSaw (1)
   m_TagString: Danger
   m_Icon: {fileID: 0}
@@ -21008,7 +21024,7 @@ GameObject:
   - component: {fileID: 7071649760273713571}
   - component: {fileID: 1915540490963643066}
   - component: {fileID: 183963867706257666}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: BoundingSaw
   m_TagString: Danger
   m_Icon: {fileID: 0}

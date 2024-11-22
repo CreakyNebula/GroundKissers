@@ -127,7 +127,7 @@ public class Player_Script : MonoBehaviour
     public void Jump()
     {
         animator.Play("jump");
-        SetState(States.falling);
+      //  SetState(States.falling);
     }
     public void Fall()
     {
@@ -148,12 +148,12 @@ public class Player_Script : MonoBehaviour
             rb.velocity = new Vector2(moveInput.x * moveSpeed, rb.velocity.y);
             if (moveInput.x > 0)
             {
-                transform.localScale = new Vector3(1, 1, 1);
+                transform.eulerAngles = new Vector3(0, 0, 0);
             }
             else if (moveInput.x < 0)
             {
-                transform.localScale = new Vector3(-1, 1, 1);
-            }
+              transform.eulerAngles = new Vector3(0, 180, 0);
+             }
     }
     void CheckGround()
     {
@@ -212,7 +212,7 @@ public class Player_Script : MonoBehaviour
         float startSpeed = 2f;  // Velocidad inicial del dash
         float maxSpeed = tackleForce;  // Velocidad máxima que quieres alcanzar
 
-        Vector2 dashDirection = new Vector2(transform.localScale.x, 0f);  // Dirección del dash (derecha o izquierda)
+        Vector2 dashDirection = new Vector2(transform.forward.x, 0f);  // Dirección del dash (derecha o izquierda)
 
         while (elapsedTime < dashDuration)
         {

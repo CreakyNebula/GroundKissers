@@ -21,9 +21,9 @@ public class PlayerCollisionsManager : MonoBehaviour
             Debug.Log("DAMAGE");
             //Añadir logica de manejo de nivel, reseteo, conteo de muertes, etc.
                     //Aitor: Yo activaria una booleana que active el codigo en otro script en un empty, para mantener un orden.
-             transform.position = respawn.transform.position;
+           //  transform.position = respawn.transform.position;
             TimerScript.Muertes++;
-           // Destroy(this.gameObject);
+            Destroy(this.gameObject);
         }
     }
     #endregion 
@@ -33,7 +33,7 @@ public class PlayerCollisionsManager : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("FallingPlatform"))
         {
-            transform.parent = collision.gameObject.transform;
+            //transform.parent = collision.gameObject.transform;
         }
     }
 
