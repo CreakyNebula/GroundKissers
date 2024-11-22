@@ -9,6 +9,9 @@ public class Timer : MonoBehaviour
     [SerializeField] int min, seg;     //variable de min y segs
     [SerializeField] TMP_Text timer;   //componente de texto se encarga de mostrarlo por pantalla
     [SerializeField] EndGame endGame;
+    [SerializeField] YouLost lostScipt;
+
+    public int Muertes;
 
     private float remaining;    //almacena el tiempo total que queda
     private bool onGoing;       
@@ -37,6 +40,11 @@ public class Timer : MonoBehaviour
             int tempMin = Mathf.FloorToInt(remaining / 60);     //calcula cuantos minutos quedan dvidiendo entre 60
             int tempSeg = Mathf.FloorToInt(remaining % 60);     //clacula segundos restantes 
             timer.text = string.Format("{0:00}:{1:00}", tempMin, tempSeg);    //convierte los mintos y segundos en texto y lo actualiza en la pantalla
+        }
+
+        if(Muertes>=3)
+        {
+            lostScipt.MostrarEndGame();
         }
     }
 }

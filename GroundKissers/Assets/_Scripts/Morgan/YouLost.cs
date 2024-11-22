@@ -1,37 +1,34 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class EndGame : MonoBehaviour
+public class YouLost : MonoBehaviour
 {
-    [SerializeField] GameObject EndGamePanel;
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+    }
 
-    private int muerte;
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
 
     public void MostrarEndGame()
     {
         gameObject.SetActive(true);
     }
 
-    
-
     public void PlayAgain()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
-
-
     public void MainMenu()
     {
         //SceneManager.LoadScene("MainMenu");
         UnityEditor.EditorApplication.isPlaying = false; // Para detener el juego en el editor
-    }
-
-    public void Muerte()
-    {
-        muerte++;
     }
 }

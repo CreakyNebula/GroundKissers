@@ -8,6 +8,7 @@ public class PlayerCollisionsManager : MonoBehaviour
     [SerializeField] private int playerDeads = 0;
     [SerializeField] private Transform respawn;
 
+    private Timer TimerScript;
 
     public int PlayerDeads { get => playerDeads; set => playerDeads = value; }
 
@@ -21,6 +22,7 @@ public class PlayerCollisionsManager : MonoBehaviour
             //Añadir logica de manejo de nivel, reseteo, conteo de muertes, etc.
                     //Aitor: Yo activaria una booleana que active el codigo en otro script en un empty, para mantener un orden.
              transform.position = respawn.transform.position;
+            TimerScript.Muertes++;
         }
     }
     #endregion 
@@ -42,4 +44,9 @@ public class PlayerCollisionsManager : MonoBehaviour
         }
     }
     #endregion
+
+    private void Start()
+    {
+        TimerScript = GameObject.Find("PanelTimer").GetComponent<Timer>();
+    }
 }
