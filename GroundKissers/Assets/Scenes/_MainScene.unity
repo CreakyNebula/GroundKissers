@@ -17698,7 +17698,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   launchPower: 10
   launchDirection: {x: -1, y: 0.6}
-  maxCollisions: 12
+  maxCollisions: 1000
   gizmoLength: 3
 --- !u!114 &183963867706257666
 MonoBehaviour:
@@ -17712,9 +17712,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0b8922e47e85c2478392262df5fd653, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  launchPower: 12
+  launchPower: 10
   launchDirection: {x: 1, y: 0.56}
-  maxCollisions: 12
+  maxCollisions: 1000
   gizmoLength: 3
 --- !u!1 &287471549689738302
 GameObject:

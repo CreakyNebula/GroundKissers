@@ -190,7 +190,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 128
-  tackleForce: 28
+  tackleForce: 15
   isDashing: 0
   dashTime: 0.3
   coyoteTime: 0.2

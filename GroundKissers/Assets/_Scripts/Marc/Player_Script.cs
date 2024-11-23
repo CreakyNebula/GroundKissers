@@ -127,6 +127,7 @@ public class Player_Script : MonoBehaviour
     public void Jump()
     {
         animator.Play("jump");
+        UpdateMovement();
       //  SetState(States.falling);
     }
     public void Fall()
@@ -212,7 +213,7 @@ public class Player_Script : MonoBehaviour
         float startSpeed = 2f;  // Velocidad inicial del dash
         float maxSpeed = tackleForce;  // Velocidad máxima que quieres alcanzar
 
-        Vector2 dashDirection = new Vector2(transform.forward.x, 0f);  // Dirección del dash (derecha o izquierda)
+        Vector2 dashDirection = new Vector2(transform.right.x, 0f);  // Dirección del dash (derecha o izquierda)
 
         while (elapsedTime < dashDuration)
         {

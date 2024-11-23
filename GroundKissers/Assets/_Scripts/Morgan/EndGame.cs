@@ -27,7 +27,7 @@ public class EndGame : MonoBehaviour
     public void MainMenu()
     {
         //SceneManager.LoadScene("MainMenu");
-        UnityEditor.EditorApplication.isPlaying = false; // Para detener el juego en el editor
+      //  UnityEditor.EditorApplication.isPlaying = false; // Para detener el juego en el editor
     }
 
     public void Muerte()
