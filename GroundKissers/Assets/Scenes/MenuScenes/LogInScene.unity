@@ -848,7 +848,7 @@ MonoBehaviour:
   usernameField: {fileID: 623262119}
   passwordField: {fileID: 1511578687}
   resultText: {fileID: 947331230}
-  targetScene: _MainScene
+  targetScene: _MainScene01
 --- !u!4 &364284457
 Transform:
   m_ObjectHideFlags: 0

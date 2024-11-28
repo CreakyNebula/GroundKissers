@@ -7,11 +7,12 @@ public class FallingTrapManager : MonoBehaviour
     [SerializeField] private float tensionDropDistance = 0.2f;
     [SerializeField] private float tensionDuration = 0.3f;
     [SerializeField] private float reboundDuration = 0.2f;
-    [SerializeField] private float finalDropDistance = 0.1f; 
-    [SerializeField] private float delayBetweenAnimations = 1f; 
+    [SerializeField] private float finalDropDistance = 0.1f;
+    [SerializeField] private float delayBetweenAnimations = 1f;
     [SerializeField] private float swingAngle = 15f;
     [SerializeField] private float swingDuration = 0.5f;
-    [SerializeField] private float fallDuration = 1f;
+    [SerializeField] private float fallSpeed = 5f; // Velocidad de caída en unidades por segundo
+    [SerializeField] private float fallDistance = 10f; // Distancia de caída
     [SerializeField] private float destroyDelay = 1f;
 
     private void Start()
@@ -45,13 +46,16 @@ public class FallingTrapManager : MonoBehaviour
         LeanTween.rotateZ(gameObject, swingAngle, swingDuration)
             .setEasePunch()
             .setOnComplete(() => {
+                // Calcula la duración de la caída según la distancia y velocidad
+                float calculatedFallDuration = fallDistance / fallSpeed;
+
                 // Inicia la caída después del balanceo
-                LeanTween.moveY(gameObject, transform.position.y - 10f, fallDuration)
+                LeanTween.moveY(gameObject, transform.position.y - fallDistance, calculatedFallDuration)
                     .setEaseInQuad();
             });
 
         // Espera a que termine la animación antes de destruir el objeto
-        yield return new WaitForSeconds(swingDuration + fallDuration + destroyDelay);
+        yield return new WaitForSeconds(swingDuration + (fallDistance / fallSpeed) + destroyDelay);
 
         Destroy(gameObject);
     }

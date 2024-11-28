@@ -208,12 +208,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialDelay: 1
-  tensionDropDistance: 2.5
+  tensionDropDistance: 1.5
   tensionDuration: 0.3
   reboundDuration: 0.2
-  finalDropDistance: 2
+  finalDropDistance: 1
   delayBetweenAnimations: 3
   swingAngle: 30
   swingDuration: 1
-  fallDuration: 0.8
-  destroyDelay: 1
+  fallSpeed: 12
+  fallDistance: 20
+  destroyDelay: 10
