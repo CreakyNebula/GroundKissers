@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Unity.Netcode;
 
-public class Timer : MonoBehaviour
+public class Timer : NetworkBehaviour
 {
-    [SerializeField] int min, seg;     //variable de min y segs
+
+    [SerializeField] private int min, seg;     //variable de min y segs
     [SerializeField] TMP_Text timer;   //componente de texto se encarga de mostrarlo por pantalla
     [SerializeField] EndGame endGame;
     [SerializeField] YouLost lostScipt;
