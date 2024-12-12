@@ -1,14 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
-/*
-public class Player_Script : MonoBehaviour
+
+public class Network_Player_Script : NetworkBehaviour
 {
     // Inputs
     private PlayerInput playerInput;
     // Variables de movimiento
-    public float moveSpeed = 5f;
+    public float speed = 5f;
     public float jumpForce = 7f;
     private Vector2 moveInput;
 
@@ -21,7 +22,7 @@ public class Player_Script : MonoBehaviour
     public Transform groundCheck;  // Punto desde donde se dispara el Raycast
     public float groundCheckDistance = 0.2f;  // Distancia del Raycast para verificar el suelo
     public LayerMask groundLayer;  // Capa que representa el suelo
-    private bool isGrounded;
+    [SerializeField]private bool isGrounded;
 
     // Animator
     private Animator animator;
@@ -65,13 +66,14 @@ public class Player_Script : MonoBehaviour
 
     private void Update()
     {
+        if(!IsOwner) return;
         CheckGround();
         GravityScale();
         /*UpdateMovement();
 
         AnimationManager();
-        ;
-ManageCoyoteTime();
+        ;*/
+        ManageCoyoteTime();
         moveInput = playerInput.actions["Move"].ReadValue<Vector2>();
 
         switch (mystate)
@@ -146,7 +148,7 @@ ManageCoyoteTime();
     void UpdateMovement()
     {
             // Movimiento horizontal
-            rb.velocity = new Vector2(moveInput.x * moveSpeed, rb.velocity.y);
+            rb.velocity = new Vector2(moveInput.x * speed, rb.velocity.y);
             if (moveInput.x > 0)
             {
                 transform.eulerAngles = new Vector3(0, 0, 0);
@@ -259,6 +261,7 @@ ManageCoyoteTime();
         if (callbackContext.performed)
         {
             jumpPressed = true;
+            Debug.Log("hola");
            
         }
         if (callbackContext.canceled)
@@ -319,7 +322,5 @@ ManageCoyoteTime();
           }
 
 
-      }
-
-}*/
-
+      }*/
+}
