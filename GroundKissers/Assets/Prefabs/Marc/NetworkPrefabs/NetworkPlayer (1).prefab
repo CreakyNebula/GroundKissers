@@ -100,7 +100,7 @@ GameObject:
   - component: {fileID: 4308317378968786113}
   - component: {fileID: 828770634196979690}
   - component: {fileID: 3386111619084185913}
-  - component: {fileID: 7221486519129679467}
+  - component: {fileID: 5074004957478269602}
   m_Layer: 0
   m_Name: NetworkPlayer (1)
   m_TagString: Untagged
@@ -401,6 +401,8 @@ MonoBehaviour:
   coyoteTime: 0.05
   jumpBufferTime: 0.3
   mystate: 0
+  AnimationState:
+    m_InternalValue: 0
 --- !u!114 &3386111619084185913
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -432,7 +434,7 @@ MonoBehaviour:
   InLocalSpace: 0
   Interpolate: 0
   SlerpPosition: 0
---- !u!114 &7221486519129679467
+--- !u!114 &5074004957478269602
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -441,7 +443,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1236880734466753409}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8d0727d5ae3244e3b569694d3912374, type: 3}
+  m_Script: {fileID: 11500000, guid: b6d07e90a2dc9954fbb97d4715f6e4dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   TransitionStateInfoList: []

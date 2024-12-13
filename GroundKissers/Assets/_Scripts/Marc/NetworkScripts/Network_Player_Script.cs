@@ -56,6 +56,9 @@ public class Network_Player_Script : NetworkBehaviour
     private bool jumpPressed;
     private bool tacklePressed;
 
+
+    public NetworkVariable<int> AnimationState = new NetworkVariable<int>();
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -97,6 +100,8 @@ public class Network_Player_Script : NetworkBehaviour
                 Trip();
                 break;
         }
+
+
     }
 
      #region Estados
