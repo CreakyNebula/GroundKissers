@@ -101,6 +101,7 @@ GameObject:
   - component: {fileID: 828770634196979690}
   - component: {fileID: 3386111619084185913}
   - component: {fileID: 5074004957478269602}
+  - component: {fileID: 6269289477348776569}
   m_Layer: 0
   m_Name: NetworkPlayer (1)
   m_TagString: Untagged
@@ -448,6 +449,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TransitionStateInfoList: []
   m_Animator: {fileID: 3751292269574235800}
+--- !u!114 &6269289477348776569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1236880734466753409}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80d7c879794dfda4687da0e400131852, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4643066431779005312
 GameObject:
   m_ObjectHideFlags: 0

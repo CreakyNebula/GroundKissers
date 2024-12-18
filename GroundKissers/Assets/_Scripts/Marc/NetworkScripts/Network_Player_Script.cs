@@ -70,6 +70,8 @@ public class Network_Player_Script : NetworkBehaviour
     private void Update()
     {
         if(!IsOwner) return;
+
+        rb.isKinematic = false;
         CheckGround();
         GravityScale();
         /*UpdateMovement();
