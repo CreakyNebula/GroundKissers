@@ -6754,7 +6754,6 @@ GameObject:
   - component: {fileID: 778124494}
   - component: {fileID: 778124497}
   - component: {fileID: 778124496}
-  - component: {fileID: 778124499}
   - component: {fileID: 778124495}
   - component: {fileID: 778124498}
   m_Layer: 5
@@ -6854,27 +6853,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 1236880734466753409, guid: 6a99f6e394d692645ac16e9a4469a51c, type: 3}
   deadTime: 3
---- !u!114 &778124499
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 778124493}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 796391462
-  InScenePlacedSourceGlobalObjectIdHash: 0
-  AlwaysReplicateAsRoot: 0
-  SynchronizeTransform: 1
-  ActiveSceneSynchronization: 0
-  SceneMigrationSynchronization: 1
-  SpawnWithObservers: 1
-  DontDestroyWithOwner: 0
-  AutoObjectParentSync: 1
 --- !u!1 &781029482
 GameObject:
   m_ObjectHideFlags: 0
@@ -14380,6 +14358,18 @@ PrefabInstance:
     - target: {fileID: 4308317378968786113, guid: 139f11b1fbb18e24d9215de54ba4483e, type: 3}
       propertyPath: InScenePlacedSourceGlobalObjectIdHash
       value: 886006635
+      objectReference: {fileID: 0}
+    - target: {fileID: 7766837416658106976, guid: 139f11b1fbb18e24d9215de54ba4483e, type: 3}
+      propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7766837416658106976, guid: 139f11b1fbb18e24d9215de54ba4483e, type: 3}
+      propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7766837416658106976, guid: 139f11b1fbb18e24d9215de54ba4483e, type: 3}
+      propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

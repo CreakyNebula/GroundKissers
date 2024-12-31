@@ -34,6 +34,7 @@ public class Network_Player_Script : NetworkBehaviour
     public float tackleForce;
     public bool isDashing;
     public float dashTime;
+    [SerializeField] private Collider2D dashCollider;
 
     //Jump
 
@@ -49,7 +50,7 @@ public class Network_Player_Script : NetworkBehaviour
 
     //States
 
-    public enum States { dashing,idleing,walking,falling, jumping, triping}
+    public enum States { dashing,idleing,walking,falling, jumping, triping,damage,zancadilla}
     public States mystate;
 
     //Inputs
@@ -57,7 +58,6 @@ public class Network_Player_Script : NetworkBehaviour
     private bool tacklePressed;
 
 
-    public NetworkVariable<int> AnimationState = new NetworkVariable<int>();
 
     private void Start()
     {
@@ -216,7 +216,7 @@ public class Network_Player_Script : NetworkBehaviour
     IEnumerator TackleCorroutine()
     {
         isDashing = true;
-
+        dashCollider.enabled = true;
         float dashDuration = dashTime;  // Duración total del dash
         float elapsedTime = 0f;  // Tiempo transcurrido
         float startSpeed = 2f;  // Velocidad inicial del dash
@@ -235,7 +235,7 @@ public class Network_Player_Script : NetworkBehaviour
             elapsedTime += Time.deltaTime;  // Incrementa el tiempo transcurrido
             yield return null;  // Espera al siguiente frame
         }
-
+        dashCollider.enabled = false;
         isDashing = false;
         UpdateMovement();
         SetState(States.idleing);
@@ -259,6 +259,11 @@ public class Network_Player_Script : NetworkBehaviour
             StartCoroutine("StandUp");
             isDashing = false;
             rb.drag = 5;
+        }
+
+        if(collision.gameObject.tag == "Dashing Player")
+        {
+           // SetState(States.dashing);
         }
     }
     //Inputs
@@ -296,10 +301,6 @@ public class Network_Player_Script : NetworkBehaviour
 
     // Método para gestionar Coyote Time y Jump Buffering
     /*
-
-
-      
-
     
       
 

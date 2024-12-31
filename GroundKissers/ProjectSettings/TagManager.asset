@@ -9,11 +9,12 @@ TagManager:
   - Floor
   - Wall
   - Zancadilla
+  - Dashing Player
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
   - Danger
