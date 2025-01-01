@@ -263,7 +263,8 @@ public class Network_Player_Script : NetworkBehaviour
 
         if(collision.gameObject.tag == "Dashing Player")
         {
-           // SetState(States.dashing);
+            // SetState(States.dashing);
+            Debug.Log("hola");
         }
     }
     //Inputs
