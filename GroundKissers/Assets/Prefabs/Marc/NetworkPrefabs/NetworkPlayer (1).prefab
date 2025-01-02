@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4997062781103024608
 Transform:
   m_ObjectHideFlags: 0
@@ -39,7 +39,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 577318571257417695}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -64,18 +64,18 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 1
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.6010874, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 5.12, y: 1.28}
+    newSize: {x: 19.2, y: 9.6}
+    adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.39, y: 1.35}
+  m_Size: {x: 0.84071004, y: 1.35}
   m_EdgeRadius: 0
 --- !u!1 &776604939984463609
 GameObject:
@@ -481,9 +481,12 @@ MonoBehaviour:
   tackleForce: 28
   isDashing: 0
   dashTime: 0.3
-  dashCollider: {fileID: 7941329691844075443}
+  dashCollider: {fileID: 577318571257417695}
   coyoteTime: 0.05
-  jumpBufferTime: 0.3
+  jumpBufferTime: 0.1
+  knockbackX: 10
+  knockbackY: 20
+  waitTime: 0.3
   mystate: 0
 --- !u!114 &3386111619084185913
 MonoBehaviour:
@@ -542,6 +545,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80d7c879794dfda4687da0e400131852, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_NetworkTransform: {fileID: 0}
 --- !u!1 &4643066431779005312
 GameObject:
   m_ObjectHideFlags: 0

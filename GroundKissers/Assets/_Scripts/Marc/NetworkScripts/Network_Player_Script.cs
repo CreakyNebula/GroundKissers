@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Netcode;
+using Unity.Netcode.Components;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,6 +9,8 @@ public class Network_Player_Script : NetworkBehaviour
 {
     // Inputs
     private PlayerInput playerInput;
+
+    [Header("movement")]
     // Variables de movimiento
     public float speed = 5f;
     public float jumpForce = 7f;
@@ -19,6 +22,7 @@ public class Network_Player_Script : NetworkBehaviour
     private Rigidbody2D rb;
 
     // GroundCheck
+    [Header("GroundCheck")]
     public Transform groundCheck;  // Punto desde donde se dispara el Raycast
     public float groundCheckDistance = 0.2f;  // Distancia del Raycast para verificar el suelo
     public LayerMask groundLayer;  // Capa que representa el suelo
@@ -31,10 +35,13 @@ public class Network_Player_Script : NetworkBehaviour
     private bool felt;
 
     // Dash
+    [Header("Dash")]
+
     public float tackleForce;
     public bool isDashing;
     public float dashTime;
-    [SerializeField] private Collider2D dashCollider;
+    [SerializeField] private GameObject dashCollider;
+    private NetworkVariable<bool> facingRight =new NetworkVariable<bool>(true,NetworkVariableReadPermission.Everyone,NetworkVariableWritePermission.Owner){};
 
     //Jump
 
@@ -46,7 +53,13 @@ public class Network_Player_Script : NetworkBehaviour
     public float jumpBufferTime = 0.2f;   // Tiempo permitido para Jump Buffering
     private float jumpBufferCounter;  // Contador de Jump Buffer
 
-    //Died
+    //Knockback
+    [Header("Knockback")]
+
+    public float knockbackX;
+    public float knockbackY;
+    [SerializeField]private float waitTime;
+
 
     //States
 
@@ -55,9 +68,6 @@ public class Network_Player_Script : NetworkBehaviour
 
     //Inputs
     private bool jumpPressed;
-    private bool tacklePressed;
-
-
 
     private void Start()
     {
@@ -71,7 +81,6 @@ public class Network_Player_Script : NetworkBehaviour
     {
         if(!IsOwner) return;
 
-        rb.isKinematic = false;
         CheckGround();
         GravityScale();
         /*UpdateMovement();
@@ -101,9 +110,22 @@ public class Network_Player_Script : NetworkBehaviour
             case States.triping:
                 Trip();
                 break;
+            case States.damage:
+                Knockback();
+                break;
         }
-
-
+        if(rb.velocity.y<0 && (mystate == States.idleing|| mystate == States.walking))
+        {
+            SetState(States.falling);
+        }
+        if(mystate == States.idleing)
+        {
+            rb.drag = 100;
+        }
+        else
+        {
+            rb.drag = 0;
+        }
     }
 
      #region Estados
@@ -117,7 +139,8 @@ public class Network_Player_Script : NetworkBehaviour
         animator.Play("idle");
         if (moveInput.x != 0)
         { SetState(States.walking); }
-        if (tacklePressed) SetState(States.dashing);
+        rb.drag = 100;
+
     }
     public void Walk()
     {
@@ -125,7 +148,6 @@ public class Network_Player_Script : NetworkBehaviour
         UpdateMovement();
 
         if (moveInput.x == 0) SetState(States.idleing);
-        if (tacklePressed) SetState(States.dashing);
     }
     public void Dash()
     {
@@ -150,6 +172,20 @@ public class Network_Player_Script : NetworkBehaviour
     {
         animator.Play("trip over");
     }
+
+    public void Knockback()
+    {
+        animator.Play("damage");
+        waitTime-=Time.deltaTime;
+        if(groundCheck==true && waitTime < 0)
+        {
+            waitTime = 0.4f;
+            Debug.Log("ya");
+            SetState(States.idleing);
+        }
+        
+
+    }
     #endregion 
     //Metodos fuera de estados
     void UpdateMovement()
@@ -159,10 +195,12 @@ public class Network_Player_Script : NetworkBehaviour
             if (moveInput.x > 0)
             {
                 transform.eulerAngles = new Vector3(0, 0, 0);
+                facingRight.Value = true;
             }
             else if (moveInput.x < 0)
             {
               transform.eulerAngles = new Vector3(0, 180, 0);
+                facingRight.Value = false;
              }
     }
     void CheckGround()
@@ -216,7 +254,7 @@ public class Network_Player_Script : NetworkBehaviour
     IEnumerator TackleCorroutine()
     {
         isDashing = true;
-        dashCollider.enabled = true;
+        SetDashStateServerRpc(true);
         float dashDuration = dashTime;  // Duración total del dash
         float elapsedTime = 0f;  // Tiempo transcurrido
         float startSpeed = 2f;  // Velocidad inicial del dash
@@ -235,7 +273,7 @@ public class Network_Player_Script : NetworkBehaviour
             elapsedTime += Time.deltaTime;  // Incrementa el tiempo transcurrido
             yield return null;  // Espera al siguiente frame
         }
-        dashCollider.enabled = false;
+        SetDashStateServerRpc(false); // Notificar al servidor que termina el dash
         isDashing = false;
         UpdateMovement();
         SetState(States.idleing);
@@ -251,6 +289,7 @@ public class Network_Player_Script : NetworkBehaviour
     //Collisions
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (!IsOwner) return;
         if (collision.gameObject.tag == "Zancadilla" && isDashing)
         {
             felt = true;
@@ -263,8 +302,26 @@ public class Network_Player_Script : NetworkBehaviour
 
         if(collision.gameObject.tag == "Dashing Player")
         {
-            // SetState(States.dashing);
-            Debug.Log("hola");
+           /* Network_Player_Script OtherPlayerScript = collision.gameObject.GetComponent<Network_Player_Script>();
+
+            OtherPlayerScript.isDashing = false;
+            OtherPlayerScript.StopCoroutine("TackleCorroutine"); */
+
+            isDashing = false;
+            SetState(States.damage);
+            StopCoroutine("TackleCorroutine");
+            SetDashStateServerRpc(false);
+            Network_Player_Script otherPlayerScript = collision.transform.parent.GetComponent<Network_Player_Script>();
+            
+            if (otherPlayerScript.facingRight.Value==true)
+            {
+                rb.velocity=(new Vector2 (knockbackX,knockbackY));
+            }
+            else
+            {
+                rb.velocity = (new Vector2(-knockbackX, knockbackY));
+
+            }
         }
     }
     //Inputs
@@ -292,11 +349,8 @@ public class Network_Player_Script : NetworkBehaviour
     {
         if (callbackContext.performed)
         {
-            tacklePressed = true;
-        }
-        if (callbackContext.canceled)
-        {
-            tacklePressed = false;
+            // tacklePressed = true;
+            SetState(States.dashing);
         }
     }
 
@@ -332,4 +386,21 @@ public class Network_Player_Script : NetworkBehaviour
 
 
       }*/
+
+    [ServerRpc]
+    private void SetDashStateServerRpc(bool isActive)
+    {
+        // Cambiar el estado del collider en el servidor
+        dashCollider.SetActive(isActive);
+
+        // Sincronizar el estado del collider con todos los clientes
+        SetDashStateClientRpc(isActive);
+    }
+
+    [ClientRpc]
+    private void SetDashStateClientRpc(bool isActive)
+    {
+        // Cambiar el estado del collider en los clientes
+        dashCollider.SetActive(isActive);
+    }
 }
