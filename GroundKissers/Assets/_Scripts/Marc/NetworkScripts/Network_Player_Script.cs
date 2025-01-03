@@ -43,7 +43,8 @@ public class Network_Player_Script : NetworkBehaviour
     [SerializeField] private GameObject dashCollider;
     private NetworkVariable<bool> facingRight =new NetworkVariable<bool>(true,NetworkVariableReadPermission.Everyone,NetworkVariableWritePermission.Owner){};
 
-    //Jump
+    [Header("Trip")]
+    [SerializeField] private GameObject zancadillaCollider;
 
 
     // Coyote Time y Jump Buffering
@@ -113,14 +114,16 @@ public class Network_Player_Script : NetworkBehaviour
             case States.damage:
                 Knockback();
                 break;
+            case States.zancadilla:
+                Zancadilla();
+                break;
         }
-        if(rb.velocity.y<0 && (mystate == States.idleing|| mystate == States.walking))
+        
+
+      
+        if (mystate == States.idleing)
         {
-            SetState(States.falling);
-        }
-        if(mystate == States.idleing)
-        {
-            rb.drag = 100;
+            rb.drag = 10;
         }
         else
         {
@@ -133,6 +136,8 @@ public class Network_Player_Script : NetworkBehaviour
     {
 
         mystate = s;
+        SetZancadillaStateServerRpc(false);
+        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
     public void Idle()
     {
@@ -140,6 +145,7 @@ public class Network_Player_Script : NetworkBehaviour
         if (moveInput.x != 0)
         { SetState(States.walking); }
         rb.drag = 100;
+        if (rb.velocity.y < 0) SetState(States.falling);
 
     }
     public void Walk()
@@ -147,6 +153,7 @@ public class Network_Player_Script : NetworkBehaviour
         animator.Play("walk");
         UpdateMovement();
 
+        if (rb.velocity.y < 0)SetState(States.falling);
         if (moveInput.x == 0) SetState(States.idleing);
     }
     public void Dash()
@@ -159,7 +166,8 @@ public class Network_Player_Script : NetworkBehaviour
     {
         animator.Play("jump");
         UpdateMovement();
-      //  SetState(States.falling);
+        if (rb.velocity.y < 0) SetState(States.falling);
+
     }
     public void Fall()
     {
@@ -173,6 +181,13 @@ public class Network_Player_Script : NetworkBehaviour
         animator.Play("trip over");
     }
 
+    public void Zancadilla()
+    {
+        animator.Play("zancadilla");
+        SetZancadillaStateServerRpc(true);
+        rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
+
+    }
     public void Knockback()
     {
         animator.Play("damage");
@@ -184,7 +199,6 @@ public class Network_Player_Script : NetworkBehaviour
             SetState(States.idleing);
         }
         
-
     }
     #endregion 
     //Metodos fuera de estados
@@ -349,10 +363,22 @@ public class Network_Player_Script : NetworkBehaviour
     {
         if (callbackContext.performed)
         {
-            // tacklePressed = true;
             SetState(States.dashing);
         }
     }
+    public void Trip(InputAction.CallbackContext callbackContext)
+    {
+        if (callbackContext.performed && isGrounded)
+        {
+            SetState(States.zancadilla);
+            Debug.Log("inp");
+        }
+        if(callbackContext.canceled && mystate==States.zancadilla)
+        {
+            SetState(States.idleing);
+        }
+    }
+
 
     // Método para gestionar Coyote Time y Jump Buffering
     /*
@@ -397,10 +423,25 @@ public class Network_Player_Script : NetworkBehaviour
         SetDashStateClientRpc(isActive);
     }
 
+    [ServerRpc]
+    private void SetZancadillaStateServerRpc(bool isActive)
+    {
+        zancadillaCollider.SetActive(isActive);
+
+        // Sincronizar el estado del collider con todos los clientes
+        SetZancadillaStateClientRpc(isActive);
+    }
+
     [ClientRpc]
     private void SetDashStateClientRpc(bool isActive)
     {
         // Cambiar el estado del collider en los clientes
         dashCollider.SetActive(isActive);
+    }
+    [ClientRpc]
+    private void SetZancadillaStateClientRpc(bool isActive)
+    {
+        // Cambiar el estado del collider en los clientes
+        zancadillaCollider.SetActive(isActive);
     }
 }
