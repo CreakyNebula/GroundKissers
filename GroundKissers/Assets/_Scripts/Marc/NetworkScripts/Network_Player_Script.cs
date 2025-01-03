@@ -134,7 +134,7 @@ public class Network_Player_Script : NetworkBehaviour
      #region Estados
     public void SetState(States s)
     {
-
+        if (!IsOwner) return;
         mystate = s;
         SetZancadillaStateServerRpc(false);
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;

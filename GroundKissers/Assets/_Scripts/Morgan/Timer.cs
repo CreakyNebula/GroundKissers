@@ -7,46 +7,59 @@ using Unity.Netcode;
 
 public class Timer : NetworkBehaviour
 {
-
-    [SerializeField] private int min, seg;     //variable de min y segs
-    [SerializeField] TMP_Text timer;   //componente de texto se encarga de mostrarlo por pantalla
+    [SerializeField] private int min, seg;     // Minutos y segundos iniciales
+    [SerializeField] TMP_Text timer;           // Texto del temporizador en pantalla
     [SerializeField] EndGame endGame;
-    [SerializeField] YouLost lostScipt;
+    [SerializeField] YouLost lostScript;
 
     public int Muertes;
 
-    private float remaining;    //almacena el tiempo total que queda
-    private bool onGoing;       
+    // Variable sincronizada
+    private NetworkVariable<float> remainingTime = new NetworkVariable<float>();
 
-    private void Awake()       //metodo que se llama automaticamente cuando el script comienza
+    private bool onGoing;
+
+
+
+    private void Start()
     {
-        remaining = (min * 60) + seg;    //convertimos min en seg y sumamos los seg para el tiempo total
-        onGoing= true;      //indica que el temporizador está activo
+        
+           
+            // Solo el servidor inicializa el tiempo restante
+            remainingTime.Value = (min * 60) + seg;
+            onGoing = true;
+      
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        if (onGoing)      //comprueba si el temporizador está en marcha
+        if (IsServer && onGoing)
         {
-            remaining -= Time.deltaTime;      //se resta el tiempo que ha pasado en ese frae del tiempo restante
+            Debug.Log("cemento");
+            // El servidor actualiza el temporizador
+            remainingTime.Value -= Time.deltaTime;
 
-            if(remaining < 1)     //si el tiempo es menor a 1 detenemos el contador
+            if (remainingTime.Value <= 0)
             {
-                onGoing= true;
-                endGame.MostrarEndGame(); 
-                
-                
-                //Acabar Partida
+                onGoing = false;
+                remainingTime.Value = 0;
+                endGame.MostrarEndGame();
             }
-            int tempMin = Mathf.FloorToInt(remaining / 60);     //calcula cuantos minutos quedan dvidiendo entre 60
-            int tempSeg = Mathf.FloorToInt(remaining % 60);     //clacula segundos restantes 
-            timer.text = string.Format("{0:00}:{1:00}", tempMin, tempSeg);    //convierte los mintos y segundos en texto y lo actualiza en la pantalla
         }
 
-        if(Muertes>=3)
+        // Todos los clientes actualizan la UI
+        UpdateUI();
+
+        if (Muertes >= 3)
         {
-            lostScipt.MostrarEndGame();
+            lostScript.MostrarEndGame();
         }
+    }
+
+    private void UpdateUI()
+    {
+        int tempMin = Mathf.FloorToInt(remainingTime.Value / 60);
+        int tempSeg = Mathf.FloorToInt(remainingTime.Value % 60);
+        timer.text = string.Format("{0:00}:{1:00}", tempMin, tempSeg);
     }
 }
