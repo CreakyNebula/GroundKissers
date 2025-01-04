@@ -46,7 +46,7 @@ public class Network_Player_Script : NetworkBehaviour
     [Header("Trip")]
     [SerializeField] private GameObject zancadillaCollider;
 
-
+    [Header("Better Jump")]
     // Coyote Time y Jump Buffering
     public float coyoteTime = 0.2f;   // Tiempo permitido para Coyote Time
     private float coyoteTimeCounter;  // Contador de Coyote Time
@@ -60,6 +60,12 @@ public class Network_Player_Script : NetworkBehaviour
     public float knockbackX;
     public float knockbackY;
     [SerializeField]private float waitTime;
+
+    [Header("Utility")]
+
+    [SerializeField] private float walkCounter;
+    [SerializeField] private float maxWalkCounter;
+    public int utilityCount;
 
 
     //States
@@ -118,9 +124,6 @@ public class Network_Player_Script : NetworkBehaviour
                 Zancadilla();
                 break;
         }
-        
-
-      
         if (mystate == States.idleing)
         {
             rb.drag = 10;
@@ -153,21 +156,22 @@ public class Network_Player_Script : NetworkBehaviour
         animator.Play("walk");
         UpdateMovement();
 
-        if (rb.velocity.y < 0)SetState(States.falling);
+        if (rb.velocity.y < 0) SetState(States.falling);
         if (moveInput.x == 0) SetState(States.idleing);
     }
+
+    
+
     public void Dash()
     {
         if (!isDashing) { StartCoroutine("TackleCorroutine"); }
         animator.Play("tackle");
-
     }
     public void Jump()
     {
         animator.Play("jump");
         UpdateMovement();
         if (rb.velocity.y < 0) SetState(States.falling);
-
     }
     public void Fall()
     {
@@ -175,7 +179,6 @@ public class Network_Player_Script : NetworkBehaviour
         animator.Play("fall");
         if (isGrounded) SetState(States.idleing);
     }
-    
     public void Trip()
     {
         animator.Play("trip over");
@@ -186,7 +189,6 @@ public class Network_Player_Script : NetworkBehaviour
         animator.Play("zancadilla");
         SetZancadillaStateServerRpc(true);
         rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
-
     }
     public void Knockback()
     {
@@ -198,12 +200,13 @@ public class Network_Player_Script : NetworkBehaviour
             Debug.Log("ya");
             SetState(States.idleing);
         }
-        
     }
     #endregion 
     //Metodos fuera de estados
     void UpdateMovement()
     {
+        if(moveInput.x >0.3f || moveInput.x <-0.3f)
+        {
             // Movimiento horizontal
             rb.velocity = new Vector2(moveInput.x * speed, rb.velocity.y);
             if (moveInput.x > 0)
@@ -213,13 +216,14 @@ public class Network_Player_Script : NetworkBehaviour
             }
             else if (moveInput.x < 0)
             {
-              transform.eulerAngles = new Vector3(0, 180, 0);
+                transform.eulerAngles = new Vector3(0, 180, 0);
                 facingRight.Value = false;
-             }
+            }
+        }
+        UtilityCharge();
     }
     void CheckGround()
     {
-        // Verifica si está en el suelo usando un BoxCast
         isGrounded = Physics2D.BoxCast(groundCheck.position, new Vector2(0.5f, 0.1f), 0f, Vector2.down, groundCheckDistance, groundLayer);
     }
     private void OnDrawGizmos()
@@ -264,6 +268,21 @@ public class Network_Player_Script : NetworkBehaviour
             jumpBufferCounter -= Time.deltaTime;
         }
     }
+    private void UtilityCharge()
+    {
+        if (walkCounter < maxWalkCounter)
+        {
+            if(utilityCount < 3)
+            {
+                walkCounter += Time.deltaTime;
+            }
+        }
+        else
+        {
+            utilityCount++;
+            walkCounter = 0;
+        }
+    }
     //Corroutines
     IEnumerator TackleCorroutine()
     {
@@ -273,7 +292,6 @@ public class Network_Player_Script : NetworkBehaviour
         float elapsedTime = 0f;  // Tiempo transcurrido
         float startSpeed = 2f;  // Velocidad inicial del dash
         float maxSpeed = tackleForce;  // Velocidad máxima que quieres alcanzar
-
         Vector2 dashDirection = new Vector2(transform.right.x, 0f);  // Dirección del dash (derecha o izquierda)
 
         while (elapsedTime < dashDuration)
@@ -339,14 +357,12 @@ public class Network_Player_Script : NetworkBehaviour
         }
     }
     //Inputs
-
     public void Jump(InputAction.CallbackContext callbackContext)
     {
         if (callbackContext.performed)
         {
             jumpPressed = true;
             Debug.Log("hola");
-           
         }
         if (callbackContext.canceled)
         {
@@ -357,21 +373,21 @@ public class Network_Player_Script : NetworkBehaviour
             SetState(States.jumping);
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         }
-
     }
     public void Tackle(InputAction.CallbackContext callbackContext)
     {
-        if (callbackContext.performed)
+        if (callbackContext.performed && isGrounded && utilityCount>0)
         {
             SetState(States.dashing);
+            utilityCount--;
         }
     }
     public void Trip(InputAction.CallbackContext callbackContext)
     {
-        if (callbackContext.performed && isGrounded)
+        if (callbackContext.performed && isGrounded && utilityCount > 0)
         {
             SetState(States.zancadilla);
-            Debug.Log("inp");
+            utilityCount--;
         }
         if(callbackContext.canceled && mystate==States.zancadilla)
         {
@@ -427,7 +443,6 @@ public class Network_Player_Script : NetworkBehaviour
     private void SetZancadillaStateServerRpc(bool isActive)
     {
         zancadillaCollider.SetActive(isActive);
-
         // Sincronizar el estado del collider con todos los clientes
         SetZancadillaStateClientRpc(isActive);
     }
