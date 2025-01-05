@@ -243,7 +243,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -1018701104, guid: d004bc40fa8d6554d86a9bf1b0b89395, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 1, b: 0.9237678, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -378,7 +378,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 6200000, guid: d26527c41896bba4a8a2088b055ad334, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -461,6 +461,7 @@ MonoBehaviour:
   jumpForce: 17
   gravityScale: 3
   fallGravityScale: 12
+  rbMaterial: {fileID: 6200000, guid: d26527c41896bba4a8a2088b055ad334, type: 2}
   groundCheck: {fileID: 1790350082479094927}
   groundCheckDistance: 0.2
   groundLayer:

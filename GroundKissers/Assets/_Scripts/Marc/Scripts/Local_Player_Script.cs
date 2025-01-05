@@ -20,6 +20,7 @@ public class Local_Player_Script : MonoBehaviour
     public float fallGravityScale;
 
     private Rigidbody2D rb;
+    [SerializeField]private PhysicsMaterial2D rbMaterial;
 
     // GroundCheck
     [Header("GroundCheck")]
@@ -124,16 +125,26 @@ public class Local_Player_Script : MonoBehaviour
         if (mystate == States.idleing)
         {
             rb.drag = 10;
+
         }
         else
         {
             rb.drag = 1;
         }
+
+        if(mystate==States.jumping || mystate == States.falling)
+        {
+            rbMaterial.friction = 0.00f;
+
+        }
+        else
+        {
+            rbMaterial.friction = 2f;
+        }
+
+
     }
-    private void Update()
-    {
-        
-    }
+   
 
      #region Estados
     public void SetState(States s)
@@ -207,6 +218,7 @@ public class Local_Player_Script : MonoBehaviour
     {
         if(moveInput.x >0.3f || moveInput.x <-0.3f)
         {
+
             // Movimiento horizontal
             rb.velocity = new Vector2(moveInput.x * speed, rb.velocity.y);
             if (moveInput.x > 0)

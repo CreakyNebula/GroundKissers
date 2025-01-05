@@ -18,6 +18,7 @@ public class BouncingSawManager : MonoBehaviour
     private int collisionsCount;
     private Vector2 initialForce;
     private Vector3 lastVelocity;
+    private Vector2 StartVelocity;
 
     private void Start()
     {
@@ -32,6 +33,8 @@ public class BouncingSawManager : MonoBehaviour
     private void Update()
     {
         lastVelocity = rb.velocity;
+
+        if (rb.velocity.magnitude < StartVelocity.magnitude) { rb.velocity = new Vector2(rb.velocity.x * 1.1f, rb.velocity.y * 1.1f); }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -84,5 +87,8 @@ public class BouncingSawManager : MonoBehaviour
     {
         yield return new WaitForSeconds(.3f);
         circleCollider.isTrigger = false;
+        StartVelocity = rb.velocity;
     }
+
+    
 }
