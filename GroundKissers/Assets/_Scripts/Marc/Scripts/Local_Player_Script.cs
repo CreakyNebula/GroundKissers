@@ -76,22 +76,21 @@ public class Local_Player_Script : MonoBehaviour
 
     //Inputs
     private bool jumpPressed;
+    [SerializeField] private int playerIndex = 0;
 
     private void Start()
     {
+        
         rb = GetComponent<Rigidbody2D>();
         playerInput = GetComponent<PlayerInput>();
         animator = GetComponent<Animator>();
+        playerIndex = playerInput.playerIndex;
         SetState(States.idleing);
     }
     private void FixedUpdate()
     {
         CheckGround();
         GravityScale();
-        /*UpdateMovement();
-
-        AnimationManager();
-        ;*/
         ManageCoyoteTime();
         moveInput = playerInput.actions["Move"].ReadValue<Vector2>();
 

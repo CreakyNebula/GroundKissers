@@ -8533,7 +8533,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2028680881}
-  - component: {fileID: 2028680880}
+  - component: {fileID: 2028680883}
+  - component: {fileID: 2028680882}
   m_Layer: 0
   m_Name: PlayerManager
   m_TagString: Untagged
@@ -8541,7 +8542,34 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2028680880
+--- !u!4 &2028680881
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2028680879}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.0755445, y: -2.2185454, z: -0.09004772}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2028680882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2028680879}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02619567887589f4b89da3c500af3114, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2028680883
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8569,7 +8597,7 @@ MonoBehaviour:
       m_Name: 
       m_Type: 0
       m_ExpectedControlType: 
-      m_Id: 5a87d3a4-2b95-4008-a4ef-5bc6914b0473
+      m_Id: 692a4cb4-a4b2-4ff9-bf92-0a8385e31938
       m_Processors: 
       m_Interactions: 
       m_SingletonActionBindings: []
@@ -8585,21 +8613,6 @@ MonoBehaviour:
     y: 0
     width: 1
     height: 1
---- !u!4 &2028680881
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2028680879}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.0755445, y: -2.2185454, z: -0.09004772}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2081701212
 PrefabInstance:
   m_ObjectHideFlags: 0
