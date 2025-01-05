@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5878187734800166229}
   - component: {fileID: 7068736365146585279}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Brick1_0 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7097872930930632505}
   - component: {fileID: 1737876713053201098}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Brick1_0 (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -178,7 +178,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4245167833547282931}
   - component: {fileID: 321455427225333415}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Brick1_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -262,7 +262,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6689039624777348402}
   - component: {fileID: 3412409550131510354}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Brick1_0 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -346,7 +346,7 @@ GameObject:
   m_Component:
   - component: {fileID: 994366257171616913}
   - component: {fileID: 1712793425974450985}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Brick1_0 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -430,9 +430,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7891947064888496771}
   - component: {fileID: 7622868280148782301}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Platform5P
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

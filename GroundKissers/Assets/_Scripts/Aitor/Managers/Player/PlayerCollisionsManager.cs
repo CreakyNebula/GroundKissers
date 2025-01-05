@@ -8,7 +8,7 @@ public class PlayerCollisionsManager : MonoBehaviour
     [SerializeField] private int playerDeads = 0;
     [SerializeField] private Transform respawn;
 
-    private Timer TimerScript;
+    [SerializeField] private Local_Timer TimerScript;
 
     public int PlayerDeads { get => playerDeads; set => playerDeads = value; }
 
@@ -48,6 +48,6 @@ public class PlayerCollisionsManager : MonoBehaviour
 
     private void Start()
     {
-        TimerScript = GameObject.Find("PanelTimer").GetComponent<Timer>();
+        TimerScript = GameObject.Find("PanelTimer").GetComponent<Local_Timer>();
     }
 }

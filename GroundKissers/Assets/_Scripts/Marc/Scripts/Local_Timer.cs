@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using Unity.Netcode;
 
-public class Network_Timer : NetworkBehaviour
+public class Local_Timer : MonoBehaviour
 {
     [SerializeField] private int min, seg;     // Minutos y segundos iniciales
     [SerializeField] TMP_Text timer;           // Texto del temporizador en pantalla
@@ -15,7 +15,7 @@ public class Network_Timer : NetworkBehaviour
     public int Muertes;
 
     // Variable sincronizada
-    private NetworkVariable<float> remainingTime = new NetworkVariable<float>();
+    private float remainingTime;
 
     private bool onGoing;
 
@@ -23,43 +23,36 @@ public class Network_Timer : NetworkBehaviour
 
     private void Start()
     {
-        
-           
             // Solo el servidor inicializa el tiempo restante
-            remainingTime.Value = (min * 60) + seg;
+            remainingTime = (min * 60) + seg;
             onGoing = true;
       
     }
 
     private void Update()
     {
-        if (IsServer && onGoing)
+        if ( onGoing)
         {
-            Debug.Log("cemento");
             // El servidor actualiza el temporizador
-            remainingTime.Value -= Time.deltaTime;
+            remainingTime -= Time.deltaTime;
 
-            if (remainingTime.Value <= 0)
+            if (remainingTime <= 0)
             {
                 onGoing = false;
-                remainingTime.Value = 0;
+                remainingTime = 0;
                 endGame.MostrarEndGame();
             }
         }
 
         // Todos los clientes actualizan la UI
         UpdateUI();
-
-        if (Muertes >= 3)
-        {
-            lostScript.MostrarEndGame();
-        }
+        
     }
 
     private void UpdateUI()
     {
-        int tempMin = Mathf.FloorToInt(remainingTime.Value / 60);
-        int tempSeg = Mathf.FloorToInt(remainingTime.Value % 60);
+        int tempMin = Mathf.FloorToInt(remainingTime / 60);
+        int tempSeg = Mathf.FloorToInt(remainingTime % 60);
         timer.text = string.Format("{0:00}:{1:00}", tempMin, tempSeg);
     }
 }
