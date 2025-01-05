@@ -46,6 +46,7 @@ public class FallingPlatformsManager : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             isPlayerOnTop = true;
+           // collision.gameObject.transform.parent = this.gameObject;
         }
 
         if (collision.gameObject.CompareTag("Floor"))
