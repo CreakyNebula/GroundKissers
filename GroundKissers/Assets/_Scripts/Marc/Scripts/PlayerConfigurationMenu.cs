@@ -17,6 +17,7 @@ public class PlayerConfigurationMenu : MonoBehaviour
     public List<PlayerInput> playerList=new List<PlayerInput>();
     public List<InputDevice> playerDevice =new List<InputDevice>();
     public List<Color> playerColor = new List<Color>();
+    public List<GameObject> ui = new List<GameObject>();
 
     [SerializeField]private InputAction joinAction;
     [SerializeField]public InputAction leaveAction;
@@ -24,7 +25,7 @@ public class PlayerConfigurationMenu : MonoBehaviour
     public bool spawnear;
     public static PlayerConfigurationMenu Instance { get; private set; }
 
-    public int id;
+    public int devicesConected;
     private void Awake()
     {
         playerInputManager = GetComponent<PlayerInputManager>();
@@ -70,7 +71,7 @@ public class PlayerConfigurationMenu : MonoBehaviour
 
         }
         
-        if(id == PlayerInputManager.instance.maxPlayerCount)
+        if(devicesConected == PlayerInputManager.instance.maxPlayerCount)
         {
             PlayerInputManager.instance.joinBehavior = PlayerJoinBehavior.JoinPlayersManually;
         }
@@ -80,19 +81,14 @@ public class PlayerConfigurationMenu : MonoBehaviour
 
     public void OnPlayerJoined(PlayerInput playerInput)
     {
-        id++;
-
-
-        if (id <= PlayerInputManager.instance.maxPlayerCount) 
+        if(SceneManager.GetActiveScene().name != sceneToLoad)
         {
+            devicesConected++;
             playerList.Add(playerInput);
             playerColor.Add(Color.white);
-
-
         }
         else
         {
-            
             for (int i = 0; i < playerList.Count; i++)
             {
                 if (i == playerInput.playerIndex) // Verifica si el elemento está Missing.
@@ -104,6 +100,8 @@ public class PlayerConfigurationMenu : MonoBehaviour
                 }
             }
         }
+
+        
 
 
     }

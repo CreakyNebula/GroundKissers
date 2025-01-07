@@ -156,6 +156,7 @@ MonoBehaviour:
   playerPrefab: {fileID: 1236880734466753409, guid: 48d0e7a1eef92e74989168ebe0d4fc16, type: 3}
   playerList: []
   playerColor: []
+  ui: []
   joinAction:
     m_Name: Join
     m_Type: 0
@@ -175,7 +176,7 @@ MonoBehaviour:
     m_SingletonActionBindings: []
     m_Flags: 0
   spawnear: 0
-  id: 0
+  devicesConected: 0
 --- !u!114 &91935088
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -189,7 +190,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_NotificationBehavior: 0
-  m_MaxPlayerCount: 2
+  m_MaxPlayerCount: 4
   m_AllowJoining: 1
   m_JoinBehavior: 0
   m_PlayerJoinedEvent:
@@ -2028,10 +2029,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1540660696687649494, guid: bf4d0bf090a5a9249989fb9b0f5d2c6b, type: 3}
-      propertyPath: m_SortingOrder
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1872259912507253256, guid: bf4d0bf090a5a9249989fb9b0f5d2c6b, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -2118,11 +2115,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2681504922984393413, guid: bf4d0bf090a5a9249989fb9b0f5d2c6b, type: 3}
       propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7787926466811255027, guid: bf4d0bf090a5a9249989fb9b0f5d2c6b, type: 3}
-      propertyPath: m_UiScaleMode
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

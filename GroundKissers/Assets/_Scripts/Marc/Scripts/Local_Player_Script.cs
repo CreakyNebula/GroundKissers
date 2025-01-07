@@ -65,8 +65,8 @@ public class Local_Player_Script : MonoBehaviour
 
     [Header("Utility")]
 
-    [SerializeField] private float walkCounter;
-    [SerializeField] private float maxWalkCounter;
+    [SerializeField] public float walkCounter;
+    [SerializeField] public float maxWalkCounter;
     public int utilityCount;
 
 
@@ -80,8 +80,13 @@ public class Local_Player_Script : MonoBehaviour
     public int playerIndex = 0;
     private PlayerConfigurationMenu playerConfigurationMenu;
 
+    //UI
+    [SerializeField] private Ui_PlayerIndividual myUI; // Para inspección opcional
+
+
     private void Start()
     {
+
         playerInput=GetComponent<PlayerInput>();
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
@@ -89,6 +94,16 @@ public class Local_Player_Script : MonoBehaviour
         playerConfigurationMenu = GameObject.Find("PlayerConfigurationManager").GetComponent<PlayerConfigurationMenu>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.color = playerConfigurationMenu.playerColor[playerInput.playerIndex];
+        Ui_PlayerIndividual[] uiArray = FindObjectsOfType<Ui_PlayerIndividual>();
+        foreach (var ui in uiArray)
+        {
+            if (ui.isActiveAndEnabled && ui.myId==playerInput.playerIndex) // Cambia "someBoolean" por el nombre de tu booleana
+            {
+                ui.scriptPlayer = GetComponent<Local_Player_Script>();
+                break; // Detén el bucle al encontrar el primero
+            }
+        }
+
 
     }
     private void FixedUpdate()
@@ -298,18 +313,20 @@ public class Local_Player_Script : MonoBehaviour
     }
     private void UtilityCharge()
     {
-        if (walkCounter < maxWalkCounter)
+        if (utilityCount <= 2)
         {
-            if(utilityCount < 3)
+            if (walkCounter < maxWalkCounter)
             {
+
                 walkCounter += Time.deltaTime;
             }
+            else
+            {
+                utilityCount++;
+                walkCounter = 0;
+            }
         }
-        else
-        {
-            utilityCount++;
-            walkCounter = 0;
-        }
+        
     }
     //Corroutines
     IEnumerator TackleCorroutine()

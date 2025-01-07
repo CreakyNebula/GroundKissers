@@ -18,7 +18,6 @@ public class Selector : MonoBehaviour
     public Color selectedColor; // Prefab seleccionado por este jugador
     public GameObject instantiatedPrefab;
 
-    private GameManager gameManagerScript;
     private bool hasLogged = false;
     private PlayerConfigurationMenu playerConfigurationMenu;
     public TMP_Text text;
