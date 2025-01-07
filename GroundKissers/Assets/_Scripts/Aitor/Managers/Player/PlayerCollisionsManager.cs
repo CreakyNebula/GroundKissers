@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerCollisionsManager : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class PlayerCollisionsManager : MonoBehaviour
     [SerializeField] private Transform respawn;
 
     [SerializeField] private Local_Timer TimerScript;
+    private PlayerConfigurationMenu playerConfigurationMenu;
 
     public int PlayerDeads { get => playerDeads; set => playerDeads = value; }
 
@@ -23,6 +25,8 @@ public class PlayerCollisionsManager : MonoBehaviour
                     //Aitor: Yo activaria una booleana que active el codigo en otro script en un empty, para mantener un orden.
            //  transform.position = respawn.transform.position;
             TimerScript.Muertes++;
+            PlayerInput playerInput = GetComponent<PlayerInput>();
+            playerConfigurationMenu.Respawn(playerInput);
             Destroy(this.gameObject);
         }
     }
@@ -49,5 +53,7 @@ public class PlayerCollisionsManager : MonoBehaviour
     private void Start()
     {
         TimerScript = GameObject.Find("PanelTimer").GetComponent<Local_Timer>();
+        playerConfigurationMenu = GameObject.Find("spawn (1)").GetComponent<PlayerConfigurationMenu>();
+
     }
 }

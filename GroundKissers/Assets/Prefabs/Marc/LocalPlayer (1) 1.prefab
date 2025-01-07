@@ -342,6 +342,18 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 29ab2538-53c7-4d84-8efa-d82c753e2525
     m_ActionName: Player/Zancadilla
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: eefd082c-c41b-40c9-9937-28d808c1aa0a
+    m_ActionName: Selector/Move[/XInputControllerWindows/leftStick/up,/XInputControllerWindows/leftStick/down,/XInputControllerWindows/leftStick/left,/XInputControllerWindows/leftStick/right,/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 912153a5-3919-4774-8daf-0022a7ca3b5a
+    m_ActionName: Selector/Select[/XInputControllerWindows/buttonSouth,/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c2697207-f938-4b53-9643-bd5b2d174c42
+    m_ActionName: Selector/Disconect[/Keyboard/backspace,/XInputControllerWindows/buttonEast]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -362,6 +374,7 @@ MonoBehaviour:
   playerDeads: 0
   respawn: {fileID: 0}
   TimerScript: {fileID: 0}
+  respawnPref: {fileID: 2228152877502703271, guid: 7599e3ec05e53a84b9a287dd796a9e6b, type: 3}
 --- !u!50 &5111452686086998843
 Rigidbody2D:
   serializedVersion: 4
@@ -457,6 +470,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbf6421a30aa60b4c9ce983f1c0af052, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerInput: {fileID: 0}
   speed: 12
   jumpForce: 17
   gravityScale: 3
@@ -482,6 +496,8 @@ MonoBehaviour:
   maxWalkCounter: 5
   utilityCount: 0
   mystate: 1
+  playerIndex: 0
+  scriptPadre: {fileID: 0}
 --- !u!1 &4643066431779005312
 GameObject:
   m_ObjectHideFlags: 0

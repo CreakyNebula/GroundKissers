@@ -28,6 +28,7 @@ public class Selector : MonoBehaviour
     private void Start()
     {
         playerIndex = playerInput.playerIndex;
+        transform.parent.transform.parent = GameObject.Find("PlayerConfigurationManager").transform;
 
     }
 
