@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using System.Collections.Generic;
+using Unity.VisualScripting.FullSerializer;
 
 public class Selector : MonoBehaviour
 {
@@ -13,23 +15,34 @@ public class Selector : MonoBehaviour
 
     public string sceneToLoad;        // Escena a cargar tras la selección
     public GameObject selectedPrefab; // Prefab seleccionado por este jugador
+    public GameObject instantiatedPrefab;
 
+    private GameManager gameManagerScript;
+    private bool hasLogged = false;
 
     private void Awake()
     {
-        playerInput = GetComponent<PlayerInput>();
+        playerInput = transform.parent.GetComponent<PlayerInput>();
     }
 
     private void Start()
     {
         playerIndex = playerInput.playerIndex;
+
     }
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             SceneManager.LoadScene(sceneToLoad);
+        }
+        // Verifica si estamos en la escena específica y si el mensaje no ha sido registrado aún
+        if (SceneManager.GetActiveScene().name == sceneToLoad && !hasLogged)
+        {
+            hasLogged = true; // Marca que el mensaje ya fue mostrado
+
+            
         }
         // Movimiento del selector en la UI
         moveInput = playerInput.actions["Move"].ReadValue<Vector2>();
@@ -39,36 +52,35 @@ public class Selector : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.CompareTag("Button") && pressed)
+        if (collision.CompareTag("Button") )
         {
-            // Obtener el script asociado al botón
-            Player_Chosen buttonScript = collision.GetComponent<Player_Chosen>();
-
-            if (buttonScript != null)
+            Debug.Log("toy dentro");
+            if(pressed)
             {
-                // Asignar el prefab seleccionado para este jugador
-                selectedPrefab = buttonScript.playerPrefab;
+                // Obtener el script asociado al botón
+                Player_Chosen buttonScript = collision.GetComponent<Player_Chosen>();
 
-                // Guardar los datos del jugador en PlayerPrefs
-                PlayerPrefs.SetString($"Player{playerIndex}_Prefab", selectedPrefab.name);
-                PlayerPrefs.SetInt($"Player{playerIndex}_DeviceID", playerInput.devices[0].deviceId);
 
-                // Guardar el número total de jugadores (solo una vez)
-                PlayerPrefs.SetInt("PlayerCount", PlayerInput.all.Count);
-
-                // Cambiar a la escena de juego
-                
+                if (buttonScript != null)
+                {
+                    selectedPrefab = buttonScript.playerPrefab;
+                    Debug.Log("aprete");
+                }
             }
+            
         }
     }
 
 
     public void Selected(InputAction.CallbackContext callbackContext)
     {
-        // Detecta la confirmación de selección
+        
+
+        // Detecta la confirmación de seleccióna
         if (callbackContext.performed) pressed = true;
         else if (callbackContext.canceled) pressed = false;
     }
 
-
+    // Método para obtener el prefab seleccionado de un jugador
+   
 }

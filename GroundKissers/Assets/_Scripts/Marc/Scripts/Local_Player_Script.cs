@@ -8,7 +8,7 @@ using UnityEngine.InputSystem;
 public class Local_Player_Script : MonoBehaviour
 {
     // Inputs
-    private PlayerInput playerInput;
+    public PlayerInput playerInput;
 
     [Header("movement")]
     // Variables de movimiento
@@ -76,19 +76,19 @@ public class Local_Player_Script : MonoBehaviour
 
     //Inputs
     private bool jumpPressed;
-    [SerializeField] private int playerIndex = 0;
+    public int playerIndex = 0;
+    public Selector scriptPadre;
 
     private void Start()
     {
-        
+        playerInput=GetComponent<PlayerInput>();
         rb = GetComponent<Rigidbody2D>();
-        playerInput = GetComponent<PlayerInput>();
         animator = GetComponent<Animator>();
-        playerIndex = playerInput.playerIndex;
         SetState(States.idleing);
     }
     private void FixedUpdate()
     {
+        //if (playerInput == null) return;
         CheckGround();
         GravityScale();
         ManageCoyoteTime();
@@ -141,7 +141,10 @@ public class Local_Player_Script : MonoBehaviour
             rbMaterial.friction = 2f;
         }
 
-
+        if(Input.GetKeyDown(KeyCode.Tab))
+        {
+            Debug.Log(gameObject.name + playerInput + playerIndex);
+        }
     }
    
 
@@ -151,6 +154,7 @@ public class Local_Player_Script : MonoBehaviour
         mystate = s;
         ActivarColliderZancadilla(false);
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+
     }
     public void Idle()
     {
@@ -369,6 +373,7 @@ public class Local_Player_Script : MonoBehaviour
     //Inputs
     public void Jump(InputAction.CallbackContext callbackContext)
     {
+
         if (callbackContext.performed)
         {
             jumpPressed = true;
@@ -446,5 +451,10 @@ public class Local_Player_Script : MonoBehaviour
     private void ActivarColliderZancadilla(bool isActive)
     {
         zancadillaCollider.SetActive(isActive);
+    }
+
+    public int GetIndex()
+    {
+        return playerIndex;
     }
 }

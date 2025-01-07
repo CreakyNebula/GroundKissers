@@ -11,6 +11,7 @@ TagManager:
   - Zancadilla
   - Dashing Player
   - Button
+  - SpawnPoint
   layers:
   - Default
   - TransparentFX
