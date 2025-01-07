@@ -53,7 +53,7 @@ public class PlayerCollisionsManager : MonoBehaviour
     private void Start()
     {
         TimerScript = GameObject.Find("PanelTimer").GetComponent<Local_Timer>();
-        playerConfigurationMenu = GameObject.Find("spawn (1)").GetComponent<PlayerConfigurationMenu>();
+        playerConfigurationMenu = GameObject.Find("PlayerConfigurationManager").GetComponent<PlayerConfigurationMenu>();
 
     }
 }

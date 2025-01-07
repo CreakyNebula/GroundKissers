@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -15,9 +16,7 @@ public class PlayerConfigurationMenu : MonoBehaviour
 
     public List<PlayerInput> playerList=new List<PlayerInput>();
     public List<InputDevice> playerDevice =new List<InputDevice>();
-
-    public event System.Action<PlayerInput> PlayerJoinedGame;
-    public event System.Action<PlayerInput> PlayerLeftGame;
+    public List<Color> playerColor = new List<Color>();
 
     [SerializeField]private InputAction joinAction;
     [SerializeField]public InputAction leaveAction;
@@ -25,7 +24,7 @@ public class PlayerConfigurationMenu : MonoBehaviour
     public bool spawnear;
     public static PlayerConfigurationMenu Instance { get; private set; }
 
-    private int id;
+    public int id;
     private void Awake()
     {
         playerInputManager = GetComponent<PlayerInputManager>();
@@ -61,8 +60,8 @@ public class PlayerConfigurationMenu : MonoBehaviour
         if (SceneManager.GetActiveScene().name == sceneToLoad && !hasLogged)
         {
             hasLogged = true; // Marca que el mensaje ya fue mostrado
-
              PlayerInputManager.instance.playerPrefab = playerPrefab;
+
         }
         if (spawnear)
         {
@@ -70,18 +69,43 @@ public class PlayerConfigurationMenu : MonoBehaviour
            
 
         }
+        
+        if(id == PlayerInputManager.instance.maxPlayerCount)
+        {
+            PlayerInputManager.instance.joinBehavior = PlayerJoinBehavior.JoinPlayersManually;
+        }
+
     }
+    
 
     public void OnPlayerJoined(PlayerInput playerInput)
     {
         id++;
-        Debug.Log(playerInput.devices[0]); // Agregar el dispositivo del jugador a la lista
-        playerList.Add(playerInput);
-        if(PlayerJoinedGame != null)
+
+
+        if (id <= PlayerInputManager.instance.maxPlayerCount) 
         {
-            PlayerJoinedGame(playerInput);
+            playerList.Add(playerInput);
+            playerColor.Add(Color.white);
+
 
         }
+        else
+        {
+            
+            for (int i = 0; i < playerList.Count; i++)
+            {
+                if (i == playerInput.playerIndex) // Verifica si el elemento está Missing.
+                {
+                    playerList[i] = playerInput; // Sustituye el elemento.
+
+                    Debug.Log($"Jugador reemplazado en la posición {i}.");
+                    return;
+                }
+            }
+        }
+
+
     }
     void OnPlayerLeft(PlayerInput playerInput)
     {
@@ -98,9 +122,19 @@ public class PlayerConfigurationMenu : MonoBehaviour
     }
     public void Respawn(PlayerInput playerInput)
     {
-        PlayerInputManager.instance.JoinPlayer(id, -1, null, playerInput.devices[0]);
+        StartCoroutine(RespawnCorroutine(playerInput));
 
     }
+    IEnumerator RespawnCorroutine(PlayerInput playerInput)
+    {
+        InputDevice device = playerInput.devices[0];
+        int idOculto = playerInput.playerIndex;
+
+        yield return new WaitForSeconds(3);
+        PlayerInputManager.instance.JoinPlayer(idOculto, -1, null, device);
+
+    }
+    
 }
 
 

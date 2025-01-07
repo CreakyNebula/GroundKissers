@@ -101,4 +101,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3175e4515cb03a946ad6e2578b47bc0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxPlayers: 2
+  sceneToLoad: 
+  playerPrefab: {fileID: 0}
+  playerList: []
+  playerColor: []
+  joinAction:
+    m_Name: Join
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: c049d6ac-416c-476d-aeff-990e5e5cb73e
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  leaveAction:
+    m_Name: Leave
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: c4610098-2e5a-41cb-bd58-7194176ad64f
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  spawnear: 0
+  id: 0

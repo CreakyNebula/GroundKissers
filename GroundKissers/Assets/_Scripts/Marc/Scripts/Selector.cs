@@ -3,6 +3,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using Unity.VisualScripting.FullSerializer;
+using TMPro;
 
 public class Selector : MonoBehaviour
 {
@@ -14,11 +15,13 @@ public class Selector : MonoBehaviour
     private bool pressed;             // Para manejar la confirmación de selección
 
     public string sceneToLoad;        // Escena a cargar tras la selección
-    public GameObject selectedPrefab; // Prefab seleccionado por este jugador
+    public Color selectedColor; // Prefab seleccionado por este jugador
     public GameObject instantiatedPrefab;
 
     private GameManager gameManagerScript;
     private bool hasLogged = false;
+    private PlayerConfigurationMenu playerConfigurationMenu;
+    public TMP_Text text;
 
     private void Awake()
     {
@@ -29,6 +32,12 @@ public class Selector : MonoBehaviour
     {
         playerIndex = playerInput.playerIndex;
         transform.parent.transform.parent = GameObject.Find("PlayerConfigurationManager").transform;
+        playerConfigurationMenu = GameObject.Find("PlayerConfigurationManager").GetComponent<PlayerConfigurationMenu>();
+
+        text = transform.GetChild(0).GetComponent<TMP_Text>();
+        int mando = playerIndex + 1;
+        string text1 = "P" + mando.ToString();
+        text.text = text1;
 
     }
 
@@ -42,8 +51,10 @@ public class Selector : MonoBehaviour
         if (SceneManager.GetActiveScene().name == sceneToLoad && !hasLogged)
         {
             hasLogged = true; // Marca que el mensaje ya fue mostrado
+            PlayerInput playerInput = transform.parent.GetComponent<PlayerInput>();
+            playerConfigurationMenu.Respawn(playerInput);
+            Destroy(transform.parent.gameObject);
 
-            
         }
         // Movimiento del selector en la UI
         moveInput = playerInput.actions["Move"].ReadValue<Vector2>();
@@ -64,7 +75,9 @@ public class Selector : MonoBehaviour
 
                 if (buttonScript != null)
                 {
-                    selectedPrefab = buttonScript.playerPrefab;
+                    selectedColor = buttonScript.color;
+                    playerConfigurationMenu.playerColor[playerIndex] = selectedColor;
+                    text.color= buttonScript.color;
                     Debug.Log("aprete");
                 }
             }

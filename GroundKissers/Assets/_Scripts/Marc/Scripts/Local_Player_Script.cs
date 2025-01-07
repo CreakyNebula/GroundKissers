@@ -29,8 +29,9 @@ public class Local_Player_Script : MonoBehaviour
     public LayerMask groundLayer;  // Capa que representa el suelo
     [SerializeField]private bool isGrounded;
 
-    // Animator
+    // Visual
     private Animator animator;
+    private SpriteRenderer spriteRenderer;
 
     // Tropiezo
     private bool felt;
@@ -77,7 +78,7 @@ public class Local_Player_Script : MonoBehaviour
     //Inputs
     private bool jumpPressed;
     public int playerIndex = 0;
-    public Selector scriptPadre;
+    private PlayerConfigurationMenu playerConfigurationMenu;
 
     private void Start()
     {
@@ -85,6 +86,10 @@ public class Local_Player_Script : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         SetState(States.idleing);
+        playerConfigurationMenu = GameObject.Find("PlayerConfigurationManager").GetComponent<PlayerConfigurationMenu>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer.color = playerConfigurationMenu.playerColor[playerInput.playerIndex];
+
     }
     private void FixedUpdate()
     {
@@ -247,14 +252,22 @@ public class Local_Player_Script : MonoBehaviour
     }
     void GravityScale()
     {
-        if (!jumpPressed && !isGrounded || (!isGrounded && rb.velocity.y<0 &&coyoteTimeCounter!>0 && coyoteTimeCounter!=coyoteTime) || jumpPressed&& !isGrounded && rb.velocity.y < 0)
+        if(mystate!=States.damage)
         {
-            rb.gravityScale = fallGravityScale;
+            if (!jumpPressed && !isGrounded || (!isGrounded && rb.velocity.y < 0 && coyoteTimeCounter! > 0 && coyoteTimeCounter != coyoteTime) || jumpPressed && !isGrounded && rb.velocity.y < 0)
+            {
+                rb.gravityScale = fallGravityScale;
+            }
+            else
+            {
+                rb.gravityScale = gravityScale;
+            }
         }
         else
         {
-            rb.gravityScale = gravityScale;
+            rb.gravityScale = 1;
         }
+        
     }
     private void ManageCoyoteTime()
     {
@@ -377,7 +390,6 @@ public class Local_Player_Script : MonoBehaviour
         if (callbackContext.performed)
         {
             jumpPressed = true;
-            Debug.Log("hola");
         }
         if (callbackContext.canceled)
         {
