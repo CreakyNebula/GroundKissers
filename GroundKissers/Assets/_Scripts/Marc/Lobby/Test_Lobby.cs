@@ -17,6 +17,8 @@ public class Test_Lobby : MonoBehaviour
 
     public int ManualMaxPlayers;
     public string ManualLobbyCode;
+    private float lobbyUpdater;
+
     private async void Start()
     {
         await UnityServices.InitializeAsync();
@@ -35,6 +37,9 @@ public class Test_Lobby : MonoBehaviour
     private void Update()
     {
         HandleLobbyHeartBeat();
+        UpdateLobby();
+
+
         if (Input.GetKeyUp(KeyCode.Space))
         {
             CreateLobby();
@@ -69,6 +74,22 @@ public class Test_Lobby : MonoBehaviour
             }
         }
     }
+    private async void UpdateLobby()
+    {
+        if(joinedLobby != null)
+        {
+            lobbyUpdater -= Time.deltaTime;
+            if(lobbyUpdater<0)
+            {
+                float lobbyUpdateTimerMax = 1.1f;
+                lobbyUpdater = lobbyUpdateTimerMax;
+
+                Lobby lobby = await LobbyService.Instance.GetLobbyAsync(joinedLobby.Id);
+                joinedLobby = lobby;
+
+            }
+        }
+    }
     private async void CreateLobby()
     {
         try
@@ -84,9 +105,9 @@ public class Test_Lobby : MonoBehaviour
             Lobby lobby = await LobbyService.Instance.CreateLobbyAsync(lobbyName, maxPlayers,createLobbyOptions);
 
             hostLobby=lobby;
-            joinedLobby=lobby;
-            Debug.Log("Created Lobby" + lobby.Name + "" + lobby.MaxPlayers + " " + lobby.LobbyCode);
-            PrintPlayer(hostLobby);
+            joinedLobby=hostLobby;
+            Debug.Log("Created Lobby  " + lobby.Name + "  " + lobby.MaxPlayers + " " + lobby.LobbyCode);
+            PrintPlayers(hostLobby);
         }catch(LobbyServiceException e)
         {
             Debug.Log(e);
@@ -117,10 +138,10 @@ public class Test_Lobby : MonoBehaviour
 
             QueryResponse queryResponse = await Lobbies.Instance.QueryLobbiesAsync(queryLobbiesOptions);
 
-            Debug.Log("Lobbies found" + queryResponse.Results.Count);
+            Debug.Log("Lobbies found  " + queryResponse.Results.Count);
             foreach (Lobby lobby in queryResponse.Results)
             {
-                Debug.Log(lobby.Name + "" + lobby.MaxPlayers +" " + lobby.LobbyCode);
+                Debug.Log(lobby.Name + "  " + lobby.MaxPlayers +" " + lobby.LobbyCode);
 
             }
         }
@@ -167,9 +188,9 @@ public class Test_Lobby : MonoBehaviour
         return new Player
         {
             Data = new Dictionary<string, PlayerDataObject>
-                    {
-                        {"PlayerName", new PlayerDataObject(PlayerDataObject.VisibilityOptions.Member,playerName) }
-                    }
+            {
+             {"PlayerName", new PlayerDataObject(PlayerDataObject.VisibilityOptions.Member,playerName) }
+            }
         };
     }
 
@@ -182,7 +203,62 @@ public class Test_Lobby : MonoBehaviour
         Debug.Log("Players in Lobby " + lobby.Name);
         foreach (Player player in lobby.Players)
         {
-            Debug.Log(player.Id + "" + player.Data["PlayerName"].Value);
+            Debug.Log(player.Id + "  " + player.Data["PlayerName"].Value);
         }
     }
+
+    private async void LeaveLobby()
+    {
+        try
+        {
+           await LobbyService.Instance.RemovePlayerAsync(joinedLobby.Id, AuthenticationService.Instance.PlayerId);
+
+        }
+        catch (LobbyServiceException e)
+        {
+            Debug.Log(e);
+        }
+    }
+
+    private async void KickPlayer()
+    {
+        try
+        {
+            await LobbyService.Instance.RemovePlayerAsync(joinedLobby.Id, joinedLobby.Players[1].Id);
+        }
+        catch (LobbyServiceException e)
+        {
+            Debug.Log(e);
+        }
+    }
+
+    private async void MigrateLobbyHost()
+    {
+        try
+        {
+            hostLobby = await LobbyService.Instance.UpdateLobbyAsync(hostLobby.Id, new UpdateLobbyOptions
+            {
+                HostId = joinedLobby.Players[1].Id
+            });
+            joinedLobby=hostLobby;
+
+            PrintPlayers(hostLobby);
+        }
+        catch (LobbyServiceException e)
+        {
+            Debug.Log(e);
+        }
+    }
+    private async void DeleteLobby()
+    {
+        try
+        {
+           await LobbyService.Instance.DeleteLobbyAsync(joinedLobby.Id);
+        }
+        catch (LobbyServiceException e)
+        {
+            Debug.Log(e);
+        }
+    }
+
 }
