@@ -65,7 +65,6 @@ public class Selector : MonoBehaviour
     {
         if (collision.CompareTag("Button") )
         {
-            Debug.Log("toy dentro");
             if(pressed)
             {
                 // Obtener el script asociado al botón

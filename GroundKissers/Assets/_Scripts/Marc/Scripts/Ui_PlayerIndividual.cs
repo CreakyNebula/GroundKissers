@@ -30,7 +30,11 @@ public class Ui_PlayerIndividual : MonoBehaviour
             TakeDamage();
             test = false;
         }
-
+        if (scriptPlayer != null)
+        {
+            SpriteRenderer spriteRenderer = scriptPlayer.gameObject.GetComponent<SpriteRenderer>();
+            Debug.Log(spriteRenderer.color);
+        }
     }
     public void TakeDamage()
     {

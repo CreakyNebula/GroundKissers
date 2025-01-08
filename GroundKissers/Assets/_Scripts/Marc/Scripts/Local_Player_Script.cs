@@ -81,7 +81,6 @@ public class Local_Player_Script : MonoBehaviour
     private PlayerConfigurationMenu playerConfigurationMenu;
 
     //UI
-    [SerializeField] private Ui_PlayerIndividual myUI; // Para inspección opcional
     public GameObject spawnPointFather;
 
 
@@ -89,6 +88,7 @@ public class Local_Player_Script : MonoBehaviour
     {
 
         playerInput=GetComponent<PlayerInput>();
+        playerIndex=playerInput.playerIndex;
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         SetState(States.idleing);
@@ -96,14 +96,11 @@ public class Local_Player_Script : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.color = playerConfigurationMenu.playerColor[playerInput.playerIndex];
         Ui_PlayerIndividual[] uiArray = FindObjectsOfType<Ui_PlayerIndividual>();
-        foreach (var ui in uiArray)
-        {
-            if (ui.isActiveAndEnabled && ui.myId==playerInput.playerIndex) // Cambia "someBoolean" por el nombre de tu booleana
-            {
-                ui.scriptPlayer = GetComponent<Local_Player_Script>();
-                break; // Detén el bucle al encontrar el primero
-            }
-        }
+
+        UI_PlayerPadre uI_PlayerPadre = GameObject.Find("HealthManager").GetComponent<UI_PlayerPadre>();
+        Ui_PlayerIndividual miUi = uI_PlayerPadre.playerUi[playerInput.playerIndex].GetComponent<Ui_PlayerIndividual>();
+
+        miUi.scriptPlayer = GetComponent<Local_Player_Script>();
         spawnPointFather = GameObject.Find("SpawnPointFather");
         transform.position = spawnPointFather.transform.GetChild(playerInput.playerIndex).position;
 

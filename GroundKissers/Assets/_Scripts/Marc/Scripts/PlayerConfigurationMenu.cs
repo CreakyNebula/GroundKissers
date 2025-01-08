@@ -26,11 +26,14 @@ public class PlayerConfigurationMenu : MonoBehaviour
     public static PlayerConfigurationMenu Instance { get; private set; }
 
     public int devicesConected;
+    bool llegue;
     private void Awake()
     {
         playerInputManager = GetComponent<PlayerInputManager>();
         if (Instance == null)
         {
+            Time.timeScale = 1f; // Detener completamente el tiempo
+
             Instance = this;
             DontDestroyOnLoad(gameObject); // Mantener el GameManager entre escenas
 
@@ -63,6 +66,8 @@ public class PlayerConfigurationMenu : MonoBehaviour
             hasLogged = true; // Marca que el mensaje ya fue mostrado
              PlayerInputManager.instance.playerPrefab = playerPrefab;
             PlayerInputManager.instance.joinBehavior = PlayerJoinBehavior.JoinPlayersManually;
+
+            
         }
         if (spawnear)
         {
