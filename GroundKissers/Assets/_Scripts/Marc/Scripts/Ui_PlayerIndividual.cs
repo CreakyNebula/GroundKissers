@@ -18,7 +18,7 @@ public class Ui_PlayerIndividual : MonoBehaviour
     void Start()
     {
         hearts = GetComponentsInChildren<Image>();
-        vidas=hearts.Length;
+        vidas=hearts.Length-1;
         
     }
 
@@ -34,7 +34,9 @@ public class Ui_PlayerIndividual : MonoBehaviour
     }
     public void TakeDamage()
     {
-        hearts[vidas-1].sprite=deadHeart;
+
+        hearts[vidas].sprite=deadHeart;
         vidas--;
     }
+
 }

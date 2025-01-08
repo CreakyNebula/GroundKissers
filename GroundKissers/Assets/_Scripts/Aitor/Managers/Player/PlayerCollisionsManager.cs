@@ -26,10 +26,15 @@ public class PlayerCollisionsManager : MonoBehaviour
            //  transform.position = respawn.transform.position;
             TimerScript.Muertes++;
             PlayerInput playerInput = GetComponent<PlayerInput>();
-            playerConfigurationMenu.Respawn(playerInput);
             UI_PlayerPadre uI_PlayerPadre = GameObject.Find("HealthManager").GetComponent<UI_PlayerPadre>();
             Ui_PlayerIndividual uiMisVidas = uI_PlayerPadre.playerUi[playerInput.playerIndex].GetComponent<Ui_PlayerIndividual>();
             uiMisVidas.TakeDamage();
+            if (uiMisVidas.vidas>=1)
+            {
+                playerConfigurationMenu.Respawn(playerInput);
+              
+            }
+
             Destroy(this.gameObject);
         }
     }
