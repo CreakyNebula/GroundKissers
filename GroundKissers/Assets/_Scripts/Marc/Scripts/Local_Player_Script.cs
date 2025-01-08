@@ -82,6 +82,7 @@ public class Local_Player_Script : MonoBehaviour
 
     //UI
     [SerializeField] private Ui_PlayerIndividual myUI; // Para inspección opcional
+    public GameObject spawnPointFather;
 
 
     private void Start()
@@ -103,7 +104,8 @@ public class Local_Player_Script : MonoBehaviour
                 break; // Detén el bucle al encontrar el primero
             }
         }
-
+        spawnPointFather = GameObject.Find("SpawnPointFather");
+        transform.position = spawnPointFather.transform.GetChild(playerInput.playerIndex).position;
 
     }
     private void FixedUpdate()
@@ -376,28 +378,55 @@ public class Local_Player_Script : MonoBehaviour
             rb.drag = 5;
         }
 
-        if(collision.gameObject.tag == "Dashing Player")
+        if(collision.gameObject.tag == "Dashing Player" )
         {
-           /* Network_Player_Script OtherPlayerScript = collision.gameObject.GetComponent<Network_Player_Script>();
+            /* Network_Player_Script OtherPlayerScript = collision.gameObject.GetComponent<Network_Player_Script>();
 
-            OtherPlayerScript.isDashing = false;
-            OtherPlayerScript.StopCoroutine("TackleCorroutine"); */
-
-            isDashing = false;
-            SetState(States.damage);
-            StopCoroutine("TackleCorroutine");
-            ActivarColliderDash(false);
+             OtherPlayerScript.isDashing = false;
+             OtherPlayerScript.StopCoroutine("TackleCorroutine"); */
             Local_Player_Script otherPlayerScript = collision.transform.parent.GetComponent<Local_Player_Script>();
-            
-            if(otherPlayerScript.facingRight)
+
+            if(mystate!=States.zancadilla)
             {
-                rb.velocity=(new Vector2 (knockbackX,knockbackY));
+                
+                    isDashing = false;
+                    SetState(States.damage);
+                    StopCoroutine("TackleCorroutine");
+                    ActivarColliderDash(false);
+                    if (otherPlayerScript.facingRight)
+                    {
+                        rb.velocity = (new Vector2(knockbackX, knockbackY));
+                    }
+                    else
+                    {
+                        rb.velocity = (new Vector2(-knockbackX, knockbackY));
+
+                    }
+                
             }
             else
             {
-                rb.velocity = (new Vector2(-knockbackX, knockbackY));
+                if (otherPlayerScript.facingRight == facingRight)
+                {
+                    isDashing = false;
+                    SetState(States.damage);
+                    StopCoroutine("TackleCorroutine");
+                    ActivarColliderDash(false);
+                    if (otherPlayerScript.facingRight)
+                    {
+                        rb.velocity = (new Vector2(knockbackX, knockbackY));
+                    }
+                    else
+                    {
+                        rb.velocity = (new Vector2(-knockbackX, knockbackY));
+
+                    }
+                }
 
             }
+
+
+
         }
     }
     //Inputs

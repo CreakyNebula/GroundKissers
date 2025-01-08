@@ -62,7 +62,7 @@ public class PlayerConfigurationMenu : MonoBehaviour
         {
             hasLogged = true; // Marca que el mensaje ya fue mostrado
              PlayerInputManager.instance.playerPrefab = playerPrefab;
-
+            PlayerInputManager.instance.joinBehavior = PlayerJoinBehavior.JoinPlayersManually;
         }
         if (spawnear)
         {
@@ -71,10 +71,7 @@ public class PlayerConfigurationMenu : MonoBehaviour
 
         }
         
-        if(devicesConected == PlayerInputManager.instance.maxPlayerCount)
-        {
-            PlayerInputManager.instance.joinBehavior = PlayerJoinBehavior.JoinPlayersManually;
-        }
+        
 
     }
     
