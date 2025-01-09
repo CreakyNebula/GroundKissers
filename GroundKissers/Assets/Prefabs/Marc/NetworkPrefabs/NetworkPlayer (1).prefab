@@ -346,6 +346,18 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 29ab2538-53c7-4d84-8efa-d82c753e2525
     m_ActionName: Player/Zancadilla
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: eefd082c-c41b-40c9-9937-28d808c1aa0a
+    m_ActionName: Selector/Move[/XInputControllerWindows/leftStick/up,/XInputControllerWindows/leftStick/down,/XInputControllerWindows/leftStick/left,/XInputControllerWindows/leftStick/right,/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 912153a5-3919-4774-8daf-0022a7ca3b5a
+    m_ActionName: Selector/Select[/XInputControllerWindows/buttonSouth,/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c2697207-f938-4b53-9643-bd5b2d174c42
+    m_ActionName: Selector/Disconect[/Keyboard/backspace,/XInputControllerWindows/buttonEast]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -358,13 +370,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1236880734466753409}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3d3d633008883ee479acee6e04e06ec3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   playerDeads: 0
   respawn: {fileID: 0}
+  TimerScript: {fileID: 0}
 --- !u!50 &5111452686086998843
 Rigidbody2D:
   serializedVersion: 4

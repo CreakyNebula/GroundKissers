@@ -17,13 +17,13 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/_MainScene01.unity
     guid: f6518320502809e4f8a99c7a8e1be629
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/_MainScene Network.unity
     guid: d3f8b23b1eec9784089055004d9a15df
   - enabled: 0
     path: Assets/Scenes/Lobby.unity
     guid: 35bad610f55708e43b2fab519ab8b615
-  - enabled: 1
+  - enabled: 0
     path: Assets/LobbyTutorial/LobbyTutorial_Done.unity
     guid: be8200a558cfff84b8ce074fa6e33558
   m_configObjects:
