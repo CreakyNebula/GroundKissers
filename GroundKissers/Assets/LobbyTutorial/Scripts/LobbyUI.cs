@@ -16,14 +16,12 @@ public class LobbyUI : MonoBehaviour {
     [SerializeField] private Transform container;
     [SerializeField] private TextMeshProUGUI lobbyNameText;
     [SerializeField] private TextMeshProUGUI playerCountText;
-
-    [SerializeField] private Button changeRedButton;
-    [SerializeField] private Button changeBlueButton;
-    [SerializeField] private Button changeGreenButton;
-    [SerializeField] private Button changeYellowButton;
+    [SerializeField] private Button redButton;
+    [SerializeField] private Button blueButton;
+    [SerializeField] private Button greenButton;
+    [SerializeField] private Button yellowButton;
 
     [SerializeField] private Button leaveLobbyButton;
-
 
 
     private void Awake() {
@@ -31,75 +29,34 @@ public class LobbyUI : MonoBehaviour {
 
         playerSingleTemplate.gameObject.SetActive(false);
 
-        changeRedButton.onClick.AddListener(() => {
+        redButton.onClick.AddListener(() => {
             LobbyManager.Instance.UpdatePlayerCharacter(LobbyManager.PlayerCharacter.Red);
         });
-        changeBlueButton.onClick.AddListener(() => {
+        blueButton.onClick.AddListener(() => {
             LobbyManager.Instance.UpdatePlayerCharacter(LobbyManager.PlayerCharacter.Blue);
         });
-        changeGreenButton.onClick.AddListener(() => {
+        greenButton.onClick.AddListener(() => {
             LobbyManager.Instance.UpdatePlayerCharacter(LobbyManager.PlayerCharacter.Green);
         });
-
-        changeYellowButton.onClick.AddListener(() => {
+        yellowButton.onClick.AddListener(() => {
             LobbyManager.Instance.UpdatePlayerCharacter(LobbyManager.PlayerCharacter.Yellow);
         });
 
         leaveLobbyButton.onClick.AddListener(() => {
             LobbyManager.Instance.LeaveLobby();
         });
-
 
     }
 
-    [SerializeField] private Color[] buttonColors; // Array de colores
-    [SerializeField] private Button[] colorButtons; // Array para los botones de cambio de color
-
-    private void Start()
-    {
-        // Asegúrate de que el array de colores coincide con el array de botones
-        if (buttonColors.Length != colorButtons.Length)
-        {
-            Debug.LogError("El número de colores no coincide con el número de botones.");
-            return;
-        }
-
-        // Cambia el color de los botones
-        for (int i = 0; i < colorButtons.Length; i++)
-        {
-            Image buttonImage = colorButtons[i].GetComponent<Image>();
-            if (buttonImage != null)
-            {
-                buttonImage.color = buttonColors[i];
-            }
-        }
-
-        // Suscripción a eventos
-        changeRedButton.onClick.AddListener(() => {
-            LobbyManager.Instance.UpdatePlayerCharacter(LobbyManager.PlayerCharacter.Red);
-        });
-        changeBlueButton.onClick.AddListener(() => {
-            LobbyManager.Instance.UpdatePlayerCharacter(LobbyManager.PlayerCharacter.Blue);
-        });
-        changeGreenButton.onClick.AddListener(() => {
-            LobbyManager.Instance.UpdatePlayerCharacter(LobbyManager.PlayerCharacter.Green);
-        });
-        changeYellowButton.onClick.AddListener(() => {
-            LobbyManager.Instance.UpdatePlayerCharacter(LobbyManager.PlayerCharacter.Yellow);
-        });
-
-        leaveLobbyButton.onClick.AddListener(() => {
-            LobbyManager.Instance.LeaveLobby();
-        });
-
+    private void Start() {
         LobbyManager.Instance.OnJoinedLobby += UpdateLobby_Event;
         LobbyManager.Instance.OnJoinedLobbyUpdate += UpdateLobby_Event;
+        LobbyManager.Instance.OnLobbyGameModeChanged += UpdateLobby_Event;
         LobbyManager.Instance.OnLeftLobby += LobbyManager_OnLeftLobby;
         LobbyManager.Instance.OnKickedFromLobby += LobbyManager_OnLeftLobby;
 
         Hide();
     }
-
 
     private void LobbyManager_OnLeftLobby(object sender, System.EventArgs e) {
         ClearLobby();
@@ -130,9 +87,9 @@ public class LobbyUI : MonoBehaviour {
             lobbyPlayerSingleUI.UpdatePlayer(player);
         }
 
+
         lobbyNameText.text = lobby.Name;
         playerCountText.text = lobby.Players.Count + "/" + lobby.MaxPlayers;
-        
 
         Show();
     }

@@ -15,6 +15,7 @@ public class LobbyManager : MonoBehaviour {
 
     public const string KEY_PLAYER_NAME = "PlayerName";
     public const string KEY_PLAYER_CHARACTER = "Character";
+    public const string KEY_GAME_MODE = "GameMode";
 
 
 
@@ -23,6 +24,7 @@ public class LobbyManager : MonoBehaviour {
     public event EventHandler<LobbyEventArgs> OnJoinedLobby;
     public event EventHandler<LobbyEventArgs> OnJoinedLobbyUpdate;
     public event EventHandler<LobbyEventArgs> OnKickedFromLobby;
+    public event EventHandler<LobbyEventArgs> OnLobbyGameModeChanged;
     public class LobbyEventArgs : EventArgs {
         public Lobby lobby;
     }
@@ -33,13 +35,12 @@ public class LobbyManager : MonoBehaviour {
     }
 
 
-    
 
     public enum PlayerCharacter {
-        Green,
-        Yellow,
+        Red,
         Blue,
-        Red
+        Green,
+        Yellow
     }
 
 
@@ -154,14 +155,12 @@ public class LobbyManager : MonoBehaviour {
     }
 
     
-
     public async void CreateLobby(string lobbyName, int maxPlayers, bool isPrivate) {
         Player player = GetPlayer();
 
         CreateLobbyOptions options = new CreateLobbyOptions {
             Player = player,
             IsPrivate = isPrivate,
-            
         };
 
         Lobby lobby = await LobbyService.Instance.CreateLobbyAsync(lobbyName, maxPlayers, options);
@@ -313,4 +312,5 @@ public class LobbyManager : MonoBehaviour {
     }
 
     
+
 }
