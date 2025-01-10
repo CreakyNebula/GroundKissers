@@ -385,7 +385,8 @@ public class LobbyManager : MonoBehaviour {
                 });
 
                 joinedLobby = lobby;
-
+                GameObject canvas = GameObject.Find("SuperLobbyCanvas");
+                canvas.SetActive(false);
             }
             catch (LobbyServiceException e)
             {

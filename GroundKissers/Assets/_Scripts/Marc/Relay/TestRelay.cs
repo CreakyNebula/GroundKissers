@@ -73,7 +73,8 @@ public class TestRelay : MonoBehaviour
 
 
             NetworkManager.Singleton.StartClient();
-
+            GameObject canvas = GameObject.Find("SuperLobbyCanvas");
+            canvas.SetActive(false);
         }
         catch (RelayServiceException e)
         {
