@@ -13,10 +13,9 @@ using System.Threading.Tasks;
 public class TestRelay : MonoBehaviour
 {
     public static TestRelay Instance { get; private set; }
-    private void Awake()
-    {
-        Instance = this;
-    }
+       private void Awake() {
+        	Instance = this;
+    	}
     // Start is called before the first frame update
     private async void Start()
     {

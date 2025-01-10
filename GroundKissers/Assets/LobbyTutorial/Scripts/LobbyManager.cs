@@ -19,7 +19,7 @@ public class LobbyManager : MonoBehaviour {
     public const string KEY_PLAYER_CHARACTER = "Character";
     public const string KEY_START_GAME = "Start";
 
-
+    public int position;
 
 
     public event EventHandler OnLeftLobby;
@@ -64,7 +64,7 @@ public class LobbyManager : MonoBehaviour {
         //HandleRefreshLobbyList(); // Disabled Auto Refresh for testing with multiple builds
         HandleLobbyHeartbeat();
         HandleLobbyPolling();
-        //CloseCanvas();
+        Debug.Log(joinedLobby);
     }
     public void CloseCanvas()
     {
@@ -201,6 +201,7 @@ public class LobbyManager : MonoBehaviour {
         OnJoinedLobby?.Invoke(this, new LobbyEventArgs { lobby = lobby });
 
         Debug.Log("Created Lobby " + lobby.Name);
+        LobbyUI.Instance.startGameButton.gameObject.SetActive(true);
     }
 
     public async void RefreshLobbyList() {
@@ -239,8 +240,27 @@ public class LobbyManager : MonoBehaviour {
         });
 
         joinedLobby = lobby;
-
+        position = GetPlayerPosition();
         OnJoinedLobby?.Invoke(this, new LobbyEventArgs { lobby = lobby });
+    }
+
+    public int GetPlayerPosition()
+    {
+        if (joinedLobby != null && joinedLobby.Players != null)
+        {
+            string currentPlayerId = AuthenticationService.Instance.PlayerId;
+
+            for (int i = 0; i < joinedLobby.Players.Count; i++)
+            {
+                if (joinedLobby.Players[i].Id == currentPlayerId)
+                {
+                    return i ; // Devuelve la posición en base 1
+                }
+            }
+        }
+
+        // Si no estás en el lobby, retorna -1
+        return -1;
     }
 
     public async void JoinLobby(Lobby lobby) {
@@ -249,7 +269,7 @@ public class LobbyManager : MonoBehaviour {
         joinedLobby = await LobbyService.Instance.JoinLobbyByIdAsync(lobby.Id, new JoinLobbyByIdOptions {
             Player = player
         });
-
+        position = GetPlayerPosition();
         OnJoinedLobby?.Invoke(this, new LobbyEventArgs { lobby = lobby });
     }
 
@@ -307,11 +327,12 @@ public class LobbyManager : MonoBehaviour {
 
     public async void QuickJoinLobby() {
         try {
+            ;
             QuickJoinLobbyOptions options = new QuickJoinLobbyOptions();
 
             Lobby lobby = await LobbyService.Instance.QuickJoinLobbyAsync(options);
             joinedLobby = lobby;
-
+            position = GetPlayerPosition();
             OnJoinedLobby?.Invoke(this, new LobbyEventArgs { lobby = lobby });
         } catch (LobbyServiceException e) {
             Debug.Log(e);
@@ -321,6 +342,7 @@ public class LobbyManager : MonoBehaviour {
     public async void LeaveLobby() {
         if (joinedLobby != null) {
             try {
+                position = 0;
                 await LobbyService.Instance.RemovePlayerAsync(joinedLobby.Id, AuthenticationService.Instance.PlayerId);
 
                 joinedLobby = null;
@@ -335,6 +357,7 @@ public class LobbyManager : MonoBehaviour {
     public async void KickPlayer(string playerId) {
         if (IsLobbyHost()) {
             try {
+
                 await LobbyService.Instance.RemovePlayerAsync(joinedLobby.Id, playerId);
             } catch (LobbyServiceException e) {
                 Debug.Log(e);
@@ -348,6 +371,7 @@ public class LobbyManager : MonoBehaviour {
         {
             try
             {
+                
                 Debug.Log("StartGame");
 
                 string relayCode = await TestRelay.Instance.CreateRelay();

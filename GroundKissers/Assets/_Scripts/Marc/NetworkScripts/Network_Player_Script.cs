@@ -4,6 +4,7 @@ using Unity.Netcode;
 using Unity.Netcode.Components;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class Network_Player_Script : NetworkBehaviour
 {
@@ -28,9 +29,11 @@ public class Network_Player_Script : NetworkBehaviour
     public LayerMask groundLayer;  // Capa que representa el suelo
     [SerializeField]private bool isGrounded;
 
-    // Animator
+    // Visuals
     private Animator animator;
-
+    private SpriteRenderer spriteRenderer;
+    public Color myColor;
+    private NetworkVariable<Color> playerColor = new NetworkVariable<Color>(Color.white, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     // Tropiezo
     private bool felt;
 
@@ -82,7 +85,28 @@ public class Network_Player_Script : NetworkBehaviour
         playerInput = GetComponent<PlayerInput>();
         animator = GetComponent<Animator>();
         SetState(States.idleing);
+        spriteRenderer = GetComponent<SpriteRenderer>();
+
+        if (IsOwner)
+        {
+            LobbyPlayerSingleUI[]  lobbyPlayerSingleUI = LobbyUI.Instance.GetComponentsInChildren<LobbyPlayerSingleUI>();
+
+            myColor = lobbyPlayerSingleUI[LobbyManager.Instance.position].characterImage.color;
+            
+
+            playerColor.Value = myColor; // Solo el dueño establece el color inicial.
+        }
+
+        // Suscribirse a cambios en la NetworkVariable
+        playerColor.OnValueChanged += (oldValue, newValue) =>
+        {
+            UpdatePlayerColor(newValue);
+        };
+
+        // Configurar el color inicial en base al valor de la NetworkVariable
+        UpdatePlayerColor(playerColor.Value);
     }
+
 
     private void Update()
     {
@@ -447,6 +471,17 @@ public class Network_Player_Script : NetworkBehaviour
         SetZancadillaStateClientRpc(isActive);
     }
 
+    [ServerRpc]
+    private void SetMyColorServerRpc(Color color)
+    {
+        // Cambiar el estado del collider en el servidor
+        
+        spriteRenderer.color = color;
+
+        // Sincronizar el estado del collider con todos los clientes
+        SetMyColorClientRpc(color);
+    }
+
     [ClientRpc]
     private void SetDashStateClientRpc(bool isActive)
     {
@@ -459,4 +494,18 @@ public class Network_Player_Script : NetworkBehaviour
         // Cambiar el estado del collider en los clientes
         zancadillaCollider.SetActive(isActive);
     }
+    [ClientRpc]
+    private void SetMyColorClientRpc(Color color)
+    {
+
+        spriteRenderer.color = color;
+    }
+
+    private void UpdatePlayerColor(Color newColor)
+    {
+        spriteRenderer.color = newColor;
+    }
+    
+
+
 }
