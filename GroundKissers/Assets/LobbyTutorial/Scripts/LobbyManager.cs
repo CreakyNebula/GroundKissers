@@ -64,7 +64,6 @@ public class LobbyManager : MonoBehaviour {
         //HandleRefreshLobbyList(); // Disabled Auto Refresh for testing with multiple builds
         HandleLobbyHeartbeat();
         HandleLobbyPolling();
-        Debug.Log(joinedLobby);
     }
     public void CloseCanvas()
     {

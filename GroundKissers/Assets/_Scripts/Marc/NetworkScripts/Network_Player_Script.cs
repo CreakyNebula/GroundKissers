@@ -96,11 +96,8 @@ public class Network_Player_Script : NetworkBehaviour
 
             playerColor.Value = myColor; // Solo el dueño establece el color inicial.
 
-            
-            Network_Player_Script[] playes = FindObjectsOfType<Network_Player_Script>();
+            Debug.Log($"[PlayerDebug] ClientId asignado a este jugador: {OwnerClientId}");
 
-           
-             transform.position = new Vector3(2*playes.Length, 2 * playes.Length, 0);
         }
 
         // Suscribirse a cambios en la NetworkVariable
