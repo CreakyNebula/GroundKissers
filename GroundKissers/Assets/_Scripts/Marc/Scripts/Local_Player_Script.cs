@@ -70,6 +70,7 @@ public class Local_Player_Script : MonoBehaviour
     public int utilityCount;
 
 
+
     //States
 
     public enum States { dashing,idleing,walking,falling, jumping, triping,damage,zancadilla}
@@ -83,6 +84,10 @@ public class Local_Player_Script : MonoBehaviour
     //UI
     public GameObject spawnPointFather;
 
+    //Collision Manager
+    public PlayerCollisionsManager collisionManager;
+    public float minAlpha;
+    public float duration;
 
     private void Start()
     {
@@ -103,6 +108,8 @@ public class Local_Player_Script : MonoBehaviour
         miUi.scriptPlayer = GetComponent<Local_Player_Script>();
         spawnPointFather = GameObject.Find("SpawnPointFather");
         transform.position = spawnPointFather.transform.GetChild(playerInput.playerIndex).position;
+        StartCoroutine(PingPongAlpha(5));
+
 
     }
     private void FixedUpdate()
@@ -283,6 +290,64 @@ public class Local_Player_Script : MonoBehaviour
         }
         
     }
+    public IEnumerator PingPongAlpha(float duration)
+    {
+        Color color = spriteRenderer.color;
+
+        // Calcula la mitad de un ciclo ping-pong (ida o vuelta).
+        float halfDuration = duration / 2f;
+
+        // Baja el alpha al valor mínimo.
+        for (float t = 0; t < halfDuration; t += Time.deltaTime)
+        {
+            float progress = t / halfDuration;
+            color.a = Mathf.Lerp(1f, minAlpha, progress); // De 1 a minAlpha.
+            spriteRenderer.color = color;
+            yield return null;
+        }
+
+        // Sube el alpha al valor máximo.
+        for (float t = 0; t < halfDuration; t += Time.deltaTime)
+        {
+            float progress = t / halfDuration;
+            color.a = Mathf.Lerp(minAlpha, 1f, progress); // De minAlpha a 1.
+            spriteRenderer.color = color;
+            yield return null;
+        }
+
+        // Al final, asegura que el alpha sea 1.
+        color.a = 1f;
+        spriteRenderer.color = color;
+        collisionManager.enabled = true;
+    }
+    //Corroutines
+    IEnumerator TackleCorroutine()
+    {
+        isDashing = true;
+        ActivarColliderDash(true);
+        float dashDuration = dashTime;  // Duración total del dash
+        float elapsedTime = 0f;  // Tiempo transcurrido
+        float startSpeed = 2f;  // Velocidad inicial del dash
+        float maxSpeed = tackleForce;  // Velocidad máxima que quieres alcanzar
+        Vector2 dashDirection = new Vector2(transform.right.x, 0f);  // Dirección del dash (derecha o izquierda)
+
+        while (elapsedTime < dashDuration)
+        {
+            // Calcula la velocidad del dash usando una interpolación suave
+            float speed = Mathf.Lerp(startSpeed, maxSpeed, elapsedTime / dashDuration);
+
+            // Aplica la velocidad gradualmente al jugador
+            rb.velocity = new Vector2(speed * dashDirection.x, rb.velocity.y);
+
+            elapsedTime += Time.deltaTime;  // Incrementa el tiempo transcurrido
+            yield return null;  // Espera al siguiente frame
+        }
+        ActivarColliderDash(false); // Notificar al servidor que termina el dash
+        isDashing = false;
+        UpdateMovement();
+        SetState(States.idleing);
+    }
+
     private void ManageCoyoteTime()
     {
         // Reinicia el contador si está en el suelo
@@ -328,32 +393,7 @@ public class Local_Player_Script : MonoBehaviour
         
     }
     //Corroutines
-    IEnumerator TackleCorroutine()
-    {
-        isDashing = true;
-        ActivarColliderDash(true);
-        float dashDuration = dashTime;  // Duración total del dash
-        float elapsedTime = 0f;  // Tiempo transcurrido
-        float startSpeed = 2f;  // Velocidad inicial del dash
-        float maxSpeed = tackleForce;  // Velocidad máxima que quieres alcanzar
-        Vector2 dashDirection = new Vector2(transform.right.x, 0f);  // Dirección del dash (derecha o izquierda)
-
-        while (elapsedTime < dashDuration)
-        {
-            // Calcula la velocidad del dash usando una interpolación suave
-            float speed = Mathf.Lerp(startSpeed, maxSpeed, elapsedTime / dashDuration);
-
-            // Aplica la velocidad gradualmente al jugador
-            rb.velocity = new Vector2(speed * dashDirection.x, rb.velocity.y);
-
-            elapsedTime += Time.deltaTime;  // Incrementa el tiempo transcurrido
-            yield return null;  // Espera al siguiente frame
-        }
-        ActivarColliderDash(false); // Notificar al servidor que termina el dash
-        isDashing = false;
-        UpdateMovement();
-        SetState(States.idleing);
-    }
+    
 
     IEnumerator StandUp()
     {

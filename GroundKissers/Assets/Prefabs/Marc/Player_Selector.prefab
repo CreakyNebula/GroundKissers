@@ -314,6 +314,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: c2697207-f938-4b53-9643-bd5b2d174c42
     m_ActionName: Selector/Disconect[/Keyboard/backspace,/XInputControllerWindows/buttonEast]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7185985590765392660}
+        m_TargetAssemblyTypeName: Selector, Assembly-CSharp
+        m_MethodName: StartGame
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 7d1e0a05-075a-4b7c-8ac2-a06c93aea6c2
+    m_ActionName: Selector/Start[/XInputControllerWindows/start]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Selector
@@ -476,6 +492,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: c2697207-f938-4b53-9643-bd5b2d174c42
     m_ActionName: Selector/Disconect[/Keyboard/backspace,/XInputControllerWindows/buttonEast]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 7d1e0a05-075a-4b7c-8ac2-a06c93aea6c2
+    m_ActionName: Selector/Start[/XInputControllerWindows/start]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Selector
@@ -495,7 +515,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 900
   playerIndex: 0
-  sceneToLoad: _MainScene01
+  sceneToLoad: _MainSceneLevel
   selectedColor: {r: 0, g: 0, b: 0, a: 0}
   instantiatedPrefab: {fileID: 0}
   text: {fileID: 0}

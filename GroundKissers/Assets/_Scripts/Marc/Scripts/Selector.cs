@@ -42,10 +42,7 @@ public class Selector : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            SceneManager.LoadScene(sceneToLoad);
-        }
+       
         // Verifica si estamos en la escena específica y si el mensaje no ha sido registrado aún
         if (SceneManager.GetActiveScene().name == sceneToLoad && !hasLogged)
         {
@@ -94,5 +91,11 @@ public class Selector : MonoBehaviour
     }
 
     // Método para obtener el prefab seleccionado de un jugador
-   
+   public void StartGame(InputAction.CallbackContext callbackContext)
+    {
+        if (callbackContext.performed)
+        {
+            SceneManager.LoadScene(sceneToLoad);
+        }
+    } 
 }

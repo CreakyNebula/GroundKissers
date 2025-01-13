@@ -780,6 +780,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: c2697207-f938-4b53-9643-bd5b2d174c42
     m_ActionName: Selector/Disconect[/Keyboard/backspace,/XInputControllerWindows/buttonEast]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 7d1e0a05-075a-4b7c-8ac2-a06c93aea6c2
+    m_ActionName: Selector/New action
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -792,7 +796,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1236880734466753409}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3d3d633008883ee479acee6e04e06ec3, type: 3}
   m_Name: 
@@ -914,17 +918,18 @@ MonoBehaviour:
   zancadillaCollider: {fileID: 6911441743884785036}
   coyoteTime: 0.05
   jumpBufferTime: 0.1
-  knockbackX: 20
-  knockbackY: 10
+  knockbackX: 30
+  knockbackY: 5
   waitTime: 0.3
   walkCounter: 0
-  maxWalkCounter: 5
+  maxWalkCounter: 2.5
   utilityCount: 0
   mystate: 1
   playerIndex: 0
-  myUI: {fileID: 0}
-  spawnPoints:
-  - {fileID: 0}
+  spawnPointFather: {fileID: 0}
+  collisionManager: {fileID: 978369129353145122}
+  minAlpha: 0.2
+  duration: 0.3
 --- !u!1 &1466063241128544018
 GameObject:
   m_ObjectHideFlags: 0
