@@ -2191,7 +2191,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8359597200887334538, guid: 0be3c6333d92f0f4988be9b772555c57, type: 3}
       propertyPath: sceneToLoad
-      value: _MainScene01 1
+      value: _MainSceneLevel
       objectReference: {fileID: 0}
     - target: {fileID: 8359597200887334538, guid: 0be3c6333d92f0f4988be9b772555c57, type: 3}
       propertyPath: playerPrefab
