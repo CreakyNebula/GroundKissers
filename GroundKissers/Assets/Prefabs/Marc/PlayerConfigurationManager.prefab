@@ -101,10 +101,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3175e4515cb03a946ad6e2578b47bc0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneToLoad: 
+  sceneToLoad: _MainSceneLevel
   playerPrefab: {fileID: 0}
   playerList: []
   playerColor: []
+  ui: []
   joinAction:
     m_Name: Join
     m_Type: 0
@@ -124,4 +125,4 @@ MonoBehaviour:
     m_SingletonActionBindings: []
     m_Flags: 0
   spawnear: 0
-  id: 0
+  devicesConected: 0

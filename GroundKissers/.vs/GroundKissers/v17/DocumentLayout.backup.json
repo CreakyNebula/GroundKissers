@@ -3,10 +3,6 @@
   "WorkspaceRootPath": "C:\\_repo\\unity\\GroundKissers\\GroundKissers\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{12F9A74A-B960-3AB7-D01F-C98573345F32}|Assembly-CSharp.csproj|c:\\_repo\\unity\\groundkissers\\groundkissers\\assets\\_scripts\\marc\\scripts\\ui_playerpadre.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{12F9A74A-B960-3AB7-D01F-C98573345F32}|Assembly-CSharp.csproj|solutionrelative:assets\\_scripts\\marc\\scripts\\ui_playerpadre.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{12F9A74A-B960-3AB7-D01F-C98573345F32}|Assembly-CSharp.csproj|c:\\_repo\\unity\\groundkissers\\groundkissers\\assets\\_scripts\\marc\\scripts\\selector.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{12F9A74A-B960-3AB7-D01F-C98573345F32}|Assembly-CSharp.csproj|solutionrelative:assets\\_scripts\\marc\\scripts\\selector.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -55,19 +51,6 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "UI_PlayerPadre.cs",
-              "DocumentMoniker": "C:\\_repo\\unity\\GroundKissers\\GroundKissers\\Assets\\_Scripts\\Marc\\Scripts\\UI_PlayerPadre.cs",
-              "RelativeDocumentMoniker": "Assets\\_Scripts\\Marc\\Scripts\\UI_PlayerPadre.cs",
-              "ToolTip": "C:\\_repo\\unity\\GroundKissers\\GroundKissers\\Assets\\_Scripts\\Marc\\Scripts\\UI_PlayerPadre.cs",
-              "RelativeToolTip": "Assets\\_Scripts\\Marc\\Scripts\\UI_PlayerPadre.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAB4AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-13T11:34:35.012Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
               "Title": "Selector.cs",
               "DocumentMoniker": "C:\\_repo\\unity\\GroundKissers\\GroundKissers\\Assets\\_Scripts\\Marc\\Scripts\\Selector.cs",
               "RelativeDocumentMoniker": "Assets\\_Scripts\\Marc\\Scripts\\Selector.cs",
@@ -80,7 +63,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "SawsSpawnPoint.cs",
               "DocumentMoniker": "C:\\_repo\\unity\\GroundKissers\\GroundKissers\\Assets\\_Scripts\\Aitor\\Managers\\SawSpawnerManager\\SawsSpawnPoint.cs",
               "RelativeDocumentMoniker": "Assets\\_Scripts\\Aitor\\Managers\\SawSpawnerManager\\SawsSpawnPoint.cs",
@@ -92,7 +75,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "SawsSpawnerManager.cs",
               "DocumentMoniker": "C:\\_repo\\unity\\GroundKissers\\GroundKissers\\Assets\\_Scripts\\Aitor\\Managers\\SawSpawnerManager\\SawsSpawnerManager.cs",
               "RelativeDocumentMoniker": "Assets\\_Scripts\\Aitor\\Managers\\SawSpawnerManager\\SawsSpawnerManager.cs",
@@ -104,7 +87,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 3,
               "Title": "SpawnPoint.cs",
               "DocumentMoniker": "C:\\_repo\\unity\\GroundKissers\\GroundKissers\\Assets\\_Scripts\\Aitor\\SpawnPoint.cs",
               "RelativeDocumentMoniker": "Assets\\_Scripts\\Aitor\\SpawnPoint.cs",
@@ -116,7 +99,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 4,
               "Title": "SpawnPointsManager.cs",
               "DocumentMoniker": "C:\\_repo\\unity\\GroundKissers\\GroundKissers\\Assets\\_Scripts\\Aitor\\Managers\\FallingTrapsSpawner\\SpawnPointsManager.cs",
               "RelativeDocumentMoniker": "Assets\\_Scripts\\Aitor\\Managers\\FallingTrapsSpawner\\SpawnPointsManager.cs",
@@ -128,7 +111,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 6,
               "Title": "BouncingSawManager.cs",
               "DocumentMoniker": "C:\\_repo\\unity\\GroundKissers\\GroundKissers\\Assets\\_Scripts\\Aitor\\Managers\\Obstacles\\BouncingSawManager.cs",
               "RelativeDocumentMoniker": "Assets\\_Scripts\\Aitor\\Managers\\Obstacles\\BouncingSawManager.cs",
@@ -140,7 +123,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 7,
               "Title": "LateralSpearsManager.cs",
               "DocumentMoniker": "C:\\_repo\\unity\\GroundKissers\\GroundKissers\\Assets\\_Scripts\\Aitor\\Managers\\Obstacles\\LateralSpearsManager.cs",
               "RelativeDocumentMoniker": "Assets\\_Scripts\\Aitor\\Managers\\Obstacles\\LateralSpearsManager.cs",
@@ -152,7 +135,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 8,
               "Title": "PlayerCollisionsManager.cs",
               "DocumentMoniker": "C:\\_repo\\unity\\GroundKissers\\GroundKissers\\Assets\\_Scripts\\Aitor\\Managers\\Player\\PlayerCollisionsManager.cs",
               "RelativeDocumentMoniker": "Assets\\_Scripts\\Aitor\\Managers\\Player\\PlayerCollisionsManager.cs",
@@ -164,7 +147,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 5,
               "Title": "FallingPlatformsManager.cs",
               "DocumentMoniker": "C:\\_repo\\unity\\GroundKissers\\GroundKissers\\Assets\\_Scripts\\Aitor\\Managers\\Obstacles\\FallingPlatformsManager.cs",
               "RelativeDocumentMoniker": "Assets\\_Scripts\\Aitor\\Managers\\Obstacles\\FallingPlatformsManager.cs",
