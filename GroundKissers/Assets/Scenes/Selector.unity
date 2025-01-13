@@ -139,7 +139,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &91935087
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3175e4515cb03a946ad6e2578b47bc0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneToLoad: _MainScene01
+  sceneToLoad: _MainSceneLevel
   playerPrefab: {fileID: 1236880734466753409, guid: 48d0e7a1eef92e74989168ebe0d4fc16, type: 3}
   playerList: []
   playerColor: []
@@ -1404,7 +1404,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2681504922984393413, guid: bf4d0bf090a5a9249989fb9b0f5d2c6b, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7185985590765392660, guid: bf4d0bf090a5a9249989fb9b0f5d2c6b, type: 3}
       propertyPath: deviceId
@@ -2147,7 +2147,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4531991714062260736, guid: 0be3c6333d92f0f4988be9b772555c57, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8323858678862959597, guid: 0be3c6333d92f0f4988be9b772555c57, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2376,7 +2376,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2681504922984393413, guid: bf4d0bf090a5a9249989fb9b0f5d2c6b, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5213239117167807772, guid: bf4d0bf090a5a9249989fb9b0f5d2c6b, type: 3}
       propertyPath: m_Enabled
