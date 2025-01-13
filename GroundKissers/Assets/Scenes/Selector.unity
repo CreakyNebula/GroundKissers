@@ -1570,6 +1570,21 @@ PrefabInstance:
     - target: {fileID: 2681504922984393413, guid: bf4d0bf090a5a9249989fb9b0f5d2c6b, type: 3}
       propertyPath: m_IsActive
       value: 0
+<<<<<<< HEAD
+=======
+      objectReference: {fileID: 0}
+    - target: {fileID: 7185985590765392660, guid: bf4d0bf090a5a9249989fb9b0f5d2c6b, type: 3}
+      propertyPath: deviceId
+      value: 23
+      objectReference: {fileID: 0}
+    - target: {fileID: 7185985590765392660, guid: bf4d0bf090a5a9249989fb9b0f5d2c6b, type: 3}
+      propertyPath: deviceName
+      value: XInputControllerWindows
+      objectReference: {fileID: 0}
+    - target: {fileID: 7185985590765392660, guid: bf4d0bf090a5a9249989fb9b0f5d2c6b, type: 3}
+      propertyPath: deviceType
+      value: Mando
+>>>>>>> 22906fc936349305133b41cae4d5e8d99adba074
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2693,6 +2708,13 @@ PrefabInstance:
     - target: {fileID: 2681504922984393413, guid: bf4d0bf090a5a9249989fb9b0f5d2c6b, type: 3}
       propertyPath: m_IsActive
       value: 0
+<<<<<<< HEAD
+=======
+      objectReference: {fileID: 0}
+    - target: {fileID: 5213239117167807772, guid: bf4d0bf090a5a9249989fb9b0f5d2c6b, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+>>>>>>> 22906fc936349305133b41cae4d5e8d99adba074
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
