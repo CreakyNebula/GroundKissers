@@ -24,7 +24,7 @@ public class LobbyUI : MonoBehaviour {
     [SerializeField] private Button leaveLobbyButton;
     [SerializeField] public Button startGameButton;
 
-
+    public Color myPlayerColor;
 
     private void Awake() {
         Instance = this;
@@ -42,6 +42,7 @@ public class LobbyUI : MonoBehaviour {
         });
         yellowButton.onClick.AddListener(() => {
             LobbyManager.Instance.UpdatePlayerCharacter(LobbyManager.PlayerCharacter.Yellow);
+            
         });
 
         leaveLobbyButton.onClick.AddListener(() => {
@@ -62,6 +63,18 @@ public class LobbyUI : MonoBehaviour {
         LobbyManager.Instance.OnKickedFromLobby += LobbyManager_OnLeftLobby;
 
         Hide();
+    }
+    private void Update()
+    {
+        LobbyPlayerSingleUI lobbyPlayer = FindObjectOfType<LobbyPlayerSingleUI>();
+        if(lobbyPlayer == null)
+        {
+            Debug.Log("nada");
+        }
+        else
+        {
+            Debug.Log(lobbyPlayer.name);
+        }
     }
 
     private void LobbyManager_OnLeftLobby(object sender, System.EventArgs e) {

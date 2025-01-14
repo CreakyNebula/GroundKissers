@@ -12,6 +12,7 @@ TagManager:
   - Dashing Player
   - Button
   - SpawnPoint
+  - CanvasPoint
   layers:
   - Default
   - TransparentFX

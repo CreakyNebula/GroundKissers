@@ -35,7 +35,6 @@ public class Network_Timer : NetworkBehaviour
     {
         if (IsServer && onGoing)
         {
-            Debug.Log("cemento");
             // El servidor actualiza el temporizador
             remainingTime.Value -= Time.deltaTime;
 

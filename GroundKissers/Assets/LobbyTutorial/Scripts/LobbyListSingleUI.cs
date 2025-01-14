@@ -13,6 +13,7 @@ public class LobbyListSingleUI : MonoBehaviour {
     [SerializeField] private TextMeshProUGUI gameModeText;
 
 
+
     private Lobby lobby;
 
 
