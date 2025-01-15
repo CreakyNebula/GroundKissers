@@ -86,17 +86,13 @@ public class Network_Player_Script : NetworkBehaviour
         animator = GetComponent<Animator>();
         SetState(States.idleing);
         spriteRenderer = GetComponent<SpriteRenderer>();
-
+        
         if (IsOwner)
         {
-            LobbyPlayerSingleUI[]  lobbyPlayerSingleUI = LobbyUI.Instance.GetComponentsInChildren<LobbyPlayerSingleUI>();
 
-            myColor = lobbyPlayerSingleUI[LobbyManager.Instance.position].characterImage.color;
-            
+            myColor = GameObject.Find("LobbyStats").GetComponent<PlayerInfo>().playerColor;
+            playerColor.Value = myColor;
 
-            playerColor.Value = myColor; // Solo el dueño establece el color inicial.
-
-            Debug.Log($"[PlayerDebug] ClientId asignado a este jugador: {OwnerClientId}");
 
         }
 
@@ -114,7 +110,6 @@ public class Network_Player_Script : NetworkBehaviour
     private void Update()
     {
         if(!IsOwner) return;
-        Debug.Log(transform.position);
 
         CheckGround();
         GravityScale();
@@ -390,7 +385,7 @@ public class Network_Player_Script : NetworkBehaviour
         if (callbackContext.performed)
         {
             jumpPressed = true;
-            Debug.Log("hola");
+
         }
         if (callbackContext.canceled)
         {

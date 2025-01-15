@@ -19,7 +19,6 @@ public class LobbyManager : MonoBehaviour {
     public const string KEY_PLAYER_CHARACTER = "Character";
     public const string KEY_START_GAME = "Start";
 
-    public int position;
 
 
     public event EventHandler OnLeftLobby;
@@ -199,7 +198,10 @@ public class LobbyManager : MonoBehaviour {
 
         OnJoinedLobby?.Invoke(this, new LobbyEventArgs { lobby = lobby });
 
-        Debug.Log("Created Lobby " + lobby.Name);
+        LobbyPlayerSingleUI[] lobbyPlayerSingleUI = LobbyUI.Instance.GetComponentsInChildren<LobbyPlayerSingleUI>();
+        GameObject.Find("LobbyStats").GetComponent<PlayerInfo>().miBarraDeJugador = lobbyPlayerSingleUI[lobbyPlayerSingleUI.Length - 1].characterImage;
+        Debug.Log(GameObject.Find("LobbyStats").GetComponent<PlayerInfo>().miBarraDeJugador);
+
         LobbyUI.Instance.startGameButton.gameObject.SetActive(true);
     }
 
@@ -239,28 +241,13 @@ public class LobbyManager : MonoBehaviour {
         });
 
         joinedLobby = lobby;
-        position = GetPlayerPosition();
         OnJoinedLobby?.Invoke(this, new LobbyEventArgs { lobby = lobby });
+
+        LobbyPlayerSingleUI[] lobbyPlayerSingleUI = LobbyUI.Instance.GetComponentsInChildren<LobbyPlayerSingleUI>();
+        GameObject.Find("LobbyStats").GetComponent<PlayerInfo>().miBarraDeJugador = lobbyPlayerSingleUI[lobbyPlayerSingleUI.Length - 1].characterImage;
     }
 
-    public int GetPlayerPosition()
-    {
-        if (joinedLobby != null && joinedLobby.Players != null)
-        {
-            string currentPlayerId = AuthenticationService.Instance.PlayerId;
 
-            for (int i = 0; i < joinedLobby.Players.Count; i++)
-            {
-                if (joinedLobby.Players[i].Id == currentPlayerId)
-                {
-                    return i ; // Devuelve la posición en base 1
-                }
-            }
-        }
-
-        // Si no estás en el lobby, retorna -1
-        return -1;
-    }
 
     public async void JoinLobby(Lobby lobby) {
         Player player = GetPlayer();
@@ -268,8 +255,11 @@ public class LobbyManager : MonoBehaviour {
         joinedLobby = await LobbyService.Instance.JoinLobbyByIdAsync(lobby.Id, new JoinLobbyByIdOptions {
             Player = player
         });
-        position = GetPlayerPosition();
         OnJoinedLobby?.Invoke(this, new LobbyEventArgs { lobby = lobby });
+        LobbyPlayerSingleUI[] lobbyPlayerSingleUI = LobbyUI.Instance.GetComponentsInChildren<LobbyPlayerSingleUI>();
+        GameObject.Find("LobbyStats").GetComponent<PlayerInfo>().miBarraDeJugador = lobbyPlayerSingleUI[lobbyPlayerSingleUI.Length - 1].characterImage;
+        Debug.Log(GameObject.Find("LobbyStats").GetComponent<PlayerInfo>().miBarraDeJugador);
+
     }
 
     public async void UpdatePlayerName(string playerName) {
@@ -331,9 +321,11 @@ public class LobbyManager : MonoBehaviour {
 
             Lobby lobby = await LobbyService.Instance.QuickJoinLobbyAsync(options);
             joinedLobby = lobby;
-            position = GetPlayerPosition();
             OnJoinedLobby?.Invoke(this, new LobbyEventArgs { lobby = lobby });
-        } catch (LobbyServiceException e) {
+            LobbyPlayerSingleUI[] lobbyPlayerSingleUI = LobbyUI.Instance.GetComponentsInChildren<LobbyPlayerSingleUI>();
+            GameObject.Find("LobbyStats").GetComponent<PlayerInfo>().miBarraDeJugador = lobbyPlayerSingleUI[lobbyPlayerSingleUI.Length - 1].characterImage;
+        }
+        catch (LobbyServiceException e) {
             Debug.Log(e);
         }
     }
@@ -341,7 +333,6 @@ public class LobbyManager : MonoBehaviour {
     public async void LeaveLobby() {
         if (joinedLobby != null) {
             try {
-                position = 0;
                 await LobbyService.Instance.RemovePlayerAsync(joinedLobby.Id, AuthenticationService.Instance.PlayerId);
 
                 joinedLobby = null;

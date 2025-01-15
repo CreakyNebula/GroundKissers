@@ -32,7 +32,6 @@ public class LobbyPlayerSingleUI : MonoBehaviour {
             System.Enum.Parse<LobbyManager.PlayerCharacter>(player.Data[LobbyManager.KEY_PLAYER_CHARACTER].Value);
         characterImage.sprite = LobbyAssets.Instance.GetSprite(playerCharacter).sprite;
         characterImage.color = LobbyAssets.Instance.GetSprite(playerCharacter).color;
-        PlayerInfo.Instance.playerColor = characterImage.color;
     }
      
     private void KickPlayer() {

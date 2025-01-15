@@ -67,14 +67,7 @@ public class LobbyUI : MonoBehaviour {
     private void Update()
     {
         LobbyPlayerSingleUI lobbyPlayer = FindObjectOfType<LobbyPlayerSingleUI>();
-        if(lobbyPlayer == null)
-        {
-            Debug.Log("nada");
-        }
-        else
-        {
-            Debug.Log(lobbyPlayer.name);
-        }
+        
     }
 
     private void LobbyManager_OnLeftLobby(object sender, System.EventArgs e) {
