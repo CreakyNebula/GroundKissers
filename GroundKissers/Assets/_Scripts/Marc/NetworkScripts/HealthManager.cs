@@ -8,7 +8,7 @@ public class HealthManager : NetworkBehaviour
 {
     public GameObject PlayerPrefab; // Prefab del jugador que se va a instanciar
     private GameObject newPlayer;
-    public bool playerSpawned;
+    public bool coroutineStarted;
 
     [SerializeField] private GameObject[] playerUi;
     private GameObject myPlayerUi;
@@ -20,44 +20,50 @@ public class HealthManager : NetworkBehaviour
 
     void Start()
     {
-
-        if (IsOwner)
+        if (IsClient && IsOwner && newPlayer == null)
         {
-            ActivateUiObjetctServerRpc(NetworkManager.Singleton.LocalClientId, true);
-
-            myColor = GameObject.Find("LobbyStats").GetComponent<PlayerInfo>().playerColor;
-            playerColor.Value = myColor;
-
-
+            SpawnPlayerServerRpc(OwnerClientId);
+            Debug.Log("inicio");
         }
-
-        // Suscribirse a cambios en la NetworkVariable
-        playerColor.OnValueChanged += (oldValue, newValue) =>
-        {
-            UpdatePlayerColor(newValue);
-        };
-
-        // Configurar el color inicial en base al valor de la NetworkVariable
-        UpdatePlayerColor(playerColor.Value);
 
     }
     private void Update()
     {
-        if (IsClient && IsOwner && !playerSpawned)
+        if (IsOwner)
         {
-            playerSpawned = true;
-            StartCoroutine(RequestPlayerSpawn());
+            myColor = GameObject.Find("LobbyStats").GetComponent<PlayerInfo>().playerColor;
+            Vector4 colorAsVector4 = ColorToVector4(myColor);
+
+            ActivateUiObjetctServerRpc(NetworkManager.Singleton.LocalClientId, true,colorAsVector4);
+        }
+
+        if (IsClient && IsOwner && newPlayer == null)
+        {
+            UpdateNewPlayer(OwnerClientId);
+            if (!coroutineStarted)
+            {
+                Debug.Log("Muelte");
+                StartCoroutine(RequestPlayerSpawn());
+                coroutineStarted = true;
+            }
 
         }
-        
-        
+
     }
 
-    
+
     IEnumerator RequestPlayerSpawn()
     {
-        yield return new WaitForSeconds(3);
+        yield return  new WaitForSeconds(3);
+        if(newPlayer!=null)
+        {
+            coroutineStarted = false;
+            yield break;
+        }
         SpawnPlayerServerRpc(NetworkManager.Singleton.LocalClientId);
+        yield return new WaitForSeconds(1);
+        coroutineStarted = false;
+
     }
 
     [ServerRpc(RequireOwnership = false)]
@@ -80,19 +86,40 @@ public class HealthManager : NetworkBehaviour
         }
     }
 
+    private void UpdateNewPlayer(ulong clientId)
+    {
+        Network_Player_Script[] allPlayers = FindObjectsOfType<Network_Player_Script>();
+        foreach (var playerScript in allPlayers)
+        {
+            // Verifica si el objeto tiene el mismo OwnerClientId que este jugador
+            if (playerScript.NetworkObject.OwnerClientId == clientId)
+            {
+                Debug.Log($"Objeto encontrado con el mismo propietario: {playerScript.gameObject.name}");
+                newPlayer = playerScript.gameObject; // Guarda la referencia
+                break; // Termina la búsqueda
+            }
+        }
+    }
+
     [ServerRpc]
-    private void ActivateUiObjetctServerRpc(ulong clientId, bool isActive)
+    private void ActivateUiObjetctServerRpc(ulong clientId, bool isActive,Vector4 color)
     {
         playerUi[clientId].SetActive(isActive);
         myPlayerUi = playerUi[clientId];
-        ActivateUiObjetctClientRpc(clientId, isActive);
+        myPlayerUi.GetComponent<Image>().color= new Color(color.x,color.y,color.z,color.w);
+        ActivateUiObjetctClientRpc(clientId, isActive,color);
     }
     [ClientRpc]
-    private void ActivateUiObjetctClientRpc(ulong clientId, bool isActive)
+    private void ActivateUiObjetctClientRpc(ulong clientId, bool isActive, Vector4 color)
     {
         playerUi[clientId].SetActive(isActive);
         myPlayerUi = playerUi[clientId];
-
+        myPlayerUi.GetComponent<Image>().color = new Color(color.x, color.y, color.z, color.w);
+    }
+    [ServerRpc]
+    private void SetMyColorServerRpc(Color color)
+    {
+        myPlayerUi.GetComponent<Image>().color = color;
     }
 
     [ClientRpc]
@@ -100,12 +127,15 @@ public class HealthManager : NetworkBehaviour
     {
         myPlayerUi.GetComponent<Image>().color = color;
     }
-
     private void UpdatePlayerColor(Color newColor)
     {
-        myPlayerUi.GetComponent<Image>().color = newColor;
+        playerUi[NetworkManager.Singleton.LocalClientId].GetComponent<Image>().color = newColor;
     }
 
-
+    Vector4 ColorToVector4(Color color)
+    {
+        // Devuelve los componentes RGBA como Vector4
+        return new Vector4(color.r, color.g, color.b, color.a);
+    }
 
 }

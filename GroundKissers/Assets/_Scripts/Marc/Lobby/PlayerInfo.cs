@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
-public class PlayerInfo : MonoBehaviour
+public class PlayerInfo : NetworkBehaviour
 {
 
    
@@ -12,15 +14,32 @@ public class PlayerInfo : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log(gameObject.name);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (miBarraDeJugador != null)
+       
+        LobbyPlayerSingleUI[] lobbyPlayerSingleUI = LobbyUI.Instance.GetComponentsInChildren<LobbyPlayerSingleUI>();
+        GameObject barraNombre = GameObject.Find("PlayerNameText");
+
+        if(barraNombre != null)
         {
-            playerColor = miBarraDeJugador.color;
+            string playerName = barraNombre.GetComponent<TMP_Text>().text;
+
+            foreach (LobbyPlayerSingleUI playerUI in lobbyPlayerSingleUI)
+            {
+                if(playerUI!=null)
+                {
+                    if (playerUI.playerNameText.text == playerName)
+                    {
+                        playerColor = playerUI.characterImage.color;
+
+                    }
+                }
+            }
         }
+
+        
     }
 }

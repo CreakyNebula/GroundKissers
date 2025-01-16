@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class LobbyPlayerSingleUI : MonoBehaviour {
 
 
-    [SerializeField] private TextMeshProUGUI playerNameText;
+    public TextMeshProUGUI playerNameText;
     public Image characterImage;
     [SerializeField] private Button kickPlayerButton;
 

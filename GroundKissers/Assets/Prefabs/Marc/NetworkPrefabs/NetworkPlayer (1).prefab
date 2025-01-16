@@ -170,7 +170,6 @@ GameObject:
   - component: {fileID: 626895148479740433}
   - component: {fileID: 3397418885954483799}
   - component: {fileID: 7766837416658106976}
-  - component: {fileID: 978369129353145122}
   - component: {fileID: 5111452686086998843}
   - component: {fileID: 8899785975503455256}
   - component: {fileID: 3751292269574235800}
@@ -179,9 +178,10 @@ GameObject:
   - component: {fileID: 3386111619084185913}
   - component: {fileID: 5074004957478269602}
   - component: {fileID: 6269289477348776569}
+  - component: {fileID: 3911751042135267899}
   m_Layer: 3
   m_Name: NetworkPlayer (1)
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -358,26 +358,15 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: c2697207-f938-4b53-9643-bd5b2d174c42
     m_ActionName: Selector/Disconect[/Keyboard/backspace,/XInputControllerWindows/buttonEast]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 7d1e0a05-075a-4b7c-8ac2-a06c93aea6c2
+    m_ActionName: Selector/Start
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &978369129353145122
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1236880734466753409}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d3d633008883ee479acee6e04e06ec3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerDeads: 0
-  respawn: {fileID: 0}
-  TimerScript: {fileID: 0}
 --- !u!50 &5111452686086998843
 Rigidbody2D:
   serializedVersion: 4
@@ -504,6 +493,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   isGrounded: 0
+  myColor: {r: 0, g: 0, b: 0, a: 0}
   tackleForce: 28
   isDashing: 0
   dashTime: 0.3
@@ -575,6 +565,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80d7c879794dfda4687da0e400131852, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3911751042135267899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1236880734466753409}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad588518730d339489e51aa571fa33ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerDeads: 0
+  respawn: {fileID: 0}
+  TimerScript: {fileID: 0}
 --- !u!1 &4643066431779005312
 GameObject:
   m_ObjectHideFlags: 0

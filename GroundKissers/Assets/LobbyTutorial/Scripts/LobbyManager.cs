@@ -198,9 +198,7 @@ public class LobbyManager : MonoBehaviour {
 
         OnJoinedLobby?.Invoke(this, new LobbyEventArgs { lobby = lobby });
 
-        LobbyPlayerSingleUI[] lobbyPlayerSingleUI = LobbyUI.Instance.GetComponentsInChildren<LobbyPlayerSingleUI>();
-        GameObject.Find("LobbyStats").GetComponent<PlayerInfo>().miBarraDeJugador = lobbyPlayerSingleUI[lobbyPlayerSingleUI.Length - 1].characterImage;
-        Debug.Log(GameObject.Find("LobbyStats").GetComponent<PlayerInfo>().miBarraDeJugador);
+  
 
         LobbyUI.Instance.startGameButton.gameObject.SetActive(true);
     }
@@ -243,8 +241,7 @@ public class LobbyManager : MonoBehaviour {
         joinedLobby = lobby;
         OnJoinedLobby?.Invoke(this, new LobbyEventArgs { lobby = lobby });
 
-        LobbyPlayerSingleUI[] lobbyPlayerSingleUI = LobbyUI.Instance.GetComponentsInChildren<LobbyPlayerSingleUI>();
-        GameObject.Find("LobbyStats").GetComponent<PlayerInfo>().miBarraDeJugador = lobbyPlayerSingleUI[lobbyPlayerSingleUI.Length - 1].characterImage;
+
     }
 
 
@@ -256,9 +253,7 @@ public class LobbyManager : MonoBehaviour {
             Player = player
         });
         OnJoinedLobby?.Invoke(this, new LobbyEventArgs { lobby = lobby });
-        LobbyPlayerSingleUI[] lobbyPlayerSingleUI = LobbyUI.Instance.GetComponentsInChildren<LobbyPlayerSingleUI>();
-        GameObject.Find("LobbyStats").GetComponent<PlayerInfo>().miBarraDeJugador = lobbyPlayerSingleUI[lobbyPlayerSingleUI.Length - 1].characterImage;
-        Debug.Log(GameObject.Find("LobbyStats").GetComponent<PlayerInfo>().miBarraDeJugador);
+ 
 
     }
 
@@ -322,8 +317,7 @@ public class LobbyManager : MonoBehaviour {
             Lobby lobby = await LobbyService.Instance.QuickJoinLobbyAsync(options);
             joinedLobby = lobby;
             OnJoinedLobby?.Invoke(this, new LobbyEventArgs { lobby = lobby });
-            LobbyPlayerSingleUI[] lobbyPlayerSingleUI = LobbyUI.Instance.GetComponentsInChildren<LobbyPlayerSingleUI>();
-            GameObject.Find("LobbyStats").GetComponent<PlayerInfo>().miBarraDeJugador = lobbyPlayerSingleUI[lobbyPlayerSingleUI.Length - 1].characterImage;
+
         }
         catch (LobbyServiceException e) {
             Debug.Log(e);
