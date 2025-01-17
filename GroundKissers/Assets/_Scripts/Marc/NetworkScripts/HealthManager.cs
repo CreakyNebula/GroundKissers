@@ -15,16 +15,21 @@ public class HealthManager : NetworkBehaviour
 
     public Color myColor;
     private NetworkVariable<Color> playerColor = new NetworkVariable<Color>(Color.white, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
-
+    private NetworkVariable<int> vidas = new NetworkVariable<int>(5,NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner ); private GameObject[] childrenWithHeart;
+    [SerializeField] private Sprite deadHeartSprite;
+    public bool firstTime = true;
 
 
     void Start()
     {
+        /*
         if (IsClient && IsOwner && newPlayer == null)
         {
             SpawnPlayerServerRpc(OwnerClientId);
             Debug.Log("inicio");
+
         }
+        */
 
     }
     private void Update()
@@ -35,17 +40,33 @@ public class HealthManager : NetworkBehaviour
             Vector4 colorAsVector4 = ColorToVector4(myColor);
 
             ActivateUiObjetctServerRpc(NetworkManager.Singleton.LocalClientId, true,colorAsVector4);
+
         }
 
-        if (IsClient && IsOwner && newPlayer == null)
+        
+
+        if (IsClient && IsOwner )
         {
-            UpdateNewPlayer(OwnerClientId);
-            if (!coroutineStarted)
+            UpdateNewPlayer(NetworkManager.Singleton.LocalClientId);
+
+            if (newPlayer == null)
             {
-                Debug.Log("Muelte");
-                StartCoroutine(RequestPlayerSpawn());
-                coroutineStarted = true;
+                if (!coroutineStarted)
+                {
+                    if(!firstTime)
+                    {
+                        Debug.Log("Muelte");
+                        TakeDamage();
+                    }
+                    
+                    
+                    firstTime = false;
+                    StartCoroutine(RequestPlayerSpawn());
+                    coroutineStarted = true;
+                }
             }
+
+            
 
         }
 
@@ -63,6 +84,8 @@ public class HealthManager : NetworkBehaviour
         SpawnPlayerServerRpc(NetworkManager.Singleton.LocalClientId);
         yield return new WaitForSeconds(1);
         coroutineStarted = false;
+        firstTime = false;
+
 
     }
 
@@ -71,10 +94,10 @@ public class HealthManager : NetworkBehaviour
     {
         if(!IsServer) return;
         Vector3 position = new Vector3(0, 0, 0);
-        newPlayer = Instantiate(PlayerPrefab, position, transform.rotation);
+        GameObject newPlayerLocal = Instantiate(PlayerPrefab, position, transform.rotation);
         // Instancia el jugador en el servidor
         // Agrega el objeto a la red y asigna el ownership al cliente que lo solicitó
-        NetworkObject networkObject = newPlayer.GetComponent<NetworkObject>();
+        NetworkObject networkObject = newPlayerLocal.GetComponent<NetworkObject>();
         if (networkObject != null)
         {
             networkObject.SpawnWithOwnership(clientId);
@@ -107,13 +130,18 @@ public class HealthManager : NetworkBehaviour
         playerUi[clientId].SetActive(isActive);
         myPlayerUi = playerUi[clientId];
         myPlayerUi.GetComponent<Image>().color= new Color(color.x,color.y,color.z,color.w);
+        childrenWithHeart = FindChildrenWithHeart();
+
         ActivateUiObjetctClientRpc(clientId, isActive,color);
     }
     [ClientRpc]
     private void ActivateUiObjetctClientRpc(ulong clientId, bool isActive, Vector4 color)
     {
+
         playerUi[clientId].SetActive(isActive);
         myPlayerUi = playerUi[clientId];
+        childrenWithHeart = FindChildrenWithHeart();
+
         myPlayerUi.GetComponent<Image>().color = new Color(color.x, color.y, color.z, color.w);
     }
     [ServerRpc]
@@ -127,10 +155,7 @@ public class HealthManager : NetworkBehaviour
     {
         myPlayerUi.GetComponent<Image>().color = color;
     }
-    private void UpdatePlayerColor(Color newColor)
-    {
-        playerUi[NetworkManager.Singleton.LocalClientId].GetComponent<Image>().color = newColor;
-    }
+  
 
     Vector4 ColorToVector4(Color color)
     {
@@ -138,4 +163,44 @@ public class HealthManager : NetworkBehaviour
         return new Vector4(color.r, color.g, color.b, color.a);
     }
 
+    private void TakeDamage()
+    {
+        Debug.Log("cancerbero");
+        vidas.Value--;
+        TakeDamageServerRpc(vidas.Value);
+    }
+    [ServerRpc]
+    private void TakeDamageServerRpc(int vidaNum)
+    {
+        Image image = childrenWithHeart[vidaNum].gameObject.GetComponent<Image>();
+        image.sprite = deadHeartSprite;
+        TakeDamageClientRpc(vidaNum);
+    }
+    [ClientRpc]
+    private void TakeDamageClientRpc(int vidaNum)
+    {
+        Image image = childrenWithHeart[vidaNum].gameObject.GetComponent<Image>();
+        image.sprite = deadHeartSprite;
+
+    }
+    GameObject[] FindChildrenWithHeart()
+    {
+        // Lista temporal para almacenar los objetos encontrados
+        List<GameObject> foundChildren = new List<GameObject>();
+
+        // Recorre todos los hijos directos e indirectos del objeto
+        Transform[] childTransforms = myPlayerUi.GetComponentsInChildren<Transform>();
+
+        foreach (Transform child in childTransforms)
+        {
+            // Si el nombre del objeto contiene "Heart", lo añade a la lista
+            if (child.name.Contains("Heart"))
+            {
+                foundChildren.Add(child.gameObject);
+            }
+        }
+
+        // Convierte la lista a un array y lo devuelve
+        return foundChildren.ToArray();
+    }
 }

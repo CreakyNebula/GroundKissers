@@ -1338,13 +1338,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerPrefab: {fileID: 1236880734466753409, guid: 139f11b1fbb18e24d9215de54ba4483e, type: 3}
-  playerSpawned: 0
+  coroutineStarted: 0
   playerUi:
   - {fileID: 3864128455146236966}
   - {fileID: 5903568462467620908}
   - {fileID: 8533774305608687633}
   - {fileID: 6411703690653169120}
   myColor: {r: 0, g: 0, b: 0, a: 0}
+  deadHeartSprite: {fileID: 633583705, guid: 420bac775cf410845adc7a617130d079, type: 3}
+  firstTime: 1
 --- !u!1 &7465403647307080185
 GameObject:
   m_ObjectHideFlags: 0
