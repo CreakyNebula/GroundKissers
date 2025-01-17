@@ -12,6 +12,7 @@ UserSettings/
 
 # Ignore auto-generated Visual Studio/MonoDevelop files
 .vscode/
+.vs/
 *.csproj
 *.unityproj
 *.sln
