@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 using TMPro; // Para usar TextMeshPro
 
-public class LoginUserUnity : MonoBehaviour
+public class LoginUserUnity: MonoBehaviour
 {
     // Referencias a los campos de texto y el mensaje de resultado en la UI
     public TMP_InputField usernameInputField; // Campo de texto para el nombre de usuario
