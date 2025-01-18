@@ -30,7 +30,7 @@ public class RegistrarUserUnity : MonoBehaviour
         form.AddField("password", password); // Añadir la contraseña al formulario
 
         // Enviar la solicitud POST al servidor
-        using (UnityWebRequest www = UnityWebRequest.Post("http://localhost/GroundKissers/register.php", form))
+        using (UnityWebRequest www = UnityWebRequest.Post("http://localhost/playergroundkisser/register.php", form))
         {
             // Mostrar mensaje en la UI mientras se realiza la solicitud
             resultText.text = "Intentando registrar usuario...";
