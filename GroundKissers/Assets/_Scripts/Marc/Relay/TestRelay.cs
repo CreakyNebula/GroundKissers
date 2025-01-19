@@ -13,9 +13,19 @@ using System.Threading.Tasks;
 public class TestRelay : MonoBehaviour
 {
     public static TestRelay Instance { get; private set; }
-       private void Awake() {
-        	Instance = this;
-    	}
+    private void Awake()
+    {
+        // Verifica si ya existe una instancia de este singleton
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject); // Destruye el duplicado
+            return;
+        }
+
+        // Asigna la instancia y marca el objeto para que persista entre escenas
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+    }
     // Start is called before the first frame update
     private async void Start()
     {

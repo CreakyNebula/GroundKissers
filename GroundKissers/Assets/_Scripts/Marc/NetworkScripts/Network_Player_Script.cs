@@ -345,6 +345,7 @@ public class Network_Player_Script : NetworkBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (!IsOwner) return;
+        /*
         if (collision.gameObject.tag == "Zancadilla" && isDashing)
         {
             felt = true;
@@ -360,7 +361,7 @@ public class Network_Player_Script : NetworkBehaviour
            /* Network_Player_Script OtherPlayerScript = collision.gameObject.GetComponent<Network_Player_Script>();
 
             OtherPlayerScript.isDashing = false;
-            OtherPlayerScript.StopCoroutine("TackleCorroutine"); */
+            OtherPlayerScript.StopCoroutine("TackleCorroutine"); 
 
             isDashing = false;
             SetState(States.damage);
@@ -377,6 +378,67 @@ public class Network_Player_Script : NetworkBehaviour
                 rb.velocity = (new Vector2(-knockbackX, knockbackY));
 
             }
+        }
+        */
+        if (collision.gameObject.tag == "Zancadilla" && isDashing)
+        {
+            felt = true;
+            SetState(States.triping);
+            StopCoroutine("TackleCorroutine");
+            StartCoroutine("StandUp");
+            isDashing = false;
+            rb.drag = 5;
+        }
+        
+        if (collision.gameObject.tag == "Dashing Player")
+        {
+            /* Network_Player_Script OtherPlayerScript = collision.gameObject.GetComponent<Network_Player_Script>();
+
+             OtherPlayerScript.isDashing = false;
+             OtherPlayerScript.StopCoroutine("TackleCorroutine"); */
+            Network_Player_Script otherPlayerScript = collision.transform.parent.GetComponent<Network_Player_Script>();
+
+            if (mystate != States.zancadilla)
+            {
+
+                isDashing = false;
+                SetState(States.damage);
+                StopCoroutine("TackleCorroutine");
+                SetDashStateServerRpc(false);
+                if (otherPlayerScript.facingRight.Value)
+                {
+                    rb.velocity = (new Vector2(knockbackX, knockbackY));
+                }
+                else
+                {
+                    rb.velocity = (new Vector2(-knockbackX, knockbackY));
+
+                }
+
+            }
+            else
+            {
+                if (otherPlayerScript.facingRight.Value == facingRight.Value)
+                {
+                    isDashing = false;
+                    SetState(States.damage);
+                    StopCoroutine("TackleCorroutine");
+                    SetDashStateServerRpc(false);
+                    if (otherPlayerScript.facingRight.Value)
+                    {
+                        rb.velocity = (new Vector2(knockbackX, knockbackY));
+                    }
+                    else
+                    {
+                        rb.velocity = (new Vector2(-knockbackX, knockbackY));
+
+                    }
+                }
+
+            }
+
+
+
         }
     }
     //Inputs

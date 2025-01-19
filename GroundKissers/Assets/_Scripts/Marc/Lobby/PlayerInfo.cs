@@ -11,6 +11,8 @@ public class PlayerInfo : NetworkBehaviour
    
     public Image miBarraDeJugador;
     public Color playerColor;
+    public string playerName;
+    public int playersCount;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,10 +24,14 @@ public class PlayerInfo : NetworkBehaviour
        
         LobbyPlayerSingleUI[] lobbyPlayerSingleUI = LobbyUI.Instance.GetComponentsInChildren<LobbyPlayerSingleUI>();
         GameObject barraNombre = GameObject.Find("PlayerNameText");
-
-        if(barraNombre != null)
+        GameObject lobbyCanvas = GameObject.Find("SuperLobbyCanvas");
+        if(lobbyCanvas!=null)
         {
-            string playerName = barraNombre.GetComponent<TMP_Text>().text;
+            playersCount = lobbyPlayerSingleUI.Length;
+        }
+        if (barraNombre != null)
+        {
+             playerName = barraNombre.GetComponent<TMP_Text>().text;
 
             foreach (LobbyPlayerSingleUI playerUI in lobbyPlayerSingleUI)
             {
