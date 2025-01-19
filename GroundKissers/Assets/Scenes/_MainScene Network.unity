@@ -2145,7 +2145,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3191582198123067611, guid: 72e8047b4fe27dd40a7584d844fe781b, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -1536.75
+      value: -1536.7498
       objectReference: {fileID: 0}
     - target: {fileID: 6252819269206576955, guid: 72e8047b4fe27dd40a7584d844fe781b, type: 3}
       propertyPath: m_AnchorMax.x
@@ -15016,7 +15016,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1199792369
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24813,7 +24813,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerDeads: 0
   respawn: {fileID: 0}
-  TimerScript: {fileID: 0}
 --- !u!50 &1962765590
 Rigidbody2D:
   serializedVersion: 4
@@ -29765,6 +29764,10 @@ PrefabInstance:
     - target: {fileID: 527448371104090252, guid: f16ff9e3d9f51b14183d810b5ab342ce, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1297944196801095395, guid: f16ff9e3d9f51b14183d810b5ab342ce, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2072349838195348801, guid: f16ff9e3d9f51b14183d810b5ab342ce, type: 3}
       propertyPath: m_SortingOrder

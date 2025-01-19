@@ -24,6 +24,7 @@ public class NT_Spikes : NetworkBehaviour
         base.OnNetworkSpawn();
         if (IsServer) // Solo el servidor controla la lógica
         {
+            anim = GetComponent<Animator>();
 
             initialPosition.Value = transform.position; // Asegurarse de registrar la posición inicial al iniciar
             StartCoroutine(ActivateActionPeriodicallyServer());

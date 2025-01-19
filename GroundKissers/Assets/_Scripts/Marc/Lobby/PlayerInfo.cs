@@ -27,21 +27,17 @@ public class PlayerInfo : NetworkBehaviour
         {
             string playerName = barraNombre.GetComponent<TMP_Text>().text;
 
-            if(lobbyPlayerSingleUI.Length>0)
+            foreach (LobbyPlayerSingleUI playerUI in lobbyPlayerSingleUI)
             {
-                foreach (LobbyPlayerSingleUI playerUI in lobbyPlayerSingleUI)
+                if(playerUI!=null)
                 {
-                    if (playerUI != null)
+                    if (playerUI.playerNameText.text == playerName)
                     {
-                        if (playerUI.playerNameText.text == playerName)
-                        {
-                            playerColor = playerUI.characterImage.color;
+                        playerColor = playerUI.characterImage.color;
 
-                        }
                     }
                 }
             }
-           
         }
 
         

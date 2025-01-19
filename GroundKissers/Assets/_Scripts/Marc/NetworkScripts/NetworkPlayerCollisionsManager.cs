@@ -48,7 +48,6 @@ public class NWPlayerCollisionsManager : NetworkBehaviour
 
     private void Start()
     {
-        TimerScript = GameObject.Find("PanelTimer").GetComponent<Local_Timer>();
     }
     [ServerRpc]
     public void RequestDestroyServerRpc()

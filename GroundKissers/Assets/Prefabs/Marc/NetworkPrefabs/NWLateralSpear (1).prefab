@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 5060171609986675470}
   - component: {fileID: 1641081355214037216}
   m_Layer: 6
-  m_Name: LateralSpear (1)
+  m_Name: NWLateralSpear (1)
   m_TagString: Danger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

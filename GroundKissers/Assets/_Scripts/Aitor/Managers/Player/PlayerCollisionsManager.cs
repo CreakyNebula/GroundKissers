@@ -9,7 +9,6 @@ public class PlayerCollisionsManager : MonoBehaviour
     [SerializeField] private int playerDeads = 0;
     [SerializeField] private Transform respawn;
 
-    [SerializeField] private Local_Timer TimerScript;
     private PlayerConfigurationMenu playerConfigurationMenu;
 
     public int PlayerDeads { get => playerDeads; set => playerDeads = value; }
@@ -24,7 +23,6 @@ public class PlayerCollisionsManager : MonoBehaviour
             //Añadir logica de manejo de nivel, reseteo, conteo de muertes, etc.
                     //Aitor: Yo activaria una booleana que active el codigo en otro script en un empty, para mantener un orden.
            //  transform.position = respawn.transform.position;
-            TimerScript.Muertes++;
             PlayerInput playerInput = GetComponent<PlayerInput>();
             UI_PlayerPadre uI_PlayerPadre = GameObject.Find("HealthManager").GetComponent<UI_PlayerPadre>();
             Ui_PlayerIndividual uiMisVidas = uI_PlayerPadre.playerUi[playerInput.playerIndex].GetComponent<Ui_PlayerIndividual>();
@@ -60,7 +58,6 @@ public class PlayerCollisionsManager : MonoBehaviour
 
     private void Start()
     {
-        TimerScript = GameObject.Find("PanelTimer").GetComponent<Local_Timer>();
         playerConfigurationMenu = GameObject.Find("PlayerConfigurationManager").GetComponent<PlayerConfigurationMenu>();
 
     }
