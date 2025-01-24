@@ -318,7 +318,7 @@ public class Local_Player_Script : MonoBehaviour
         // Al final, asegura que el alpha sea 1.
         color.a = 1f;
         spriteRenderer.color = color;
-        collisionManager.enabled = true;
+        collisionManager.ready=true;
     }
     //Corroutines
     IEnumerator TackleCorroutine()

@@ -10,13 +10,14 @@ public class PlayerCollisionsManager : MonoBehaviour
     [SerializeField] private Transform respawn;
 
     private PlayerConfigurationMenu playerConfigurationMenu;
+    public bool ready;
 
     public int PlayerDeads { get => playerDeads; set => playerDeads = value; }
 
     #region DANGER COLLISION
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Danger"))
+        if (other.gameObject.CompareTag("Danger") && ready)
         {
             PlayerDeads++;
             Debug.Log("DAMAGE");
