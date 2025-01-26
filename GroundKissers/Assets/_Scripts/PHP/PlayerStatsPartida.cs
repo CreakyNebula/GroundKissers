@@ -1,11 +1,12 @@
 using System.Collections;
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class PlayerStatsPartida : MonoBehaviour
+public class PlayerStatsPartida : NetworkBehaviour
 {
     public string partidaId; // Ahora es un string
-    private int playerId;
+    public int playerId;
     public int muertes = 0;
     public int parrys = 0;
     public int zancadillas = 0;
@@ -20,6 +21,8 @@ public class PlayerStatsPartida : MonoBehaviour
             return;
         }
 
+
+
         // Generar partida_id alfanumérico y registrarlo
      /*   partidaId = GenerateAlphanumericId(8); // Generar ID alfanumérico de 8 caracteres
         Debug.Log($"Partida ID generado: {partidaId}");*/
@@ -27,12 +30,14 @@ public class PlayerStatsPartida : MonoBehaviour
 
     void Update()
     {
+        if(LobbyManager.Instance)
+        /*
         if (Input.GetKeyDown(KeyCode.M)) // Aumentar muertes
         {
             muertes++;
             Debug.Log("Muertes: " + muertes);
         }
-
+        */
         if (Input.GetKeyDown(KeyCode.P)) // Aumentar parrys
         {
             parrys++;

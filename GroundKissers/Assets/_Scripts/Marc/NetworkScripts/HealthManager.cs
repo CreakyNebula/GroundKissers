@@ -140,7 +140,6 @@ public class HealthManager : NetworkBehaviour
             // Verifica si el objeto tiene el mismo OwnerClientId que este jugador
             if (playerScript.NetworkObject.OwnerClientId == clientId)
             {
-                Debug.Log($"Objeto encontrado con el mismo propietario: {playerScript.gameObject.name}");
                 newPlayer = playerScript.gameObject; // Guarda la referencia
                 break; // Termina la búsqueda
             }

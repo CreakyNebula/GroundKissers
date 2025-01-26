@@ -1,13 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Netcode;
-using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class NWPlayerCollisionsManager : NetworkBehaviour
 {
-    //Este script comprueba las collisiones del player y modifica su estado en consecuencia
     [SerializeField] private int playerDeads = 0;
     [SerializeField] private Transform respawn;
 
@@ -24,33 +21,22 @@ public class NWPlayerCollisionsManager : NetworkBehaviour
     {
         if (!IsOwner) return;
 
-        if (other.gameObject.tag ==("Danger")&& IsOwner)
+        if (other.CompareTag("Danger"))
         {
-            Debug.Log(statsManagerGO.name);
-           
-            playerStatsPartida.muertes++;
             Debug.Log("chispas");
+            playerStatsPartida.muertes++;
+            // Solicitar al servidor que destruya el objeto
             RequestDestroyServerRpc();
         }
     }
     #endregion 
 
-    private void Update()
-    {/*
-        if(!IsOwner) return;
-        if (Input.GetKeyDown(KeyCode.A)) { gameStatsManager.stats.totalMuertes++; Debug.Log("Total Muertes: " + gameStatsManager.stats.totalMuertes); }
-        if (Input.GetKeyDown(KeyCode.C)) { gameStatsManager.stats.totalZancadillas++; Debug.Log("Total Zancadillas: " + gameStatsManager.stats.totalZancadillas); }
-        if (Input.GetKeyDown(KeyCode.D)) { gameStatsManager.stats.totalParrys++; Debug.Log("Total Parrys: " + gameStatsManager.stats.totalParrys); }
-
-        // Enviar estadísticas al servidor al presionar la tecla R
-        if (Input.GetKeyDown(KeyCode.R)) gameStatsManager.SaveGameStats();*/
-    }
     #region FALLING PLATFORMS COLLISION
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("FallingPlatform"))
         {
-            //transform.parent = collision.gameObject.transform;
+            // transform.parent = collision.gameObject.transform;
         }
     }
 
@@ -70,32 +56,33 @@ public class NWPlayerCollisionsManager : NetworkBehaviour
             statsManagerGO = GameObject.Find("StatsManager");
             gameStatsManager = statsManagerGO.GetComponent<GameStatsManager>();
             playerStatsPartida = statsManagerGO.GetComponent<PlayerStatsPartida>();
-
         }
     }
-    [ServerRpc]
-    public void RequestDestroyServerRpc()
+
+    // Solicita al servidor la destrucción del objeto
+    [ServerRpc(RequireOwnership = false)]
+    public void RequestDestroyServerRpc(ServerRpcParams serverRpcParams = default)
     {
         DestroyThisObject();
     }
 
+    // Método para destruir el objeto
     private void DestroyThisObject()
     {
-       
-       
-
-        Debug.Log(playerStatsPartida.muertes);
-
+        // Obtén el NetworkObject
         NetworkObject networkObject = GetComponent<NetworkObject>();
+
         if (networkObject != null)
         {
+            // Despawn el objeto en la red y destrúyelo localmente en el servidor
             networkObject.Despawn(true);
-            Destroy(this.gameObject);
-            Debug.Log("cirrosis");
+            Destroy(gameObject);
+
+            Debug.Log("Objeto destruido correctamente.");
         }
         else
         {
-            Debug.Log("cachalote");
+            Debug.LogWarning("No se encontró un NetworkObject en el objeto.");
         }
     }
 }

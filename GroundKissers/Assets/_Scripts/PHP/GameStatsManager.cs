@@ -1,8 +1,9 @@
 using System.Collections;
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class GameStatsManager : MonoBehaviour
+public class GameStatsManager : NetworkBehaviour
 {
     [System.Serializable]
     public class GameStats
@@ -24,17 +25,50 @@ public class GameStatsManager : MonoBehaviour
 
     void Update()
     {
-        if (LobbyManager.Instance != null && LobbyManager.Instance.joinedLobby != null)
-        {
-            Debug.Log(LobbyManager.Instance.joinedLobby.Id);
-        }
-        // Incrementar estadísticas globales con teclas específicas
-        if (Input.GetKeyDown(KeyCode.A)) { stats.totalMuertes++; Debug.Log("Total Muertes: " + stats.totalMuertes); }
-        if (Input.GetKeyDown(KeyCode.C)) { stats.totalZancadillas++; Debug.Log("Total Zancadillas: " + stats.totalZancadillas); }
-        if (Input.GetKeyDown(KeyCode.D)) { stats.totalParrys++; Debug.Log("Total Parrys: " + stats.totalParrys); }
+        if (!IsClient) return; // Solo los clientes manejan los inputs
+
+        // Incrementar estadísticas globales mediante ServerRpc
+        if (Input.GetKeyDown(KeyCode.A)) { IncrementMuertesServerRpc(); }
+        if (Input.GetKeyDown(KeyCode.C)) { IncrementZancadillasServerRpc(); }
+        if (Input.GetKeyDown(KeyCode.D)) { IncrementParrysServerRpc(); }
 
         // Enviar estadísticas al servidor al presionar la tecla R
         if (Input.GetKeyDown(KeyCode.R)) SaveGameStats();
+    }
+
+    [ServerRpc(RequireOwnership = false)] // Permite que cualquier cliente invoque este método
+    private void IncrementMuertesServerRpc(ServerRpcParams rpcParams = default)
+    {
+        stats.totalMuertes++;
+        Debug.Log($"Total Muertes actualizado en el servidor: {stats.totalMuertes}");
+        UpdateStatsClientRpc(stats.totalMuertes, stats.totalZancadillas, stats.totalParrys);
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    private void IncrementZancadillasServerRpc(ServerRpcParams rpcParams = default)
+    {
+        stats.totalZancadillas++;
+        Debug.Log($"Total Zancadillas actualizado en el servidor: {stats.totalZancadillas}");
+        UpdateStatsClientRpc(stats.totalMuertes, stats.totalZancadillas, stats.totalParrys);
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    private void IncrementParrysServerRpc(ServerRpcParams rpcParams = default)
+    {
+        stats.totalParrys++;
+        Debug.Log($"Total Parrys actualizado en el servidor: {stats.totalParrys}");
+        UpdateStatsClientRpc(stats.totalMuertes, stats.totalZancadillas, stats.totalParrys);
+    }
+
+    [ClientRpc]
+    private void UpdateStatsClientRpc(int totalMuertes, int totalZancadillas, int totalParrys)
+    {
+        // Actualiza las estadísticas en todos los clientes
+        stats.totalMuertes = totalMuertes;
+        stats.totalZancadillas = totalZancadillas;
+        stats.totalParrys = totalParrys;
+
+        Debug.Log($"Estadísticas sincronizadas en el cliente: Muertes={totalMuertes}, Zancadillas={totalZancadillas}, Parrys={totalParrys}");
     }
 
     private void SaveGameStats()
