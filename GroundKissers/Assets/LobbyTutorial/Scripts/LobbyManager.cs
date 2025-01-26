@@ -8,18 +8,23 @@ using Unity.Services.Lobbies.Models;
 using UnityEngine;
 using Unity.Services.Relay;
 using Unity.Services.Relay.Models;
+using Unity.VisualScripting;
 
 public class LobbyManager : MonoBehaviour {
 
 
     public static LobbyManager Instance { get; private set; }
 
+    public GameObject statsManager;
+
+    public GameStatsManager gameStatsManagerScript;
+    public PlayerStatsPartida playerStatsPartidaScript;
 
     public const string KEY_PLAYER_NAME = "PlayerName";
     public const string KEY_PLAYER_CHARACTER = "Character";
     public const string KEY_START_GAME = "Start";
 
-
+    public bool playWithRegister;
 
     public event EventHandler OnLeftLobby;
 
@@ -51,12 +56,25 @@ public class LobbyManager : MonoBehaviour {
     private float heartbeatTimer;
     private float lobbyPollTimer;
     private float refreshLobbyListTimer = 5f;
-    private Lobby joinedLobby;
+    public Lobby joinedLobby;
     private string playerName;
+
 
 
     private void Awake() {
         Instance = this;
+    }
+
+    private void Start()
+    {
+        statsManager = GameObject.Find("StatsManager");
+        if(statsManager != null)
+        {
+            gameStatsManagerScript = statsManager.GetComponent<GameStatsManager>();
+            playerStatsPartidaScript = statsManager.GetComponent<PlayerStatsPartida>();
+            playWithRegister=true;
+        }
+    
     }
 
     private void Update() {
@@ -370,6 +388,15 @@ public class LobbyManager : MonoBehaviour {
                 });
 
                 joinedLobby = lobby;
+                if(playWithRegister)
+                {
+                    gameStatsManagerScript.PartidaIdName(joinedLobby.Id);
+                    playerStatsPartidaScript.PartidaIdName(joinedLobby.Id);
+                }
+
+
+
+                Debug.Log(joinedLobby.Id);
                 GameObject canvas = GameObject.Find("SuperLobbyCanvas");
                 canvas.SetActive(false);
             }

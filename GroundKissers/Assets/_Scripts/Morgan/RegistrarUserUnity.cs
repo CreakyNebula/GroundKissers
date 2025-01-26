@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 using TMPro; // Para usar TextMeshPro
 
+
 public class RegistrarUserUnity : MonoBehaviour
 {
     // Referencias a los campos de texto y el mensaje de resultado en la UI
@@ -56,7 +57,8 @@ public class RegistrarUserUnity : MonoBehaviour
         {
             Debug.Log("Registro exitoso");
             resultText.text = "¡Usuario registrado exitosamente!"; // Mostrar mensaje de éxito en la UI
-            // Aquí podrías redirigir al jugador a otra escena si fuera necesario
+
+            
         }
         else if (!string.IsNullOrEmpty(response) && response.Contains("duplicate")) // Si la respuesta contiene "duplicate"
         {

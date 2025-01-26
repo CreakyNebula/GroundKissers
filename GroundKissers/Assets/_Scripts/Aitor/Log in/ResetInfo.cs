@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ResetInfo : MonoBehaviour
 {
@@ -19,5 +21,10 @@ public class ResetInfo : MonoBehaviour
         {
             passIF.text = string.Empty;
         }
+    }
+
+    public void PlayAsGuest()
+    {
+        SceneManager.LoadScene("MainMenuScene");
     }
 }

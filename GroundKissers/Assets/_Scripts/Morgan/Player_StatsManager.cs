@@ -1,7 +1,7 @@
 using UnityEngine;
 
 public class Player_StatsManager : MonoBehaviour
-{
+{/*
     // Clase interna para manejar estadísticas individuales de un jugador
     public class PlayerStats
     {
@@ -70,5 +70,5 @@ public class Player_StatsManager : MonoBehaviour
     {
         Debug.Log($"Jugador 1 - Victorias: {jugador1.victorias}, Derrotas: {jugador1.derrotas}, Empates: {jugador1.empates}");
         Debug.Log($"Jugador 2 - Victorias: {jugador2.victorias}, Derrotas: {jugador2.derrotas}, Empates: {jugador2.empates}");
-    }
+    }*/
 }

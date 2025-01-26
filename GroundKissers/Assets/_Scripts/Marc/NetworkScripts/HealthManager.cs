@@ -45,7 +45,7 @@ public class HealthManager : NetworkBehaviour
     private void Update()
     {
 
-        if(StartGame() == true)
+        //if(StartGame() == true)
         {
             if (IsOwner) // Asegúrate de que esta lógica se ejecute en el servidor
             {
@@ -236,6 +236,7 @@ public class HealthManager : NetworkBehaviour
     }
     private void CheckForWinner()
     {
+        
         // Obtén todos los jugadores en la escena
         HealthManager[] allPlayers = FindObjectsOfType<HealthManager>();
 
@@ -250,10 +251,11 @@ public class HealthManager : NetworkBehaviour
         }
 
         // Si solo queda un jugador vivo, se activa el canvas de ganador
-        if (alivePlayers.Count == 1)
-        {
+        if (alivePlayers.Count == 0)
+        {/*
             HealthManager winner = alivePlayers[0];
-            StartCoroutine(SlowTimeAndShowWinner(winner.playerName.Value.ToString()));
+            StartCoroutine(SlowTimeAndShowWinner(winner.playerName.Value.ToString()));*/
+
         }
     }
 
@@ -290,7 +292,7 @@ public class HealthManager : NetworkBehaviour
         //SceneManager.LoadScene(this.scene);
         if (IsServer) // Solo el servidor debe cargar la escena para todos
         {
-            ChangeSceneClientRpc("MainMenu");
+            ChangeSceneClientRpc("MainMenuScene");
 
         }
         // Carga nuevamente la escena actual
@@ -305,6 +307,7 @@ public class HealthManager : NetworkBehaviour
     }
     private bool StartGame()
     {
+
        int jugadoresMax = GameObject.Find("LobbyStats").GetComponent<PlayerInfo>().playersCount;
         HealthManager[] allPlayers = FindObjectsOfType<HealthManager>();
 

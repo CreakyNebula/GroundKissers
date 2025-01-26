@@ -70,6 +70,9 @@ public class Network_Player_Script : NetworkBehaviour
     [SerializeField] private float maxWalkCounter;
     public int utilityCount;
 
+    private GameObject statsManagerGO;
+    private GameStatsManager gameStatsManager;
+    private PlayerStatsPartida playerStatsPartida;
 
     //States
 
@@ -92,7 +95,9 @@ public class Network_Player_Script : NetworkBehaviour
 
             myColor = GameObject.Find("LobbyStats").GetComponent<PlayerInfo>().playerColor;
             playerColor.Value = myColor;
-
+            statsManagerGO = GameObject.Find("StatsManager");
+            gameStatsManager = statsManagerGO.GetComponent<GameStatsManager>();
+            playerStatsPartida = statsManagerGO.GetComponent<PlayerStatsPartida>();
 
         }
 
