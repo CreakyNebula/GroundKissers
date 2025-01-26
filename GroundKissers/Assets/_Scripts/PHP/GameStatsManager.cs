@@ -13,7 +13,7 @@ public class GameStatsManager : MonoBehaviour
     }
 
     private GameStats stats = new GameStats(); // Estadísticas globales de la partida
-    public string partidaId; // ID de la partida
+    private string partidaId; // ID de la partida
 
     private const string saveStatsUrl = "http://localhost/playergroundkisser/register_game_id.php";
 

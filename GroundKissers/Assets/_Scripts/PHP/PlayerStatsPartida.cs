@@ -4,7 +4,7 @@ using UnityEngine.Networking;
 
 public class PlayerStatsPartida : MonoBehaviour
 {
-    private string partidaId; // Ahora es un string
+    public string partidaId; // Ahora es un string
     private int playerId;
     public int muertes = 0;
     public int parrys = 0;
@@ -44,6 +44,7 @@ public class PlayerStatsPartida : MonoBehaviour
             zancadillas++;
             Debug.Log("Zancadillas: " + zancadillas);
         }
+
 
         if (Input.GetKeyDown(KeyCode.H)) // Guardar estadísticas
         {
@@ -115,8 +116,8 @@ public class PlayerStatsPartida : MonoBehaviour
 
     public void PartidaIdName(string lobbyId)
     {
-        partidaId = lobbyId;
-        StartCoroutine(RegisterGameId());
+         partidaId = lobbyId;
+        //StartCoroutine(RegisterGameId());
 
     }
 }

@@ -388,10 +388,27 @@ public class LobbyManager : MonoBehaviour {
                 });
 
                 joinedLobby = lobby;
-                if(playWithRegister)
+                if (playWithRegister)
                 {
-                    gameStatsManagerScript.PartidaIdName(joinedLobby.Id);
-                    playerStatsPartidaScript.PartidaIdName(joinedLobby.Id);
+                    if (gameStatsManagerScript != null)
+                    {
+                        gameStatsManagerScript.PartidaIdName(joinedLobby.Id); // Pasar el ID al GameStatsManager
+                        Debug.Log($"Partida ID '{joinedLobby.Id}' asignado a GameStatsManager.");
+                    }
+                    else
+                    {
+                        Debug.LogError("GameStatsManager no está inicializado en LobbyManager.");
+                    }
+
+                    if (playerStatsPartidaScript != null)
+                    {
+                        playerStatsPartidaScript.PartidaIdName(joinedLobby.Id); // Pasar el mismo ID a PlayerStatsPartida
+                        Debug.Log($"Partida ID '{joinedLobby.Id}' asignado a PlayerStatsPartida.");
+                    }
+                    else
+                    {
+                        Debug.LogError("PlayerStatsPartida no está inicializado en LobbyManager.");
+                    }
                 }
 
 
