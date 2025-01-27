@@ -399,10 +399,9 @@ public class LobbyManager : MonoBehaviour {
                     {
                         Debug.LogError("GameStatsManager no está inicializado en LobbyManager.");
                     }
-
+                                                                                                
                     if (playerStatsPartidaScript != null)
                     {
-                        playerStatsPartidaScript.PartidaIdName(joinedLobby.Id); // Pasar el mismo ID a PlayerStatsPartida
                         Debug.Log($"Partida ID '{joinedLobby.Id}' asignado a PlayerStatsPartida.");
                     }
                     else

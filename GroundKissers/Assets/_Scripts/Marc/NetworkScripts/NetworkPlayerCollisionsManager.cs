@@ -25,6 +25,7 @@ public class NWPlayerCollisionsManager : NetworkBehaviour
         {
             Debug.Log("chispas");
             playerStatsPartida.muertes++;
+            gameStatsManager.IncrementMuertesServerRpc();
             // Solicitar al servidor que destruya el objeto
             RequestDestroyServerRpc();
         }

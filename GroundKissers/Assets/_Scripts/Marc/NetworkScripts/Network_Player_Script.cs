@@ -101,6 +101,13 @@ public class Network_Player_Script : NetworkBehaviour
 
         }
 
+        if (IsOwner)
+        {
+            statsManagerGO = GameObject.Find("StatsManager");
+            gameStatsManager = statsManagerGO.GetComponent<GameStatsManager>();
+            playerStatsPartida = statsManagerGO.GetComponent<PlayerStatsPartida>();
+        }
+
         // Suscribirse a cambios en la NetworkVariable
         playerColor.OnValueChanged += (oldValue, newValue) =>
         {
@@ -470,6 +477,8 @@ public class Network_Player_Script : NetworkBehaviour
         {
             SetState(States.dashing);
             utilityCount--;
+            playerStatsPartida.zancadillas++;
+            gameStatsManager.IncrementZancadillasServerRpc();
         }
     }
     public void Trip(InputAction.CallbackContext callbackContext)
@@ -478,6 +487,8 @@ public class Network_Player_Script : NetworkBehaviour
         {
             SetState(States.zancadilla);
             utilityCount--;
+            playerStatsPartida.parrys++;
+            gameStatsManager.IncrementParrysServerRpc();
         }
         if(callbackContext.canceled && mystate==States.zancadilla)
         {

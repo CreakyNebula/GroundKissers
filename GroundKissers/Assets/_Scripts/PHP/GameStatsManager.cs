@@ -14,7 +14,7 @@ public class GameStatsManager : NetworkBehaviour
     }
 
     private GameStats stats = new GameStats(); // Estadísticas globales de la partida
-    private string partidaId; // ID de la partida
+    public string partidaId; // ID de la partida
 
     private const string saveStatsUrl = "http://localhost/playergroundkisser/register_game_id.php";
 
@@ -24,20 +24,26 @@ public class GameStatsManager : NetworkBehaviour
     }
 
     void Update()
-    {
+    {/*
+        if (IsServer)
+        {
+            // Enviar estadísticas al servidor al presionar la tecla R
+            if (Input.GetKeyDown(KeyCode.R)) SaveGameStats();
+        }
         if (!IsClient) return; // Solo los clientes manejan los inputs
+        */
 
-        // Incrementar estadísticas globales mediante ServerRpc
+       /* // Incrementar estadísticas globales mediante ServerRpc
         if (Input.GetKeyDown(KeyCode.A)) { IncrementMuertesServerRpc(); }
         if (Input.GetKeyDown(KeyCode.C)) { IncrementZancadillasServerRpc(); }
-        if (Input.GetKeyDown(KeyCode.D)) { IncrementParrysServerRpc(); }
+        if (Input.GetKeyDown(KeyCode.D)) { IncrementParrysServerRpc(); }*/
 
-        // Enviar estadísticas al servidor al presionar la tecla R
-        if (Input.GetKeyDown(KeyCode.R)) SaveGameStats();
+       
+
     }
 
     [ServerRpc(RequireOwnership = false)] // Permite que cualquier cliente invoque este método
-    private void IncrementMuertesServerRpc(ServerRpcParams rpcParams = default)
+    public void IncrementMuertesServerRpc(ServerRpcParams rpcParams = default)
     {
         stats.totalMuertes++;
         Debug.Log($"Total Muertes actualizado en el servidor: {stats.totalMuertes}");
@@ -45,7 +51,7 @@ public class GameStatsManager : NetworkBehaviour
     }
 
     [ServerRpc(RequireOwnership = false)]
-    private void IncrementZancadillasServerRpc(ServerRpcParams rpcParams = default)
+    public void IncrementZancadillasServerRpc(ServerRpcParams rpcParams = default)
     {
         stats.totalZancadillas++;
         Debug.Log($"Total Zancadillas actualizado en el servidor: {stats.totalZancadillas}");
@@ -53,7 +59,7 @@ public class GameStatsManager : NetworkBehaviour
     }
 
     [ServerRpc(RequireOwnership = false)]
-    private void IncrementParrysServerRpc(ServerRpcParams rpcParams = default)
+    public void IncrementParrysServerRpc(ServerRpcParams rpcParams = default)
     {
         stats.totalParrys++;
         Debug.Log($"Total Parrys actualizado en el servidor: {stats.totalParrys}");
@@ -71,9 +77,12 @@ public class GameStatsManager : NetworkBehaviour
         Debug.Log($"Estadísticas sincronizadas en el cliente: Muertes={totalMuertes}, Zancadillas={totalZancadillas}, Parrys={totalParrys}");
     }
 
-    private void SaveGameStats()
+    public void SaveGameStats()
     {
-        StartCoroutine(SendStatsToServer(partidaId, stats));
+        if(IsServer)
+        {
+            StartCoroutine(SendStatsToServer(partidaId, stats));
+        }
     }
 
     private IEnumerator SendStatsToServer(string partidaId, GameStats stats)

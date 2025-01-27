@@ -32,20 +32,28 @@ public class HealthManager : NetworkBehaviour
 
     [SerializeField] private Image winnerCanvas; // Canvas que se activa al finalizar
     [SerializeField] private Text winnerText; // Texto dentro del canvas para mostrar el ganador
+    private GameObject statsManagerGO;
+    private GameStatsManager gameStatsManager;
+    private PlayerStatsPartida playerStatsPartida;
 
+    public bool gameEnded;
+    public int aux;
 
-    void Start()
+    private void Start()
     {
-        
-
-
-
+        if (IsOwner)
+        {
+            statsManagerGO = GameObject.Find("StatsManager");
+            playerStatsPartida = statsManagerGO.GetComponent<PlayerStatsPartida>();
+        }
+        gameStatsManager = statsManagerGO.GetComponent<GameStatsManager>();
 
     }
+
     private void Update()
     {
 
-        //if(StartGame() == true)
+        if(StartGame() == true && !gameEnded)
         {
             if (IsOwner) // Asegúrate de que esta lógica se ejecute en el servidor
             {
@@ -145,6 +153,7 @@ public class HealthManager : NetworkBehaviour
             }
         }
     }
+
 
     [ServerRpc]
     private void ActivateUiObjetctServerRpc(ulong clientId, bool isActive,Vector4 color)
@@ -250,28 +259,51 @@ public class HealthManager : NetworkBehaviour
         }
 
         // Si solo queda un jugador vivo, se activa el canvas de ganador
-        if (alivePlayers.Count == 0)
-        {/*
+        if (alivePlayers.Count == 1)
+        {
             HealthManager winner = alivePlayers[0];
-            StartCoroutine(SlowTimeAndShowWinner(winner.playerName.Value.ToString()));*/
-
+            StartCoroutine(SlowTimeAndShowWinner(winner.playerName.Value.ToString(),true));
+            Debug.Log("sacabó");
+            gameStatsManager.SaveGameStats();
+            if(alive.Value == true)
+            {
+                playerStatsPartida.Win();
+            }
+            else
+            {
+                playerStatsPartida.Lose();
+            }
+            gameEnded = true;
         }
+        if (alivePlayers.Count == 0 && !gameEnded) // Si no hay ningún jugador vivo
+        {
+            StartCoroutine(SlowTimeAndShowWinner("Nobody wins, Get better", false));
+            Debug.Log("Nadie ganó.");
+            gameStatsManager.SaveGameStats();
+            playerStatsPartida.Lose(); // Todos pierden
+            gameEnded = true;
+        }
+
     }
 
-    private IEnumerator SlowTimeAndShowWinner(string winnerName)
+    private IEnumerator SlowTimeAndShowWinner(string winnerName, bool someoneWon)
     {
         // Encuentra y configura el canvas y el texto
         winnerCanvas = GameObject.Find("WinnerCanvas").transform.GetChild(0).GetComponent<Image>();
         TMP_Text winnerText = GameObject.Find("WinnerText").GetComponent<TMP_Text>();
-        winnerText.text = $"¡El ganador es {winnerName}!";
+        if (someoneWon)
+        {
+            winnerText.text = $"¡The Winner is {winnerName}!";
+        }
+        else
+        {
+            winnerText.text = winnerName;   
+        }
 
         Debug.Log("socorro");
         Color winnerCanvasColor = winnerCanvas.color;
 
-        if (winnerText != null)
-        {
-            winnerText.text = "¡El ganador es el Jugador " + (winnerName ) + "!";
-        }
+        
 
         // Ralentizar el tiempo poco a poco y aumentar la transparencia del canvas y el texto
         while (Time.timeScale > 0.1f)
