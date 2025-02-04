@@ -8,12 +8,12 @@ public class NWPlayerCollisionsManager : NetworkBehaviour
     [SerializeField] private int playerDeads = 0;
     [SerializeField] private Transform respawn;
 
-    [SerializeField] private Local_Timer TimerScript;
     private PlayerConfigurationMenu playerConfigurationMenu;
     private GameObject statsManagerGO;
     private GameStatsManager gameStatsManager;
     private PlayerStatsPartida playerStatsPartida;
 
+    public bool ready;
     public int PlayerDeads { get => playerDeads; set => playerDeads = value; }
 
     #region DANGER COLLISION
@@ -21,7 +21,7 @@ public class NWPlayerCollisionsManager : NetworkBehaviour
     {
         if (!IsOwner) return;
 
-        if (other.CompareTag("Danger"))
+        if (other.CompareTag("Danger") && ready)
         {
             Debug.Log("chispas");
             playerStatsPartida.muertes++;

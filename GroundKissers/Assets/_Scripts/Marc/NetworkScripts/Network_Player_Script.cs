@@ -74,6 +74,7 @@ public class Network_Player_Script : NetworkBehaviour
     private GameStatsManager gameStatsManager;
     private PlayerStatsPartida playerStatsPartida;
 
+    [SerializeField] private NWPlayerCollisionsManager playerCollisionsManager;
     //States
 
     public enum States { dashing,idleing,walking,falling, jumping, triping,damage,zancadilla}
@@ -95,9 +96,6 @@ public class Network_Player_Script : NetworkBehaviour
 
             myColor = GameObject.Find("LobbyStats").GetComponent<PlayerInfo>().playerColor;
             playerColor.Value = myColor;
-            statsManagerGO = GameObject.Find("StatsManager");
-            gameStatsManager = statsManagerGO.GetComponent<GameStatsManager>();
-            playerStatsPartida = statsManagerGO.GetComponent<PlayerStatsPartida>();
 
         }
 
@@ -116,6 +114,12 @@ public class Network_Player_Script : NetworkBehaviour
 
         // Configurar el color inicial en base al valor de la NetworkVariable
         UpdatePlayerColor(playerColor.Value);
+
+        // Comenzar la corrutina de cambio de color
+        if (IsOwner)
+        {
+            StartCoroutine(FadeOutAndBackColor());
+        }
     }
 
 
@@ -582,7 +586,40 @@ public class Network_Player_Script : NetworkBehaviour
     {
         spriteRenderer.color = newColor;
     }
-    
 
+    private IEnumerator FadeOutAndBackColor()
+    {
+        float fadeDuration = 5f;
+        float elapsedTime = 0f;
+
+        // Reducir el alpha a la mitad
+        Color originalColor = spriteRenderer.color;
+        Color targetColor = new Color(originalColor.r, originalColor.g, originalColor.b, originalColor.a * 0.5f);
+
+        // Hacer fade out (disminuir alpha)
+        while (elapsedTime < fadeDuration)
+        {
+            spriteRenderer.color = Color.Lerp(originalColor, targetColor, elapsedTime / fadeDuration);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        spriteRenderer.color = targetColor;  // Asegurarse de que el color sea exactamente el target
+
+        // Esperar un momento con el alpha reducido
+        yield return new WaitForSeconds(1f);
+
+        // Restaurar el color original
+        elapsedTime = 0f;
+        while (elapsedTime < fadeDuration)
+        {
+            spriteRenderer.color = Color.Lerp(targetColor, originalColor, elapsedTime / fadeDuration);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        spriteRenderer.color = originalColor;  // Asegurarse de que el color vuelva al original
+        playerCollisionsManager.ready = true;
+    }
 
 }

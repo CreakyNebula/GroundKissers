@@ -508,6 +508,7 @@ MonoBehaviour:
   walkCounter: 0
   maxWalkCounter: 5
   utilityCount: 0
+  playerCollisionsManager: {fileID: 3911751042135267899}
   mystate: 0
 --- !u!114 &3386111619084185913
 MonoBehaviour:
@@ -580,7 +581,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerDeads: 0
   respawn: {fileID: 0}
-  TimerScript: {fileID: 0}
+  ready: 0
 --- !u!114 &4828181568893784804
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -598,6 +599,9 @@ MonoBehaviour:
   muertes: 0
   parrys: 0
   zancadillas: 0
+  ganadas: 0
+  perdidas: 0
+  partidasTotales: 0
 --- !u!1 &4643066431779005312
 GameObject:
   m_ObjectHideFlags: 0

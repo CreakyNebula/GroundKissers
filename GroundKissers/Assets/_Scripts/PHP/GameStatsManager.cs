@@ -1,7 +1,10 @@
 using System.Collections;
+using System.Collections.Generic;
+using Unity.Collections;
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.SceneManagement;
 
 public class GameStatsManager : NetworkBehaviour
 {
@@ -16,31 +19,57 @@ public class GameStatsManager : NetworkBehaviour
     private GameStats stats = new GameStats(); // Estadísticas globales de la partida
     public string partidaId; // ID de la partida
 
+    public NetworkVariable<FixedString128Bytes> partidaIdNW = new NetworkVariable<FixedString128Bytes>(
+        string.Empty, // Valor por defecto
+        NetworkVariableReadPermission.Everyone, // Todos los clientes pueden leer
+        NetworkVariableWritePermission.Server // Solo el servidor puede escribir
+    );
     private const string saveStatsUrl = "http://localhost/playergroundkisser/register_game_id.php";
+
+    private bool statsSaved = false; // Para evitar guardar más de una vez
+    private bool gameStarted;
+    private HealthManager[] allPlayers;
 
     private void Awake()
     {
         DontDestroyOnLoad(this.gameObject);
     }
 
+    private void Start()
+    {
+    }
     void Update()
-    {/*
-        if (IsServer)
+    {
+        if (IsServer) StartCoroutine(WaitToStart());
+
+        if (IsServer )
         {
-            // Enviar estadísticas al servidor al presionar la tecla R
-            if (Input.GetKeyDown(KeyCode.R)) SaveGameStats();
+               partidaIdNW.Value = partidaId;
+
+            if (gameStarted && !statsSaved)
+            {
+                Debug.Log("buscando");
+                CheckPlayersAlive();
+            }
         }
         if (!IsClient) return; // Solo los clientes manejan los inputs
-        */
 
-       /* // Incrementar estadísticas globales mediante ServerRpc
-        if (Input.GetKeyDown(KeyCode.A)) { IncrementMuertesServerRpc(); }
-        if (Input.GetKeyDown(KeyCode.C)) { IncrementZancadillasServerRpc(); }
-        if (Input.GetKeyDown(KeyCode.D)) { IncrementParrysServerRpc(); }*/
 
-       
+        /* // Incrementar estadísticas globales mediante ServerRpc
+         if (Input.GetKeyDown(KeyCode.A)) { IncrementMuertesServerRpc(); }
+         if (Input.GetKeyDown(KeyCode.C)) { IncrementZancadillasServerRpc(); }
+         if (Input.GetKeyDown(KeyCode.D)) { IncrementParrysServerRpc(); }*/
 
+
+        if (SceneManager.GetActiveScene().name == "MainSceneMenu")
+        {
+            stats.totalMuertes = 0;
+            stats.totalZancadillas = 0;
+            stats.totalParrys = 0;
+
+        }
     }
+
 
     [ServerRpc(RequireOwnership = false)] // Permite que cualquier cliente invoque este método
     public void IncrementMuertesServerRpc(ServerRpcParams rpcParams = default)
@@ -81,7 +110,7 @@ public class GameStatsManager : NetworkBehaviour
     {
         if(IsServer)
         {
-            StartCoroutine(SendStatsToServer(partidaId, stats));
+            StartCoroutine(SendStatsToServer(partidaIdNW.Value.ToString(), stats));
         }
     }
 
@@ -115,4 +144,51 @@ public class GameStatsManager : NetworkBehaviour
         partidaId = lobbyId;
         Debug.Log($"Partida ID generado: {partidaId}");
     }
+
+    [ClientRpc]
+    private void SyncPartidaIdClientRpc(string newPartidaId)
+    {
+        partidaId = newPartidaId;
+        Debug.Log($"partidaId sincronizado en el cliente: {partidaId}");
+    }
+
+    // Método para que un cliente solicite el partidaId actual al servidor
+    [ServerRpc(RequireOwnership = false)]
+    public void RequestPartidaIdServerRpc(ServerRpcParams rpcParams = default)
+    {
+        // Responder al cliente que solicitó el `partidaId`
+        SyncPartidaIdClientRpc(partidaId);
+    }
+
+    IEnumerator WaitToStart()
+    {
+
+        yield return new WaitForSeconds(10);
+        if (gameStarted) yield break;
+        allPlayers = FindObjectsOfType<HealthManager>();
+        Debug.Log(allPlayers.Length);
+        gameStarted = true;
+    }
+  
+
+    void CheckPlayersAlive()
+    {
+        // Comprobar cuántos jugadores están vivos
+        int aliveCount = 0;
+
+        foreach (HealthManager player in allPlayers)
+        {
+            if (player.alive.Value)  // Verifica si el valor de 'alive' del jugador es true
+            {
+                aliveCount++;
+            }
+        }
+
+        if (aliveCount <= 1)
+        {
+            SaveGameStats();
+            statsSaved = true;
+        }
+    }
+
 }

@@ -31,13 +31,17 @@ public class HealthManager : NetworkBehaviour
     );
 
     [SerializeField] private Image winnerCanvas; // Canvas que se activa al finalizar
-    [SerializeField] private Text winnerText; // Texto dentro del canvas para mostrar el ganador
+
     private GameObject statsManagerGO;
     private GameStatsManager gameStatsManager;
     private PlayerStatsPartida playerStatsPartida;
 
-    public bool gameEnded;
     public int aux;
+
+    public bool gameEnded;
+
+    [SerializeField] private Network_Timer networkTimer;
+
 
     private void Start()
     {
@@ -45,8 +49,10 @@ public class HealthManager : NetworkBehaviour
         {
             statsManagerGO = GameObject.Find("StatsManager");
             playerStatsPartida = statsManagerGO.GetComponent<PlayerStatsPartida>();
+            networkTimer = FindObjectOfType<Network_Timer>();
+            gameStatsManager = statsManagerGO.GetComponent<GameStatsManager>();
+
         }
-        gameStatsManager = statsManagerGO.GetComponent<GameStatsManager>();
 
     }
 
@@ -55,8 +61,15 @@ public class HealthManager : NetworkBehaviour
 
         if(StartGame() == true && !gameEnded)
         {
+
+           
             if (IsOwner) // Asegúrate de que esta lógica se ejecute en el servidor
             {
+                if (networkTimer != null && networkTimer.remainingTime.Value <= 0 && alive.Value)
+                {
+                    Debug.Log("El tiempo se acabó. Jugador eliminado.");
+                    alive.Value = false;
+                }
                 CheckForWinner();
             }
 
@@ -259,51 +272,92 @@ public class HealthManager : NetworkBehaviour
         }
 
         // Si solo queda un jugador vivo, se activa el canvas de ganador
-        if (alivePlayers.Count == 1)
+        if (alivePlayers.Count == 1 && networkTimer != null && networkTimer.remainingTime.Value > 0 &&!gameEnded)
         {
             HealthManager winner = alivePlayers[0];
-            StartCoroutine(SlowTimeAndShowWinner(winner.playerName.Value.ToString(),true));
+            StartCoroutine(SlowTimeAndShowWinner(winner.playerName.Value.ToString()));
             Debug.Log("sacabó");
-            gameStatsManager.SaveGameStats();
-            if(alive.Value == true)
+            if (gameStatsManager != null )
             {
-                playerStatsPartida.Win();
+                //gameStatsManager.SaveGameStats();
+                if (alive.Value == true)
+                {
+                    StartCoroutine(WinCorroutine());
+                }
+                else
+                {
+                    StartCoroutine(LoseCorroutine());
+                }
+                gameEnded = true;
             }
-            else
-            {
-                playerStatsPartida.Lose();
-            }
-            gameEnded = true;
+            
         }
         if (alivePlayers.Count == 0 && !gameEnded) // Si no hay ningún jugador vivo
         {
-            StartCoroutine(SlowTimeAndShowWinner("Nobody wins, Get better", false));
+            StartCoroutine(SlowTimeAndEveryoneLoses("Nobody wins, Get better"));
             Debug.Log("Nadie ganó.");
-            gameStatsManager.SaveGameStats();
-            playerStatsPartida.Lose(); // Todos pierden
-            gameEnded = true;
+            if (gameStatsManager != null)
+            {
+                // gameStatsManager.SaveGameStats();
+                StartCoroutine(LoseCorroutine());
+                gameEnded = true;
+            }
+           
         }
 
     }
 
-    private IEnumerator SlowTimeAndShowWinner(string winnerName, bool someoneWon)
+    private IEnumerator SlowTimeAndShowWinner(string winnerName)
     {
         // Encuentra y configura el canvas y el texto
         winnerCanvas = GameObject.Find("WinnerCanvas").transform.GetChild(0).GetComponent<Image>();
         TMP_Text winnerText = GameObject.Find("WinnerText").GetComponent<TMP_Text>();
-        if (someoneWon)
-        {
-            winnerText.text = $"¡The Winner is {winnerName}!";
-        }
-        else
-        {
-            winnerText.text = winnerName;   
-        }
+
+        
+        
+        winnerText.text = $"¡The Winner is {winnerName}!";
+    
 
         Debug.Log("socorro");
         Color winnerCanvasColor = winnerCanvas.color;
 
         
+
+        // Ralentizar el tiempo poco a poco y aumentar la transparencia del canvas y el texto
+        while (Time.timeScale > 0.1f)
+        {
+            Time.timeScale -= 0.01f; // Reduce la escala del tiempo gradualmente
+            yield return new WaitForSecondsRealtime(0.02f); // Espera en tiempo real
+            winnerCanvas.color = new Vector4(winnerCanvasColor.r, winnerCanvasColor.g, winnerCanvasColor.b, 1 - Time.timeScale);
+            winnerText.color = new Vector4(winnerText.color.r, winnerText.color.g, winnerText.color.b, 1 - Time.timeScale);
+        }
+
+        Time.timeScale = 0.1f; // Fija la escala del tiempo en 0.1 para casi detenerlo
+        winnerCanvas.gameObject.SetActive(true); // Activa el canvas de ganador
+
+        yield return new WaitForSecondsRealtime(5f); // Mantén la pantalla por 5 segundos en tiempo real
+
+        // Vuelve a la escena principal o menú de selección
+        //SceneManager.LoadScene(this.scene);
+        if (IsServer) // Solo el servidor debe cargar la escena para todos
+        {
+            ChangeSceneClientRpc("MainMenuScene");
+
+        }
+        // Carga nuevamente la escena actual
+
+    }
+
+    private IEnumerator SlowTimeAndEveryoneLoses(string winnerName)
+    {
+        // Encuentra y configura el canvas y el texto
+        winnerCanvas = GameObject.Find("LoserCanvas").transform.GetChild(0).GetComponent<Image>();
+        TMP_Text winnerText = GameObject.Find("LoserText").GetComponent<TMP_Text>();
+
+        winnerText.text = winnerName;
+
+        Debug.Log("socorro");
+        Color winnerCanvasColor = winnerCanvas.color;
 
         // Ralentizar el tiempo poco a poco y aumentar la transparencia del canvas y el texto
         while (Time.timeScale > 0.1f)
@@ -336,7 +390,7 @@ public class HealthManager : NetworkBehaviour
     {
         SceneManager.LoadScene(sceneName);
     }
-    private bool StartGame()
+    public bool StartGame()
     {
 
        int jugadoresMax = GameObject.Find("LobbyStats").GetComponent<PlayerInfo>().playersCount;
@@ -351,6 +405,20 @@ public class HealthManager : NetworkBehaviour
             return false;
         }
 
+
+    }
+
+    IEnumerator WinCorroutine()
+    {
+        yield return new WaitForSecondsRealtime(3);
+        playerStatsPartida.Win();
+
+    }
+
+    IEnumerator LoseCorroutine()
+    {
+        yield return new WaitForSecondsRealtime(3);
+        playerStatsPartida.Lose();
 
     }
 }

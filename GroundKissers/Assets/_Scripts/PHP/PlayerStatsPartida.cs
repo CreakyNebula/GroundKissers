@@ -1,7 +1,9 @@
 using System.Collections;
 using Unity.Netcode;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.SceneManagement;
 
 public class PlayerStatsPartida : NetworkBehaviour
 {
@@ -23,6 +25,10 @@ public class PlayerStatsPartida : NetworkBehaviour
             Debug.LogError("Player ID no encontrado. Asegúrate de iniciar sesión.");
             return;
         }
+        
+             partidaId = GameObject.Find("StatsManager").GetComponent<GameStatsManager>().partidaIdNW.Value.ToString();
+
+        
     }
 
     void Update()
@@ -41,6 +47,17 @@ public class PlayerStatsPartida : NetworkBehaviour
         if (Input.GetKeyDown(KeyCode.H)) // Guardar estadísticas manualmente
         {
             SavePlayerStatsServerRpc(playerId, muertes, parrys, zancadillas, ganadas, perdidas, partidasTotales);
+        }
+
+
+        if (SceneManager.GetActiveScene().name == "MainSceneMenu")
+        {
+            muertes = 0;
+            zancadillas = 0;
+            ganadas = 0;
+            perdidas = 0;
+            partidasTotales = 0;
+
         }
     }
 

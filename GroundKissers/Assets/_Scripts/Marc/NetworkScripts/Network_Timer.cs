@@ -15,7 +15,7 @@ public class Network_Timer : NetworkBehaviour
     public int Muertes;
 
     // Variable sincronizada
-    private NetworkVariable<float> remainingTime = new NetworkVariable<float>();
+    public NetworkVariable<float> remainingTime = new NetworkVariable<float>();
 
     private bool onGoing;
 
@@ -42,17 +42,13 @@ public class Network_Timer : NetworkBehaviour
             {
                 onGoing = false;
                 remainingTime.Value = 0;
-                endGame.MostrarEndGame();
             }
         }
 
         // Todos los clientes actualizan la UI
         UpdateUI();
 
-        if (Muertes >= 3)
-        {
-            lostScript.MostrarEndGame();
-        }
+       
     }
 
     private void UpdateUI()
